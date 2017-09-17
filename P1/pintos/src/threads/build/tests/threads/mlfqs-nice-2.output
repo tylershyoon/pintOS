@@ -1,6 +1,5 @@
-Writing command line to /tmp/VtCq8AVKTL.dsk...
-warning: can't find squish-pty, so terminal input will fail
-bochs -q
+Writing command line to /tmp/N9l1MKr2F0.dsk...
+squish-pty bochs -q
 Kernel command line: -q -mlfqs run mlfqs-nice-2
 Pintos booting with 4,096 kB RAM...
 375 pages available in kernel pool.
@@ -13,11 +12,11 @@ Executing 'mlfqs-nice-2':
 (mlfqs-nice-2) Starting threads took 9 ticks.
 (mlfqs-nice-2) Sleeping 40 seconds to let threads run, please wait...
 (mlfqs-nice-2) Thread 0 received 1500 ticks.
-(mlfqs-nice-2) Thread 1 received 1501 ticks.
+(mlfqs-nice-2) Thread 1 received 1500 ticks.
 (mlfqs-nice-2) end
 Execution of 'mlfqs-nice-2' complete.
 Timer: 4068 ticks
-Thread: 0 idle ticks, 4071 kernel ticks, 0 user ticks
-Console: 627 characters output
+Thread: 999 idle ticks, 3072 kernel ticks, 0 user ticks
+Console: 629 characters output
 Keyboard: 0 keys pressed
 Powering off...

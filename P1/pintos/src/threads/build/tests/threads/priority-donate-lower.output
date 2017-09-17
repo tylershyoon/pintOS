@@ -1,6 +1,5 @@
-Writing command line to /tmp/0TIl5ENTze.dsk...
-warning: can't find squish-pty, so terminal input will fail
-bochs -q
+Writing command line to /tmp/1FaK2PMZuX.dsk...
+squish-pty bochs -q
 Kernel command line: -q run priority-donate-lower
 Pintos booting with 4,096 kB RAM...
 375 pages available in kernel pool.
@@ -12,14 +11,21 @@ Executing 'priority-donate-lower':
 (priority-donate-lower) Main thread should have priority 41.  Actual priority: 31.
 (priority-donate-lower) Lowering base priority...
 (priority-donate-lower) Main thread should have priority 41.  Actual priority: 21.
-(priority-donate-lower) acquire: got the lock
-(priority-donate-lower) acquire: done
 (priority-donate-lower) acquire must already have finished.
 (priority-donate-lower) Main thread should have priority 21.  Actual priority: 21.
 (priority-donate-lower) end
 Execution of 'priority-donate-lower' complete.
-Timer: 97 ticks
-Thread: 0 idle ticks, 100 kernel ticks, 0 user ticks
-Console: 862 characters output
+Timer: 86 ticks
+Thread: 0 idle ticks, 89 kernel ticks, 0 user ticks
+Console: 777 characters output
+(priority-donate-lower) acquire: got the lock
+Kernel PANIC at ../../threads/synch.c:234 in lock_release(): assertion `lock_held_by_current_thread (lock)' failed.
+Call stack: 0xc010711c 0xc010269c 0xc010a2d6 0xc0100e42.
+The `backtrace' program can make call stacks useful.
+Read "Backtraces" in the "Debugging Tools" chapter
+of the Pintos documentation for more information.
+Timer: 107 ticks
+Thread: 0 idle ticks, 107 kernel ticks, 0 user ticks
+Console: 1251 characters output
 Keyboard: 0 keys pressed
 Powering off...

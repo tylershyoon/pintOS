@@ -1,6 +1,5 @@
-Writing command line to /tmp/gGtfgOVFm8.dsk...
-warning: can't find squish-pty, so terminal input will fail
-bochs -q
+Writing command line to /tmp/IncfRwm6Hc.dsk...
+squish-pty bochs -q
 Kernel command line: -q run alarm-single
 Pintos booting with 4,096 kB RAM...
 375 pages available in kernel pool.
@@ -21,8 +20,8 @@ Executing 'alarm-single':
 (alarm-single) thread 4: duration=50, iteration=1, product=50
 (alarm-single) end
 Execution of 'alarm-single' complete.
-Timer: 373 ticks
-Thread: 0 idle ticks, 376 kernel ticks, 0 user ticks
-Console: 982 characters output
+Timer: 375 ticks
+Thread: 250 idle ticks, 128 kernel ticks, 0 user ticks
+Console: 984 characters output
 Keyboard: 0 keys pressed
 Powering off...

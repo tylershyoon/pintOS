@@ -89,6 +89,12 @@ struct thread
     uint8_t *stack;                     /* Saved stack pointer. */
     int priority;                       /* Priority. */
 
+    /* wake up ticks for timer intr */
+    int64_t wakeup_ticks;
+
+    /* effective priority for priority scheduling */
+    int effective_priority;
+
     /* Shared between thread.c and synch.c. */
     struct list_elem elem;              /* List element. */
 

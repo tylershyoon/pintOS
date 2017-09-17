@@ -7,7 +7,9 @@
 #include "threads/io.h"
 #include "threads/synch.h"
 #include "threads/thread.h"
-  
+/* functions under list.h were used */
+#include "lib/kernel/list.h"
+
 /* See [8254] for hardware details of the 8254 timer chip. */
 
 #if TIMER_FREQ < 19
@@ -29,6 +31,12 @@ static bool too_many_loops (unsigned loops);
 static void busy_wait (int64_t loops);
 static void real_time_sleep (int64_t num, int32_t denom);
 
+/* User defined function */
+static bool wakeup_sorting_func (const struct list_elem*, const struct list_elem*, void* UNUSED);
+
+/* User defined structure */
+struct list blocked_list;
+
 /* Sets up the 8254 Programmable Interval Timer (PIT) to
    interrupt PIT_FREQ times per second, and registers the
    corresponding interrupt. */
@@ -42,6 +50,9 @@ timer_init (void)
   outb (0x43, 0x34);    /* CW: counter 0, LSB then MSB, mode 2, binary. */
   outb (0x40, count & 0xff);
   outb (0x40, count >> 8);
+
+  /* init list of blocked threads */
+  list_init(&blocked_list);
 
   intr_register_ext (0x20, timer_interrupt, "8254 Timer");
 }
@@ -92,6 +103,25 @@ timer_elapsed (int64_t then)
   return timer_ticks () - then;
 }
 
+/* sorting function depending on the thread wakeup ticks */
+bool
+wakeup_sorting_func (const struct list_elem *elem1, const struct list_elem *elem2, void* AUX UNUSED)
+{
+  struct thread* t1 = list_entry(elem1, struct thread, elem);
+  struct thread* t2 = list_entry(elem2, struct thread, elem);
+
+  int64_t t1w = t1->wakeup_ticks;
+  int64_t t2w = t2->wakeup_ticks;
+  int t1p = t1->priority;
+  int t2p = t2->priority;
+
+  if (t1w < t2w){ return true; }
+  else{
+    if (t1w == t2w && t1p < t2p){ return true; }
+    else { return false; }
+  }
+}
+
 /* Suspends execution for approximately TICKS timer ticks. */
 void
 timer_sleep (int64_t ticks) 
@@ -99,8 +129,19 @@ timer_sleep (int64_t ticks)
   int64_t start = timer_ticks ();
 
   ASSERT (intr_get_level () == INTR_ON);
-  while (timer_elapsed (start) < ticks) 
-    thread_yield ();
+
+  enum intr_level old_level;
+  old_level = intr_disable();
+
+  struct thread* cur = thread_current();
+  cur->wakeup_ticks = start + ticks;
+  list_insert_ordered (&blocked_list, &cur->elem, wakeup_sorting_func, (void*)NULL);
+  //printf("<INSERT>");
+  //printf("%s", &cur->name);
+  thread_block();
+  intr_set_level (old_level);
+  /*while (timer_elapsed (start) < ticks) 
+    thread_yield ();*/
 }
 
 /* Suspends execution for approximately MS milliseconds. */
@@ -136,6 +177,22 @@ static void
 timer_interrupt (struct intr_frame *args UNUSED)
 {
   ticks++;
+
+  enum intr_level old_level = intr_disable();
+
+  while (!list_empty(&blocked_list))
+  {
+    struct thread* th = list_entry(list_front(&blocked_list), struct thread, elem);
+    if (ticks >= th->wakeup_ticks){
+      list_pop_front(&blocked_list);
+      //printf("<POP>");
+      //printf("%s", &th->name);
+      thread_unblock(th);
+    }
+    else{ break; }
+  }
+  intr_set_level (old_level);
+
   thread_tick ();
 }
 

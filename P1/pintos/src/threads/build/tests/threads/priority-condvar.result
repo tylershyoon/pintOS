@@ -55,6 +55,9 @@ Differences in `diff -u' format:
 - (priority-condvar) Thread priority 28 woke up.
   (priority-condvar) Signaling...
 - (priority-condvar) Thread priority 27 woke up.
++ (priority-condvar) Thread priority 21 starting.
++ (priority-condvar) Thread priority 25 starting.
++ (priority-condvar) Thread priority 27 starting.
   (priority-condvar) Signaling...
 - (priority-condvar) Thread priority 26 woke up.
   (priority-condvar) Signaling...
