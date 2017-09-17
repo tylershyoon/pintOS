@@ -1,4 +1,4 @@
-Writing command line to /tmp/MvhmueLC7c.dsk...
+Writing command line to /tmp/5IIChzwiZk.dsk...
 squish-pty bochs -q
 Kernel command line: -q run priority-donate-nest
 Pintos booting with 4,096 kB RAM...
@@ -16,8 +16,8 @@ Executing 'priority-donate-nest':
 (priority-donate-nest) Low thread should have priority 31.  Actual priority: 31.
 (priority-donate-nest) end
 Execution of 'priority-donate-nest' complete.
-Timer: 100 ticks
-Thread: 0 idle ticks, 103 kernel ticks, 0 user ticks
-Console: 857 characters output
+Timer: 99 ticks
+Thread: 0 idle ticks, 102 kernel ticks, 0 user ticks
+Console: 856 characters output
 Keyboard: 0 keys pressed
 Powering off...

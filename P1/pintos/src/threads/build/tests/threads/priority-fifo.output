@@ -1,4 +1,4 @@
-Writing command line to /tmp/kGiSumbMOR.dsk...
+Writing command line to /tmp/a0zrEFlsQZ.dsk...
 squish-pty bochs -q
 Kernel command line: -q run priority-fifo
 Pintos booting with 4,096 kB RAM...
@@ -28,8 +28,8 @@ Executing 'priority-fifo':
 (priority-fifo) iteration: 14 15 10 11 12 13 14 15 12 13 14 15 13 14 15 15
 (priority-fifo) end
 Execution of 'priority-fifo' complete.
-Timer: 278 ticks
-Thread: 0 idle ticks, 281 kernel ticks, 0 user ticks
+Timer: 276 ticks
+Thread: 0 idle ticks, 279 kernel ticks, 0 user ticks
 Console: 1555 characters output
 Keyboard: 0 keys pressed
 Powering off...

@@ -178,7 +178,7 @@ timer_interrupt (struct intr_frame *args UNUSED)
 {
   ticks++;
 
-  enum intr_level old_level = intr_disable();
+  //enum intr_level old_level = intr_disable();
 
   while (!list_empty(&blocked_list))
   {
@@ -191,7 +191,7 @@ timer_interrupt (struct intr_frame *args UNUSED)
     }
     else{ break; }
   }
-  intr_set_level (old_level);
+  //intr_set_level (old_level);
 
   thread_tick ();
 }
