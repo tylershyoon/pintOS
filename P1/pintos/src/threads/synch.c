@@ -180,6 +180,7 @@ lock_init (struct lock *lock)
 
   lock->holder = NULL;
   sema_init (&lock->semaphore, 1);
+  list_init (&lock->waiting_threads);
 }
 
 /* Acquires LOCK, sleeping until it becomes available if

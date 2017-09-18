@@ -71,6 +71,25 @@ static void schedule (void);
 void schedule_tail (struct thread *prev);
 static tid_t allocate_tid (void);
 
+/* User defined function */
+static bool priority_sorting_func (const struct list_elem*, const struct list_elem*, void* UNUSED);
+
+
+/* sorting less func for list sort based on priority */
+bool
+priority_sorting_func(const struct list_elem *elem1, const struct list_elem *elem2, void* AUX UNUSED)
+{
+  struct thread* t1 = list_entry(elem1, struct thread, elem);
+  struct thread* t2 = list_entry(elem2, struct thread, elem);
+
+  int64_t t1p = t1->priority;
+  int64_t t2p = t2->priority;
+  
+  /* bigger priority comes first */
+  if (t1p > t2p){ return true; }
+  else{ return false; }
+}
+
 /* Initializes the threading system by transforming the code
    that's currently running into a thread.  This can't work in
    general and it is possible in this case only because loader.S
@@ -198,6 +217,7 @@ thread_create (const char *name, int priority,
 
   /* Add to run queue. */
   thread_unblock (t);
+  thread_yield ();
 
   return tid;
 }
@@ -236,6 +256,8 @@ thread_unblock (struct thread *t)
   old_level = intr_disable ();
   ASSERT (t->status == THREAD_BLOCKED);
   list_push_back (&ready_list, &t->elem);
+  /* sorting read list added */
+  list_sort (&ready_list, priority_sorting_func, (void*)NULL);
   t->status = THREAD_READY;
   intr_set_level (old_level);
 }
@@ -303,8 +325,11 @@ thread_yield (void)
   ASSERT (!intr_context ());
 
   old_level = intr_disable ();
-  if (curr != idle_thread) 
+  if (curr != idle_thread) {
     list_push_back (&ready_list, &curr->elem);
+    /* sorting ready list based on priority sorting */
+    list_sort (&ready_list, priority_sorting_func, (void*)NULL);
+  }
   curr->status = THREAD_READY;
   schedule ();
   intr_set_level (old_level);
@@ -315,13 +340,14 @@ void
 thread_set_priority (int new_priority) 
 {
   thread_current ()->priority = new_priority;
+  thread_yield ();
 }
 
 /* Returns the current thread's priority. */
 int
 thread_get_priority (void) 
 {
-  return thread_current ()->priority;
+  return thread_current ()->effective_priority;
 }
 
 /* Sets the current thread's nice value to NICE. */
@@ -439,6 +465,7 @@ init_thread (struct thread *t, const char *name, int priority)
   strlcpy (t->name, name, sizeof t->name);
   t->stack = (uint8_t *) t + PGSIZE;
   t->priority = priority;
+  t->effective_priority = priority;
   t->magic = THREAD_MAGIC;
 }
 

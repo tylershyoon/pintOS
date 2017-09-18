@@ -1,8 +1,8 @@
-Writing command line to /tmp/0D14RW54EO.dsk...
+Writing command line to /tmp/fnE8b9gfxR.dsk...
 squish-pty bochs -q
 Kernel command line: -q run priority-condvar
 Pintos booting with 4,096 kB RAM...
-375 pages available in kernel pool.
+374 pages available in kernel pool.
 374 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 Boot complete.
@@ -10,15 +10,22 @@ Executing 'priority-condvar':
 (priority-condvar) begin
 (priority-condvar) Thread priority 23 starting.
 (priority-condvar) Thread priority 22 starting.
+(priority-condvar) Thread priority 21 starting.
 (priority-condvar) Thread priority 30 starting.
-(priority-condvar) Thread priority 28 starting.
-(priority-condvar) Thread priority 26 starting.
-(priority-condvar) Thread priority 24 starting.
 (priority-condvar) Thread priority 29 starting.
+(priority-condvar) Thread priority 28 starting.
+(priority-condvar) Thread priority 27 starting.
+(priority-condvar) Thread priority 26 starting.
+(priority-condvar) Thread priority 25 starting.
+(priority-condvar) Thread priority 24 starting.
 (priority-condvar) Signaling...
 (priority-condvar) Signaling...
 (priority-condvar) Signaling...
 (priority-condvar) Signaling...
+(priority-condvar) Thread priority 30 woke up.
+(priority-condvar) Thread priority 23 woke up.
+(priority-condvar) Thread priority 22 woke up.
+(priority-condvar) Thread priority 21 woke up.
 (priority-condvar) Signaling...
 (priority-condvar) Signaling...
 (priority-condvar) Signaling...
@@ -27,8 +34,14 @@ Executing 'priority-condvar':
 (priority-condvar) Signaling...
 (priority-condvar) end
 Execution of 'priority-condvar' complete.
-Timer: 150 ticks
-Thread: 0 idle ticks, 153 kernel ticks, 0 user ticks
-Console: 1051 characters output
+(priority-condvar) Thread priority 27 woke up.
+(priority-condvar) Thread priority 28 woke up.
+(priority-condvar) Thread priority 26 woke up.
+(priority-condvar) Thread priority 29 woke up.
+(priority-condvar) Thread priority 25 woke up.
+(priority-condvar) Thread priority 24 woke up.
+Timer: 239 ticks
+Thread: 0 idle ticks, 242 kernel ticks, 0 user ticks
+Console: 1665 characters output
 Keyboard: 0 keys pressed
 Powering off...
