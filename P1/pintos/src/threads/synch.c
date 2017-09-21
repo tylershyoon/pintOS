@@ -200,24 +200,24 @@ lock_acquire (struct lock *lock)
 
   struct thread * curr = thread_current();
   int tcep = curr->effective_priority;
-
-  /*thread_current()->lock_im_waiting = lock;
-  while (lock->holder != NULL)
+  curr->lock_im_waiting = lock;
+  struct lock * cl = lock;
+  while (cl->holder != NULL)
   {
-    if (lock->holder->effective_priority < tcep){ lock->holder->effective_priority = tcep; }
-    lock = lock->holder->lock_im_waiting;
-  }*/
-  if (lock->holder != NULL)
+    if (cl->holder->effective_priority < tcep){ cl->holder->effective_priority = tcep; }
+    cl = cl->holder->lock_im_waiting;
+  }
+  /*if (lock->holder != NULL)
   {
     if (lock->holder->effective_priority < tcep)
     {
       lock->holder->effective_priority = tcep;
     }
-  }
+  }*/
 
   sema_down (&lock->semaphore);
   lock->holder = thread_current ();
-  //list_push_back(&thread_current ()->locks_im_holding, lock->lock_elem);  
+  list_push_back(&thread_current ()->locks_im_holding, &lock->lock_elem);
 }
 
 /* Tries to acquires LOCK and returns true if successful or false
@@ -252,9 +252,23 @@ lock_release (struct lock *lock)
   ASSERT (lock != NULL);
   ASSERT (lock_held_by_current_thread (lock));
 
-  struct list* holders_locks = lock->holder->locks_im_holding;
+  /*struct list holders_locks = lock->holder->locks_im_holding;
   int priority_set_back = PRI_MIN;
-
+  int holders_ep;
+  struct list_elem* cl;
+  for (cl = list_begin(&holders_locks); cl != list_tail(&holders_locks); cl = list_next(cl))
+  {
+    struct thread * h = list_entry(cl, struct lock, lock_elem);
+    if (h->effective_priority > priority_set_back)
+    {
+      priority_set_back = h->effective_priority;
+    }
+  }
+  if (priority_set_back < lock->holder->priority)
+  {
+    priority_set_back = lock->holder->priority;
+  }
+  lock->holder->effective_priority = priority_set_back;*/
   lock->holder->effective_priority = lock->holder->priority;
 
   lock->holder = NULL;

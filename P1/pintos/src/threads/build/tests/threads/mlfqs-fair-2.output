@@ -1,4 +1,4 @@
-Writing command line to /tmp/Kh9klgfIsV.dsk...
+Writing command line to /tmp/w9qnbDcGdY.dsk...
 squish-pty bochs -q
 Kernel command line: -q -mlfqs run mlfqs-fair-2
 Pintos booting with 4,096 kB RAM...
@@ -15,8 +15,8 @@ Executing 'mlfqs-fair-2':
 (mlfqs-fair-2) Thread 1 received 1501 ticks.
 (mlfqs-fair-2) end
 Execution of 'mlfqs-fair-2' complete.
-Timer: 4069 ticks
-Thread: 999 idle ticks, 3073 kernel ticks, 0 user ticks
+Timer: 4070 ticks
+Thread: 999 idle ticks, 3074 kernel ticks, 0 user ticks
 Console: 630 characters output
 Keyboard: 0 keys pressed
 Powering off...

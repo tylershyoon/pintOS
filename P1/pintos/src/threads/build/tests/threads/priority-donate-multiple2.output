@@ -1,4 +1,4 @@
-Writing command line to /tmp/ize0mb2fnc.dsk...
+Writing command line to /tmp/T7LBAEv613.dsk...
 squish-pty bochs -q
 Kernel command line: -q run priority-donate-multiple2
 Pintos booting with 4,096 kB RAM...
@@ -20,8 +20,8 @@ Executing 'priority-donate-multiple2':
 (priority-donate-multiple2) Main thread should have priority 31.  Actual priority: 31.
 (priority-donate-multiple2) end
 Execution of 'priority-donate-multiple2' complete.
-Timer: 140 ticks
-Thread: 0 idle ticks, 143 kernel ticks, 0 user ticks
+Timer: 139 ticks
+Thread: 0 idle ticks, 142 kernel ticks, 0 user ticks
 Console: 1123 characters output
 Keyboard: 0 keys pressed
 Powering off...

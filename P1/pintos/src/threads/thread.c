@@ -71,7 +71,6 @@ static void schedule (void);
 void schedule_tail (struct thread *prev);
 static tid_t allocate_tid (void);
 
-
 /* sorting less func for list sort based on priority header located in thread.h */
 bool
 priority_sorting_func(const struct list_elem *elem1, const struct list_elem *elem2, void* AUX UNUSED)
@@ -463,7 +462,11 @@ init_thread (struct thread *t, const char *name, int priority)
   strlcpy (t->name, name, sizeof t->name);
   t->stack = (uint8_t *) t + PGSIZE;
   t->priority = priority;
+  /* ADDED INIT */
   t->effective_priority = priority;
+  t->lock_im_waiting = NULL;
+  list_init (&t->locks_im_holding);
+  /* END */
   t->magic = THREAD_MAGIC;
 }
 

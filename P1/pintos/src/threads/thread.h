@@ -97,7 +97,7 @@ struct thread
 
     /* lock th is waiting for, and the list of locks th is holding */
     struct lock* lock_im_waiting;
-    struct list* locks_im_holding;
+    struct list locks_im_holding;
 
     /* Shared between thread.c and synch.c. */
     struct list_elem elem;              /* List element. */
