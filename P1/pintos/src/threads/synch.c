@@ -201,13 +201,23 @@ lock_acquire (struct lock *lock)
   struct thread * curr = thread_current();
   int tcep = curr->effective_priority;
 
-  if (lock->holder != NULL)
+  /*thread_current()->lock_im_waiting = lock;
+  while (lock->holder != NULL)
   {
     if (lock->holder->effective_priority < tcep){ lock->holder->effective_priority = tcep; }
+    lock = lock->holder->lock_im_waiting;
+  }*/
+  if (lock->holder != NULL)
+  {
+    if (lock->holder->effective_priority < tcep)
+    {
+      lock->holder->effective_priority = tcep;
+    }
   }
 
   sema_down (&lock->semaphore);
   lock->holder = thread_current ();
+  //list_push_back(&thread_current ()->locks_im_holding, lock->lock_elem);  
 }
 
 /* Tries to acquires LOCK and returns true if successful or false
@@ -241,6 +251,9 @@ lock_release (struct lock *lock)
 {
   ASSERT (lock != NULL);
   ASSERT (lock_held_by_current_thread (lock));
+
+  struct list* holders_locks = lock->holder->locks_im_holding;
+  int priority_set_back = PRI_MIN;
 
   lock->holder->effective_priority = lock->holder->priority;
 
