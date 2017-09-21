@@ -71,19 +71,16 @@ static void schedule (void);
 void schedule_tail (struct thread *prev);
 static tid_t allocate_tid (void);
 
-/* User defined function */
-static bool priority_sorting_func (const struct list_elem*, const struct list_elem*, void* UNUSED);
 
-
-/* sorting less func for list sort based on priority */
+/* sorting less func for list sort based on priority header located in thread.h */
 bool
 priority_sorting_func(const struct list_elem *elem1, const struct list_elem *elem2, void* AUX UNUSED)
 {
   struct thread* t1 = list_entry(elem1, struct thread, elem);
   struct thread* t2 = list_entry(elem2, struct thread, elem);
 
-  int64_t t1p = t1->priority;
-  int64_t t2p = t2->priority;
+  int64_t t1p = t1->effective_priority;
+  int64_t t2p = t2->effective_priority;
   
   /* bigger priority comes first */
   if (t1p > t2p){ return true; }
@@ -340,6 +337,7 @@ void
 thread_set_priority (int new_priority) 
 {
   thread_current ()->priority = new_priority;
+  thread_current ()->effective_priority = new_priority;
   thread_yield ();
 }
 

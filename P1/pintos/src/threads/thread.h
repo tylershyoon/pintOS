@@ -112,6 +112,8 @@ struct thread
    Controlled by kernel command-line option "-o mlfqs". */
 extern bool thread_mlfqs;
 
+bool priority_sorting_func (const struct list_elem *, const struct list_elem *, void * UNUSED);
+
 void thread_init (void);
 void thread_start (void);
 
