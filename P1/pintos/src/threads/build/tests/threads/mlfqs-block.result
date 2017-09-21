@@ -1,13 +1,27 @@
 FAIL
-Kernel panic in run: PANIC at ../../threads/interrupt.c:373 in intr_handler(): Unexpected interrupt
-Call stack: 0xc01071fc 0xc01016f9 0xc01017ef 0xc01029ff 0xc0108e61 0xc0108f40 0xc01090a9 0xc010b9fb 0xc0100ee7
-Translation of call stack:
-0xc01071fc: debug_panic (.../../lib/kernel/debug.c:34)
-0xc01016f9: intr_handler (..../threads/interrupt.c:377)
-0xc01017ef: intr_entry (threads/intr-stubs.S:38)
-0xc01029ff: lock_acquire (...../../threads/synch.c:208)
-0xc0108e61: acquire_console (..../lib/kernel/console.c:97)
-0xc0108f40: putchar (.../lib/kernel/console.c:166)
-0xc01090a9: msg (.../tests/threads/tests.c:76)
-0xc010b9fb: block_thread (.../threads/mlfqs-block.c:64)
-0xc0100ee7: kernel_thread (..../../threads/thread.c:427)
+Test output failed to match any acceptable form.
+
+Acceptable output:
+  (mlfqs-block) begin
+  (mlfqs-block) Main thread acquiring lock.
+  (mlfqs-block) Main thread creating block thread, sleeping 25 seconds...
+  (mlfqs-block) Block thread spinning for 20 seconds...
+  (mlfqs-block) Block thread acquiring lock...
+  (mlfqs-block) Main thread spinning for 5 seconds...
+  (mlfqs-block) Main thread releasing lock.
+  (mlfqs-block) ...got it.
+  (mlfqs-block) Block thread should have already acquired lock.
+  (mlfqs-block) end
+Differences in `diff -u' format:
+  (mlfqs-block) begin
+  (mlfqs-block) Main thread acquiring lock.
+  (mlfqs-block) Main thread creating block thread, sleeping 25 seconds...
+  (mlfqs-block) Block thread spinning for 20 seconds...
+  (mlfqs-block) Block thread acquiring lock...
+  (mlfqs-block) Main thread spinning for 5 seconds...
+  (mlfqs-block) Main thread releasing lock.
+- (mlfqs-block) ...got it.
+- (mlfqs-block) Block thread should have already acquired lock.
++ (mlfqs-block) (mlfqs-block) ...got it.Block thread should have already acquired lock.
++ 
+  (mlfqs-block) end

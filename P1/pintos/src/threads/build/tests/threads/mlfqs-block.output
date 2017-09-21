@@ -1,4 +1,4 @@
-Writing command line to /tmp/TPCSXygRgu.dsk...
+Writing command line to /tmp/jLFonihNGp.dsk...
 squish-pty bochs -q
 Kernel command line: -q -mlfqs run mlfqs-block
 Pintos booting with 4,096 kB RAM...
@@ -14,20 +14,12 @@ Executing 'mlfqs-block':
 (mlfqs-block) Block thread acquiring lock...
 (mlfqs-block) Main thread spinning for 5 seconds...
 (mlfqs-block) Main thread releasing lock.
-(mlfqs-block) (mlfqs-block) ...got it.Block thread should have already acquired lock.Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc01029ff
+(mlfqs-block) (mlfqs-block) ...got it.Block thread should have already acquired lock.
 
- cr2=0000002c error=00000000
-(mlfqs-block)  eax=00000000 ebx=c0111bc0 ecx=0000001f edx=c002f000
-end esi=00000000 edi=00000000 esp=c0111bc0 ebp=c0116f70
-
- cs=0008 ds=0010 es=0010 ss=0000
-Execution of 'mlfqs-Kernel PANIC at ../../threads/interrupt.c:373 in intr_handler(): Unexpected interrupt
-Call stack: 0xc01071fc 0xc01016f9 0xc01017ef 0xc01029ff 0xc0108e61 0xc0108f40 0xc01090a9 0xc010b9fb 0xc0100ee7.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
+(mlfqs-block) end
+Execution of 'mlfqs-block' complete.
 Timer: 3083 ticks
-Thread: 489 idle ticks, 2594 kernel ticks, 0 user ticks
-Console: 1337 characters output
+Thread: 489 idle ticks, 2597 kernel ticks, 0 user ticks
+Console: 775 characters output
 Keyboard: 0 keys pressed
 Powering off...
