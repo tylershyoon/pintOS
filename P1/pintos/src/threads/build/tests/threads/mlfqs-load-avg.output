@@ -1,4 +1,4 @@
-Writing command line to /tmp/ip5JsqLLJz.dsk...
+Writing command line to /tmp/kOSiJjuo0C.dsk...
 squish-pty bochs -q
 Kernel command line: -q -mlfqs run mlfqs-load-avg
 Pintos booting with 4,096 kB RAM...
@@ -102,8 +102,8 @@ Executing 'mlfqs-load-avg':
 (mlfqs-load-avg) After 178 seconds, load average=0.00.
 (mlfqs-load-avg) end
 Execution of 'mlfqs-load-avg' complete.
-Timer: 18840 ticks
-Thread: 6259 idle ticks, 12585 kernel ticks, 0 user ticks
+Timer: 18841 ticks
+Thread: 6342 idle ticks, 12502 kernel ticks, 0 user ticks
 Console: 5389 characters output
 Keyboard: 0 keys pressed
 Powering off...

@@ -206,19 +206,17 @@ lock_acquire (struct lock *lock)
   while (cl->holder != NULL)
   {
     if (cl->holder->effective_priority < tcep){ cl->holder->effective_priority = tcep; }
-    cl = cl->holder->lock_im_waiting;
-  }
-  /*if (lock->holder != NULL)
-  {
-    if (lock->holder->effective_priority < tcep)
-    {
-      lock->holder->effective_priority = tcep;
+    if (cl->holder->lock_im_waiting != NULL){
+      cl = cl->holder->lock_im_waiting;
     }
-  }*/
-
+    else{
+      break;
+    }
+  }
   sema_down (&lock->semaphore);
   lock->holder = thread_current ();
   list_push_back(&thread_current ()->locks_im_holding, &lock->lock_elem);
+  lock->holder->lock_im_waiting = NULL;
 }
 
 /* Tries to acquires LOCK and returns true if successful or false
@@ -253,6 +251,32 @@ lock_release (struct lock *lock)
   ASSERT (lock != NULL);
   ASSERT (lock_held_by_current_thread (lock));
 
+  struct thread* holder = lock->holder;
+  struct list holders_locks = holder->locks_im_holding;
+
+  list_remove(&lock->lock_elem);
+  holder->effective_priority = holder->priority;
+
+  int priority_set_back = PRI_MIN;
+  int holders_ep;
+  struct list_elem* cl;
+  ASSERT (!list_empty(&holders_locks));
+  for (cl = list_begin(&holder->locks_im_holding); cl != list_end(&holder->locks_im_holding); cl = list_next(cl))
+  {
+    struct lock *lk = list_entry(cl, struct lock, lock_elem);
+    struct list_elem* cl2;
+    struct list *waiters = &((lk->semaphore).waiters);
+    for (cl2 = list_begin(waiters); cl2 != list_end(waiters); cl2 = list_next(cl2))
+    {
+      struct thread* th = list_entry(cl2, struct thread, elem);
+      if (holder->effective_priority < th->effective_priority)
+      {
+        holder->effective_priority = th->effective_priority;
+      }
+   }
+  }
+
+
   /*struct list holders_locks = lock->holder->locks_im_holding;
   int priority_set_back = PRI_MIN;
   int holders_ep;
@@ -270,11 +294,8 @@ lock_release (struct lock *lock)
     priority_set_back = lock->holder->priority;
   }
   lock->holder->effective_priority = priority_set_back;*/
-  lock->holder->effective_priority = lock->holder->priority;
-
   lock->holder = NULL;
   sema_up (&lock->semaphore);
-  thread_yield();
 }
 
 /* Returns true if the current thread holds LOCK, false
