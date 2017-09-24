@@ -1,4 +1,4 @@
-Writing command line to /tmp/GjNPwTmBng.dsk...
+Writing command line to /tmp/xS0BkdhtTF.dsk...
 squish-pty bochs -q
 Kernel command line: -q run priority-condvar
 Pintos booting with 4,096 kB RAM...
@@ -40,8 +40,8 @@ Executing 'priority-condvar':
 (priority-condvar) Thread priority 24 woke up.
 (priority-condvar) end
 Execution of 'priority-condvar' complete.
-Timer: 255 ticks
-Thread: 0 idle ticks, 258 kernel ticks, 0 user ticks
+Timer: 256 ticks
+Thread: 0 idle ticks, 259 kernel ticks, 0 user ticks
 Console: 1665 characters output
 Keyboard: 0 keys pressed
 Powering off...

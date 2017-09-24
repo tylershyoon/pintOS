@@ -252,7 +252,7 @@ lock_release (struct lock *lock)
   ASSERT (lock_held_by_current_thread (lock));
 
   struct thread* holder = lock->holder;
-  struct list holders_locks = holder->locks_im_holding;
+  struct list* holders_locks = &holder->locks_im_holding;
 
   list_remove(&lock->lock_elem);
   holder->effective_priority = holder->priority;
@@ -260,13 +260,12 @@ lock_release (struct lock *lock)
   int priority_set_back = PRI_MIN;
   int holders_ep;
   struct list_elem* cl;
-  ASSERT (!list_empty(&holders_locks));
-  for (cl = list_begin(&holder->locks_im_holding); cl != list_end(&holder->locks_im_holding); cl = list_next(cl))
+  ASSERT (!list_empty(&holders_locks)); /* Check whether holder's lock has problem */
+  for (cl = list_begin(holders_locks); cl != list_end(holders_locks); cl = list_next(cl))
   {
     struct lock *lk = list_entry(cl, struct lock, lock_elem);
     struct list_elem* cl2;
-    struct list *waiters = &((lk->semaphore).waiters);
-    for (cl2 = list_begin(waiters); cl2 != list_end(waiters); cl2 = list_next(cl2))
+    for (cl2 = list_begin(&((lk->semaphore).waiters)); cl2 != list_end(&((lk->semaphore).waiters)); cl2 = list_next(cl2))
     {
       struct thread* th = list_entry(cl2, struct thread, elem);
       if (holder->effective_priority < th->effective_priority)
@@ -275,25 +274,6 @@ lock_release (struct lock *lock)
       }
    }
   }
-
-
-  /*struct list holders_locks = lock->holder->locks_im_holding;
-  int priority_set_back = PRI_MIN;
-  int holders_ep;
-  struct list_elem* cl;
-  for (cl = list_begin(&holders_locks); cl != list_tail(&holders_locks); cl = list_next(cl))
-  {
-    struct thread * h = list_entry(cl, struct lock, lock_elem);
-    if (h->effective_priority > priority_set_back)
-    {
-      priority_set_back = h->effective_priority;
-    }
-  }
-  if (priority_set_back < lock->holder->priority)
-  {
-    priority_set_back = lock->holder->priority;
-  }
-  lock->holder->effective_priority = priority_set_back;*/
   lock->holder = NULL;
   sema_up (&lock->semaphore);
 }
