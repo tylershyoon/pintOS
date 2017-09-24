@@ -1,4 +1,4 @@
-Writing command line to /tmp/PzwkWdKJYS.dsk...
+Writing command line to /tmp/SbJqTXgBV2.dsk...
 squish-pty bochs -q
 Kernel command line: -q run priority-donate-chain
 Pintos booting with 4,096 kB RAM...
@@ -47,8 +47,8 @@ Executing 'priority-donate-chain':
 (priority-donate-chain) main finishing with priority 0.
 (priority-donate-chain) end
 Execution of 'priority-donate-chain' complete.
-Timer: 413 ticks
-Thread: 0 idle ticks, 416 kernel ticks, 0 user ticks
+Timer: 409 ticks
+Thread: 0 idle ticks, 412 kernel ticks, 0 user ticks
 Console: 2634 characters output
 Keyboard: 0 keys pressed
 Powering off...

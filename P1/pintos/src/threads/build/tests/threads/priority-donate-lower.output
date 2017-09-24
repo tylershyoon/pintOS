@@ -1,4 +1,4 @@
-Writing command line to /tmp/qoIABHwluB.dsk...
+Writing command line to /tmp/cVHrjjX9Sl.dsk...
 squish-pty bochs -q
 Kernel command line: -q run priority-donate-lower
 Pintos booting with 4,096 kB RAM...
@@ -10,7 +10,7 @@ Executing 'priority-donate-lower':
 (priority-donate-lower) begin
 (priority-donate-lower) Main thread should have priority 41.  Actual priority: 41.
 (priority-donate-lower) Lowering base priority...
-(priority-donate-lower) Main thread should have priority 41.  Actual priority: 21.
+(priority-donate-lower) Main thread should have priority 41.  Actual priority: 41.
 (priority-donate-lower) acquire: got the lock
 (priority-donate-lower) acquire: done
 (priority-donate-lower) acquire must already have finished.

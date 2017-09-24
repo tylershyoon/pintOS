@@ -1,4 +1,4 @@
-Writing command line to /tmp/Evl3oue5Zd.dsk...
+Writing command line to /tmp/QW3myKKtAk.dsk...
 squish-pty bochs -q
 Kernel command line: -q run priority-sema
 Pintos booting with 4,096 kB RAM...
@@ -30,8 +30,8 @@ Executing 'priority-sema':
 (priority-sema) Back in main thread.
 (priority-sema) end
 Execution of 'priority-sema' complete.
-Timer: 183 ticks
-Thread: 0 idle ticks, 186 kernel ticks, 0 user ticks
+Timer: 191 ticks
+Thread: 0 idle ticks, 194 kernel ticks, 0 user ticks
 Console: 1190 characters output
 Keyboard: 0 keys pressed
 Powering off...
