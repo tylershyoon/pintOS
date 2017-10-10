@@ -3,4 +3,9 @@
 
 void syscall_init (void);
 
+/* : syscall headers */
+void halt (void);
+void exit (int status);
+int write (int fd, const void* buffer, unsigned int size);
+
 #endif /* userprog/syscall.h */

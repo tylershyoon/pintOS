@@ -1,0 +1,45 @@
+Copying tests/filesys/base/syn-read into /tmp/5WHSprNcxk.dsk...
+Copying tests/filesys/base/child-syn-read into /tmp/5WHSprNcxk.dsk...
+Writing command line to /tmp/7gYVD0wD0Q.dsk...
+qemu -hda /tmp/7gYVD0wD0Q.dsk -hdb /tmp/uRDY1ckMTp.dsk -hdc /tmp/5WHSprNcxk.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put syn-read put child-syn-read run syn-read
+Pintos booting with 4,096 kB RAM...
+375 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  157,081,600 loops/s.
+hd0:0: detected 129 sector (64 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 215 sector (107 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'syn-read' into the file system...
+Putting 'child-syn-read' into the file system...
+Executing 'syn-read':
+(syn-read) begin
+(syn-read) create "data"
+(syn-read) open "data"
+(syn-read) write "data"
+(syn-read) close "data"
+(syn-read) exec child 1 of 10: "child-syn-read 0"
+(syn-read) exec child 2 of 10: "child-syn-read 1"
+(syn-read) exec child 3 of 10: "child-syn-read 2"
+(syn-read) exec child 4 of 10: "child-syn-read 3"
+(syn-read) exec child 5 of 10: "child-syn-read 4"
+(syn-read) exec child 6 of 10: "child-syn-read 5"
+(syn-read) exec child 7 of 10: "child-syn-read 6"
+(syn-read) exec child 8 of 10: "child-syn-read 7"
+(syn-read) exec child 9 of 10: "child-syn-read 8"
+(syn-read) exec child 10 of 10: "child-syn-read 9"
+(syn-read) wait for child 1 of 10 returned 50 (expected 0)
+(syn-read) wait for child 1 of 10 returned 50 (expected 0): FAILED
+syn-read: exit(1)
+Execution of 'syn-read' complete.
+Timer: 56 ticks
+Thread: 0 idle ticks, 54 kernel ticks, 2 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 87 reads, 440 writes
+hd1:0: 215 reads, 0 writes
+Console: 1566 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...

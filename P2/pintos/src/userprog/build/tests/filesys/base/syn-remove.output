@@ -1,0 +1,46 @@
+Copying tests/filesys/base/syn-remove into /tmp/OzX18i3nrq.dsk...
+Writing command line to /tmp/Jt7Zp5FfJD.dsk...
+qemu -hda /tmp/Jt7Zp5FfJD.dsk -hdb /tmp/BQkmiGPQMe.dsk -hdc /tmp/OzX18i3nrq.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put syn-remove run syn-remove
+Pintos booting with 4,096 kB RAM...
+375 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  130,867,200 loops/s.
+hd0:0: detected 129 sector (64 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 103 sector (51 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'syn-remove' into the file system...
+Executing 'syn-remove':
+(syn-remove) begin
+(syn-remove) create "deleteme"
+(syn-remove) open "deleteme"
+(syn-remove) remove "deleteme"
+(syn-remove) write "deleteme"
+(syn-remove) seek "deleteme" to 0
+(syn-remove) read "deleteme"
+(syn-remove) 78 bytes read starting at offset 0 in "deleteme" differ from expected.
+(syn-remove) Showing first differing 64 bytes.
+(syn-remove) Data actually read:
+00000000  00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 |................|
+00000010  00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 |................|
+00000020  00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 |................|
+00000030  00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 |................|
+(syn-remove) Expected data:
+00000000  de 18 89 41 a3 37 5d 3a-8a 06 1e 67 57 6e 92 6d |...A.7]:...gWn.m|
+00000010  c7 1a 7f a3 f0 cc eb 97-45 2b 4d 32 27 96 5f 9e |........E+M2'._.|
+00000020  a8 cc 75 07 6d 9f b9 c5-41 7a a5 cb 30 fc 22 19 |..u.m...Az..0.".|
+00000030  8b 34 98 2d bb 62 9e c0-4b 4f 8b 05 a0 71 08 50 |.4.-.b..KO...q.P|
+(syn-remove) 78 bytes read starting at offset 0 in "deleteme" differ from expected: FAILED
+syn-remove: exit(1)
+Execution of 'syn-remove' complete.
+Timer: 58 ticks
+Thread: 0 idle ticks, 54 kernel ticks, 4 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 61 reads, 214 writes
+hd1:0: 103 reads, 0 writes
+Console: 1871 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...

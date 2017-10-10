@@ -17,6 +17,7 @@
 #include "threads/palloc.h"
 #include "threads/thread.h"
 #include "threads/vaddr.h"
+#include "threads/synch.h"
 
 static thread_func start_process NO_RETURN;
 static bool load (const char *cmdline, void (**eip) (void), void **esp);
@@ -28,6 +29,9 @@ static bool load (const char *cmdline, void (**eip) (void), void **esp);
 tid_t
 process_execute (const char *file_name) 
 {
+  /* : For tokenize file_name */
+  char * save_ptr;
+
   char *fn_copy;
   tid_t tid;
 
@@ -38,10 +42,13 @@ process_execute (const char *file_name)
     return TID_ERROR;
   strlcpy (fn_copy, file_name, PGSIZE);
 
+  /* : tokenize file_name before putting into thread_create */
+  file_name = strtok_r (file_name, " ", &save_ptr);
+
   /* Create a new thread to execute FILE_NAME. */
   tid = thread_create (file_name, PRI_DEFAULT, start_process, fn_copy);
   if (tid == TID_ERROR)
-    palloc_free_page (fn_copy); 
+    palloc_free_page (fn_copy);
   return tid;
 }
 
@@ -54,17 +61,96 @@ start_process (void *f_name)
   struct intr_frame if_;
   bool success;
 
+  /* : added declaration for arg passing */
+  int argc = 0;
+  int *argv = palloc_get_page (0); 
+  char *token, *save_ptr;
+  size_t file_length = strlen(file_name);
+  void * argv_0_addr;
+  int addr_itr;
+
   /* Initialize interrupt frame and load executable. */
   memset (&if_, 0, sizeof if_);
   if_.gs = if_.fs = if_.es = if_.ds = if_.ss = SEL_UDSEG;
   if_.cs = SEL_UCSEG;
   if_.eflags = FLAG_IF | FLAG_MBS;
+
+  /* tokenize file name before loading */
+  for (token= strtok_r (file_name, " ", &save_ptr); token != NULL; token = strtok_r (NULL, " ", &save_ptr))
+  {
+    while(*save_ptr == ' '){ save_ptr = save_ptr + 1; }
+    argv[++argc] = save_ptr - file_name;
+  }
+
   success = load (file_name, &if_.eip, &if_.esp);
 
-  /* If load failed, quit. */
-  palloc_free_page (file_name);
-  if (!success) 
+  if (!success)
+  {
+    printf("fail");
+    palloc_free_page (file_name);
+    /* If load failed, quit. */
     thread_exit ();
+  }
+  else /* : when success -> arg passing */
+  {
+    /* tokenize file_name & keep argument addresses into argv */
+    /*for (token = strtok_r (file_name, " ", &save_ptr); token != NULL; token = strtok_r (NULL, " ", &save_ptr))
+    {
+      argv[++argc] = save_ptr - file_name;
+    }*/
+    /*printf("argv[0] : %d\n", argv[0]);
+    printf("argv[1] : %d\n", argv[1]);
+    printf("argv[2] : %d\n", argv[2]);
+    printf("argv[3] : %d\n", argv[3]);
+    printf("argv[4] : %d\n", argv[4]);
+    printf("argv[5] : %d\n", argv[5]);*/
+    /* Argument argv[i][...] passed after tokenize and then memcpy-ed */
+    if_.esp = if_.esp - file_length - 1;
+    //hex_dump(0, if_.esp, 100, false);
+    memcpy(if_.esp, file_name, file_length+1);
+    /* argv[0] starting address */
+    argv_0_addr = if_.esp;
+    
+    /* Needed for word-align after passing arguments */
+    //printf("aligned: %d\n", 4 - file_length % 4);
+    if_.esp = if_.esp - (4 - file_length % 4);
+
+    //printf("argc : %d\n", argc);
+    if_.esp = if_.esp - 4;
+    *(int*)if_.esp = 0;
+
+    if_.esp = if_.esp - 4;
+    /* Address for each arguments */
+    for(addr_itr = argc; addr_itr >= 0; addr_itr-=1){
+      if (addr_itr == argc)
+      {
+        /* argv[argc] == 0 */
+        /*if_.esp = if_.esp - 4;
+        *(int*)if_.esp = 0;*/
+        continue;
+      }
+      /* putting argv[i] addresses */
+      else
+      {
+        *(void**)if_.esp = argv_0_addr + argv[addr_itr];
+        if_.esp = if_.esp - 4;
+      }
+    }
+    /* pusing argv addr */
+    *(void**)if_.esp = if_.esp + 4;
+
+    /* pushing argc */
+    if_.esp = if_.esp - 4;
+    *(int*)if_.esp = argc;
+
+    /* fake return address */
+    if_.esp = if_.esp - 4;
+    *(int*)if_.esp = 0;
+
+    //hex_dump(0, 0xbfffffc0, 100, true);
+    palloc_free_page (argv);
+    palloc_free_page (file_name);
+  }
 
   /* Start the user process by simulating a return from an
      interrupt, implemented by intr_exit (in
@@ -86,9 +172,19 @@ start_process (void *f_name)
    This function will be implemented in problem 2-2.  For now, it
    does nothing. */
 int
-process_wait (tid_t child_tid UNUSED) 
+process_wait (tid_t child_tid)
 {
-  return -1;
+  struct thread* child = thread_by_tid(child_tid);
+  int exit_status;
+
+  if (!child) { PANIC("child tid fail"); }
+  sema_down(&child->wait_sema);
+  exit_status = child->return_status;
+
+  /* make thread pushed back to the ready list */
+  thread_unblock(child);
+
+  return exit_status;
 }
 
 /* Free the current process's resources. */
@@ -97,6 +193,13 @@ process_exit (void)
 {
   struct thread *curr = thread_current ();
   uint32_t *pd;
+
+  printf("%s: exit(%d)\n", curr->name, curr->return_status);
+
+  sema_up(&curr->wait_sema);
+  enum intr_level old_level = intr_disable();
+  thread_block();
+  intr_set_level (old_level);
 
   /* Destroy the current process's page directory and switch back
      to the kernel-only page directory. */
@@ -437,6 +540,7 @@ setup_stack (void **esp)
     {
       success = install_page (((uint8_t *) PHYS_BASE) - PGSIZE, kpage, true);
       if (success)
+        //*esp = PHYS_BASE - 12 ; /* Modified temporarily */
         *esp = PHYS_BASE;
       else
         palloc_free_page (kpage);

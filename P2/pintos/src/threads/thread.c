@@ -28,6 +28,9 @@
    that are ready to run but not actually running. */
 static struct list ready_list;
 
+/* : List of all processes for userprog */
+struct list process_list;
+
 /* Idle thread. */
 static struct thread *idle_thread;
 
@@ -71,17 +74,28 @@ static void schedule (void);
 void schedule_tail (struct thread *prev);
 static tid_t allocate_tid (void);
 
+/* get thread by tid -> used in process_wait () */
+struct thread *
+thread_by_tid (tid_t tid)
+{
+  struct thread * th;
+  struct list_elem * le;
+  for (le = list_begin(&process_list); le != list_end(&process_list); le = list_next(le))
+  {
+    th = list_entry (le, struct thread, process_elem);
+    if (tid == th->tid){ return th; }
+  }
+  return NULL;
+}
+
 /* Initializes the threading system by transforming the code
    that's currently running into a thread.  This can't work in
    general and it is possible in this case only because loader.S
-   was careful to put the bottom of the stack at a page boundary.
-
-   Also initializes the run queue and the tid lock.
-
+   was careful to put the bottom of the stack at a page boundary
+   Also initializes the run queue and the tid lock
    After calling this function, be sure to initialize the page
    allocator before trying to create any threads with
-   thread_create().
-
+   thread_create
    It is not safe to call thread_current() until this function
    finishes. */
 void
@@ -91,6 +105,8 @@ thread_init (void)
 
   lock_init (&tid_lock);
   list_init (&ready_list);
+  /* : initialize process list */
+  list_init (&process_list);
 
   /* Set up a thread structure for the running thread. */
   initial_thread = running_thread ();
@@ -198,6 +214,10 @@ thread_create (const char *name, int priority,
 
   /* Add to run queue. */
   thread_unblock (t);
+
+#ifdef USERPROG
+  sema_init(&t->wait_sema, 0);
+#endif
 
   return tid;
 }
@@ -440,6 +460,8 @@ init_thread (struct thread *t, const char *name, int priority)
   t->stack = (uint8_t *) t + PGSIZE;
   t->priority = priority;
   t->magic = THREAD_MAGIC;
+  /* : added for process list */
+  list_push_back (&process_list, &t->process_elem);
 }
 
 /* Allocates a SIZE-byte frame at the top of thread T's stack and

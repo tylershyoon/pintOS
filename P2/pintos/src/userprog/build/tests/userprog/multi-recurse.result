@@ -1,0 +1,2 @@
+FAIL
+run: wait(exec("multi-recurse 14")) returned 41: FAILED

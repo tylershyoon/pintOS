@@ -1,0 +1,36 @@
+Copying tests/userprog/sc-bad-sp into /tmp/YsWeoYm6XG.dsk...
+Writing command line to /tmp/HY8JeLkdki.dsk...
+qemu -hda /tmp/HY8JeLkdki.dsk -hdb /tmp/wkdF3fARPQ.dsk -hdc /tmp/YsWeoYm6XG.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put sc-bad-sp run sc-bad-sp
+Pintos booting with 4,096 kB RAM...
+375 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  130,867,200 loops/s.
+hd0:0: detected 129 sector (64 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 98 sector (49 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'sc-bad-sp' into the file system...
+Executing 'sc-bad-sp':
+(sc-bad-sp) begin
+Page fault at 0x40480a6: not present error reading page in kernel context.
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc010a4e4
+ cr2=040480a6 error=00000000
+ eax=00000030 ebx=c011afb0 ecx=000000ad edx=040480a6
+ esi=00000000 edi=00000000 esp=00000001 ebp=c011af74
+ cs=0008 ds=0010 es=0010 ss=bb60
+Kernel PANIC at ../../userprog/exception.c:100 in kill(): Kernel bug - unexpected interrupt in kernel
+Call stack: 0xc010714c 0xc010a3c8 0xc010a470 0xc010175d 0xc010188f 0xc010a4e4 0xc010175d 0xc010188f 0x80480ad 0x80480f4 0x8048740.
+The `backtrace' program can make call stacks useful.
+Read "Backtraces" in the "Debugging Tools" chapter
+of the Pintos documentation for more information.
+Timer: 55 ticks
+Thread: 0 idle ticks, 54 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 59 reads, 204 writes
+hd1:0: 98 reads, 0 writes
+Console: 1415 characters output
+Keyboard: 0 keys pressed
+Exception: 1 page faults
+Powering off...

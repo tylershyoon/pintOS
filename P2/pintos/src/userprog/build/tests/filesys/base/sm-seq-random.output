@@ -1,0 +1,31 @@
+Copying tests/filesys/base/sm-seq-random into /tmp/VKZvgAb6nA.dsk...
+Writing command line to /tmp/b2saoGvMn2.dsk...
+qemu -hda /tmp/b2saoGvMn2.dsk -hdb /tmp/ysQUfasZnA.dsk -hdc /tmp/VKZvgAb6nA.dsk -m 4 -net none -nographic -monitor null
+Kernel command line: -q -f put sm-seq-random run sm-seq-random
+Pintos booting with 4,096 kB RAM...
+375 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  157,081,600 loops/s.
+hd0:0: detected 129 sector (64 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
+hd1:0: detected 102 sector (51 kB) disk, model "QEMU HARDDISK", serial "QM00003"
+Formatting file system...done.
+Boot complete.
+Putting 'sm-seq-random' into the file system...
+Executing 'sm-seq-random':
+(sm-seq-random) begin
+(sm-seq-random) create "nibble"
+(sm-seq-random) open "nibble"
+(sm-seq-random) writing "nibble"
+(sm-seq-random) write 667 bytes at offset 0 in "nibble" failed: FAILED
+sm-seq-random: exit(1)
+Execution of 'sm-seq-random' complete.
+Timer: 54 ticks
+Thread: 0 idle ticks, 53 kernel ticks, 1 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 60 reads, 212 writes
+hd1:0: 102 reads, 0 writes
+Console: 975 characters output
+Keyboard: 0 keys pressed
+Exception: 0 page faults
+Powering off...

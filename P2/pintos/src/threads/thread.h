@@ -4,6 +4,7 @@
 #include <debug.h>
 #include <list.h>
 #include <stdint.h>
+#include "threads/synch.h"
 
 /* States in a thread's life cycle. */
 enum thread_status
@@ -92,9 +93,16 @@ struct thread
     /* Shared between thread.c and synch.c. */
     struct list_elem elem;              /* List element. */
 
+    /* for process.c, get thread by tid */
+    struct list_elem process_elem;
+
 #ifdef USERPROG
     /* Owned by userprog/process.c. */
     uint32_t *pagedir;                  /* Page directory. */
+
+    /*: */
+    struct semaphore wait_sema;
+    int return_status;
 #endif
 
     /* Owned by thread.c. */
@@ -105,6 +113,9 @@ struct thread
    If true, use multi-level feedback queue scheduler.
    Controlled by kernel command-line option "-o mlfqs". */
 extern bool thread_mlfqs;
+
+/* added */
+struct thread * thread_by_tid(tid_t);
 
 void thread_init (void);
 void thread_start (void);
