@@ -102,7 +102,14 @@ struct thread
 
     /*: */
     struct semaphore wait_sema;
-    int return_status;
+    int exit_status;
+
+    /* reckon that each thread holds files */
+    int fd_grant; /* needed for assigning new fd number for files */
+    struct list file_list; /* list of files */
+
+    /* img file*/
+    struct file* img_file;
 #endif
 
     /* Owned by thread.c. */

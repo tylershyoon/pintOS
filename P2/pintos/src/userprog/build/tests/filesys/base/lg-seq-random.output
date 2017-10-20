@@ -1,12 +1,12 @@
-Copying tests/filesys/base/lg-seq-random into /tmp/TQe6LJVQqf.dsk...
-Writing command line to /tmp/7xOBNcO32p.dsk...
-qemu -hda /tmp/7xOBNcO32p.dsk -hdb /tmp/0agVugAdup.dsk -hdc /tmp/TQe6LJVQqf.dsk -m 4 -net none -nographic -monitor null
+Copying tests/filesys/base/lg-seq-random into /tmp/4ofClcJOxH.dsk...
+Writing command line to /tmp/Xg2FirHpaY.dsk...
+qemu -hda /tmp/Xg2FirHpaY.dsk -hdb /tmp/oafvhWHlUf.dsk -hdc /tmp/4ofClcJOxH.dsk -m 4 -net none -nographic -monitor null
 Kernel command line: -q -f put lg-seq-random run lg-seq-random
 Pintos booting with 4,096 kB RAM...
-375 pages available in kernel pool.
+374 pages available in kernel pool.
 374 pages available in user pool.
 Calibrating timer...  157,081,600 loops/s.
-hd0:0: detected 129 sector (64 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
 hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
 hd1:0: detected 102 sector (51 kB) disk, model "QEMU HARDDISK", serial "QM00003"
 Formatting file system...done.
@@ -20,10 +20,10 @@ Executing 'lg-seq-random':
 (lg-seq-random) write 717 bytes at offset 0 in "nibble" failed: FAILED
 lg-seq-random: exit(1)
 Execution of 'lg-seq-random' complete.
-Timer: 54 ticks
+Timer: 55 ticks
 Thread: 0 idle ticks, 54 kernel ticks, 1 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 60 reads, 212 writes
+hd0:1: 89 reads, 364 writes
 hd1:0: 102 reads, 0 writes
 Console: 975 characters output
 Keyboard: 0 keys pressed

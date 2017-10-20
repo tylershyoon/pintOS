@@ -1,2 +1,2 @@
 FAIL
-run: open() returned 39: FAILED
+Run didn't produce any output

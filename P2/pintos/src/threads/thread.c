@@ -217,6 +217,9 @@ thread_create (const char *name, int priority,
 
 #ifdef USERPROG
   sema_init(&t->wait_sema, 0);
+  t->exit_status = 0xcdcdcdcd;
+  t->fd_grant = 2;
+  list_init(&t->file_list);
 #endif
 
   return tid;

@@ -29,24 +29,42 @@ static bool load (const char *cmdline, void (**eip) (void), void **esp);
 tid_t
 process_execute (const char *file_name) 
 {
+  struct thread* tid_th;
   /* : For tokenize file_name */
   char * save_ptr;
 
-  char *fn_copy;
+  char *fn, *fn_copy;
   tid_t tid;
 
   /* Make a copy of FILE_NAME.
      Otherwise there's a race between the caller and load(). */
+  fn = palloc_get_page (0);
   fn_copy = palloc_get_page (0);
   if (fn_copy == NULL)
     return TID_ERROR;
+  strlcpy (fn, file_name, PGSIZE);
   strlcpy (fn_copy, file_name, PGSIZE);
 
   /* : tokenize file_name before putting into thread_create */
-  file_name = strtok_r (file_name, " ", &save_ptr);
+  file_name = strtok_r (fn, " ", &save_ptr);
 
   /* Create a new thread to execute FILE_NAME. */
-  tid = thread_create (file_name, PRI_DEFAULT, start_process, fn_copy);
+  tid = thread_create (fn, PRI_DEFAULT, start_process, fn_copy);
+  tid_th = thread_by_tid(tid);
+  sema_down(&tid_th->wait_sema);
+  if (tid_th->exit_status == -1)
+  { 
+    tid = TID_ERROR; 
+    thread_unblock (tid_th);
+    process_wait(tid_th->tid);
+  }
+  else
+  {
+    thread_unblock(tid_th);
+  }
+
+  palloc_free_page (fn);
+
   if (tid == TID_ERROR)
     palloc_free_page (fn_copy);
   return tid;
@@ -89,10 +107,17 @@ start_process (void *f_name)
     printf("fail");
     palloc_free_page (file_name);
     /* If load failed, quit. */
+    thread_current()->exit_status = -1;
+    sema_up(&thread_current()->wait_sema);
+    enum intr_level old_level = intr_disable();
+    thread_block();
+    intr_set_level (old_level);
     thread_exit ();
   }
   else /* : when success -> arg passing */
   {
+    thread_current()->img_file = filesys_open(file_name);
+    file_deny_write(thread_current()->img_file);
     /* tokenize file_name & keep argument addresses into argv */
     /*for (token = strtok_r (file_name, " ", &save_ptr); token != NULL; token = strtok_r (NULL, " ", &save_ptr))
     {
@@ -148,6 +173,12 @@ start_process (void *f_name)
     *(int*)if_.esp = 0;
 
     //hex_dump(0, 0xbfffffc0, 100, true);
+
+    sema_up(&thread_current()->wait_sema);
+    enum intr_level old_level = intr_disable();
+    thread_block();
+    intr_set_level (old_level);
+
     palloc_free_page (argv);
     palloc_free_page (file_name);
   }
@@ -174,12 +205,31 @@ start_process (void *f_name)
 int
 process_wait (tid_t child_tid)
 {
-  struct thread* child = thread_by_tid(child_tid);
   int exit_status;
+  struct thread* child = thread_by_tid(child_tid);
+  if (!child)
+  {
+    return -1;
+  }
+  if (child->exit_status != 0xdcdcdcdc || child->status == THREAD_DYING)
+  {
+    //child->exit_status = 0xdcdcdcdc;
+    return -1;
+  }
+  if (child->exit_status != 0xcdcdcdcd && child->exit_status != 0xdcdcdcdc)
+  {
+    exit_status = child->exit_status;
+    //child->exit_status = 0xdcdcdcdc;
+    return exit_status;
+  }
+  //int exit_status;
 
   if (!child) { PANIC("child tid fail"); }
   sema_down(&child->wait_sema);
-  exit_status = child->return_status;
+  exit_status = child->exit_status;
+
+  /* show exit on the screen */
+  printf("%s: exit(%d)\n", child->name, child->exit_status);
 
   /* make thread pushed back to the ready list */
   thread_unblock(child);
@@ -194,9 +244,15 @@ process_exit (void)
   struct thread *curr = thread_current ();
   uint32_t *pd;
 
-  printf("%s: exit(%d)\n", curr->name, curr->return_status);
+  // MOVED to process_wait()
+  //printf("%s: exit(%d)\n", curr->name, curr->exit_status);
 
-  sema_up(&curr->wait_sema);
+  while(!list_empty(&curr->wait_sema.waiters))
+  {
+    sema_up(&curr->wait_sema);
+  }
+  file_close(curr->img_file);
+  curr->img_file = NULL;
   enum intr_level old_level = intr_disable();
   thread_block();
   intr_set_level (old_level);

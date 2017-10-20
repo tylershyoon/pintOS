@@ -1,14 +1,14 @@
-Copying tests/userprog/multi-child-fd into /tmp/bXcdPgmGL9.dsk...
-Copying ../../tests/userprog/sample.txt into /tmp/bXcdPgmGL9.dsk...
-Copying tests/userprog/child-close into /tmp/bXcdPgmGL9.dsk...
-Writing command line to /tmp/TUemwMN8QE.dsk...
-qemu -hda /tmp/TUemwMN8QE.dsk -hdb /tmp/tLcqQ5D0n5.dsk -hdc /tmp/bXcdPgmGL9.dsk -m 4 -net none -nographic -monitor null
+Copying tests/userprog/multi-child-fd into /tmp/fXL1yclVqE.dsk...
+Copying ../../tests/userprog/sample.txt into /tmp/fXL1yclVqE.dsk...
+Copying tests/userprog/child-close into /tmp/fXL1yclVqE.dsk...
+Writing command line to /tmp/NYtEuwamrF.dsk...
+qemu -hda /tmp/NYtEuwamrF.dsk -hdb /tmp/4IYeCB2kW4.dsk -hdc /tmp/fXL1yclVqE.dsk -m 4 -net none -nographic -monitor null
 Kernel command line: -q -f put multi-child-fd put sample.txt put child-close run multi-child-fd
 Pintos booting with 4,096 kB RAM...
-375 pages available in kernel pool.
+374 pages available in kernel pool.
 374 pages available in user pool.
 Calibrating timer...  157,081,600 loops/s.
-hd0:0: detected 129 sector (64 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
 hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
 hd1:0: detected 210 sector (105 kB) disk, model "QEMU HARDDISK", serial "QM00003"
 Formatting file system...done.
@@ -19,17 +19,20 @@ Putting 'child-close' into the file system...
 Executing 'multi-child-fd':
 (multi-child-fd) begin
 (multi-child-fd) open "sample.txt"
-(multi-child-fd) wait(exec()) = 14
-(multi-child-fd) size of sample.txt (35) differs from expected (239)
-(multi-child-fd) read of 239 bytes at offset 0 in "sample.txt" returned 35: FAILED
-multi-child-fd: exit(1)
+(child-close) begin
+(child-close) end
+child-close: exit(0)
+(multi-child-fd) wait(exec()) = 0
+(multi-child-fd) verified contents of "sample.txt"
+(multi-child-fd) end
+multi-child-fd: exit(0)
 Execution of 'multi-child-fd' complete.
 Timer: 55 ticks
 Thread: 0 idle ticks, 54 kernel ticks, 1 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 122 reads, 432 writes
+hd0:1: 176 reads, 432 writes
 hd1:0: 210 reads, 0 writes
-Console: 1162 characters output
+Console: 1140 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

@@ -1,12 +1,12 @@
-Copying tests/filesys/base/sm-create into /tmp/FqsQSektJM.dsk...
-Writing command line to /tmp/LXA4SV051p.dsk...
-qemu -hda /tmp/LXA4SV051p.dsk -hdb /tmp/McKITt6Omn.dsk -hdc /tmp/FqsQSektJM.dsk -m 4 -net none -nographic -monitor null
+Copying tests/filesys/base/sm-create into /tmp/R1OEeGzsLX.dsk...
+Writing command line to /tmp/fmXCsJwwVm.dsk...
+qemu -hda /tmp/fmXCsJwwVm.dsk -hdb /tmp/4LlnOnJmjI.dsk -hdc /tmp/R1OEeGzsLX.dsk -m 4 -net none -nographic -monitor null
 Kernel command line: -q -f put sm-create run sm-create
 Pintos booting with 4,096 kB RAM...
-375 pages available in kernel pool.
+374 pages available in kernel pool.
 374 pages available in user pool.
 Calibrating timer...  157,081,600 loops/s.
-hd0:0: detected 129 sector (64 kB) disk, model "QEMU HARDDISK", serial "QM00001"
+hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
 hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
 hd1:0: detected 101 sector (50 kB) disk, model "QEMU HARDDISK", serial "QM00003"
 Formatting file system...done.
@@ -16,16 +16,17 @@ Executing 'sm-create':
 (sm-create) begin
 (sm-create) create "blargle"
 (sm-create) open "blargle" for verification
-(sm-create) size of blargle (44) differs from expected (5678)
-(sm-create) read of 512 bytes at offset 0 in "blargle" returned 44: FAILED
-sm-create: exit(1)
+(sm-create) verified contents of "blargle"
+(sm-create) close "blargle"
+(sm-create) end
+sm-create: exit(0)
 Execution of 'sm-create' complete.
 Timer: 54 ticks
 Thread: 0 idle ticks, 53 kernel ticks, 1 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 60 reads, 210 writes
+hd0:1: 101 reads, 226 writes
 hd1:0: 101 reads, 0 writes
-Console: 991 characters output
+Console: 942 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...
