@@ -1,13 +1,12 @@
 FAIL
 Kernel panic in run: PANIC at ../../lib/kernel/list.c:84 in list_next(): assertion `is_head (elem) || is_interior (elem)' failed.
-Call stack: 0xc010716c 0xc01075a4 0xc010a634 0xc010a9cb 0xc010ac0a 0xc010177d 0xc01018af 0x804a1c5 0x80480c2 0x8048190 0x80487e0
+Call stack: 0xc010716c 0xc01075a4 0xc010a998 0xc010ac12 0xc010177d 0xc01018af 0x804a1c5 0x80480c2 0x8048190 0x80487e0
 Translation of call stack:
 In kernel.o:
 0xc010716c: debug_panic (.../../lib/kernel/debug.c:34)
 0xc01075a4: is_interior (..../../lib/kernel/list.c:49)
-0xc010a634: file_by_fd (...../userprog/syscall.c:274)
-0xc010a9cb: read (...../userprog/syscall.c:313)
-0xc010ac0a: syscall_handler (...../userprog/syscall.c:111)
+0xc010a998: read (...../userprog/syscall.c:308)
+0xc010ac12: syscall_handler (...../userprog/syscall.c:111)
 0xc010177d: intr_handler (..../threads/interrupt.c:361)
 0xc01018af: intr_entry (threads/intr-stubs.S:38)
 In tests/userprog/read-bad-fd:

@@ -116,8 +116,6 @@ start_process (void *f_name)
   }
   else /* : when success -> arg passing */
   {
-    thread_current()->img_file = filesys_open(file_name);
-    file_deny_write(thread_current()->img_file);
     /* tokenize file_name & keep argument addresses into argv */
     /*for (token = strtok_r (file_name, " ", &save_ptr); token != NULL; token = strtok_r (NULL, " ", &save_ptr))
     {
@@ -205,28 +203,19 @@ start_process (void *f_name)
 int
 process_wait (tid_t child_tid)
 {
-  int exit_status;
   struct thread* child = thread_by_tid(child_tid);
-  if (!child)
-  {
+  if (child->exit_status != 0xcdcdcdcd || child->status == THREAD_DYING)
     return -1;
-  }
-  if (child->exit_status != 0xdcdcdcdc || child->status == THREAD_DYING)
-  {
-    //child->exit_status = 0xdcdcdcdc;
-    return -1;
-  }
-  if (child->exit_status != 0xcdcdcdcd && child->exit_status != 0xdcdcdcdc)
-  {
-    exit_status = child->exit_status;
-    //child->exit_status = 0xdcdcdcdc;
-    return exit_status;
-  }
-  //int exit_status;
+  int exit_status;
 
   if (!child) { PANIC("child tid fail"); }
   sema_down(&child->wait_sema);
   exit_status = child->exit_status;
+
+  if (exit_status == -1)
+  {
+
+  }
 
   /* show exit on the screen */
   printf("%s: exit(%d)\n", child->name, child->exit_status);
@@ -247,15 +236,10 @@ process_exit (void)
   // MOVED to process_wait()
   //printf("%s: exit(%d)\n", curr->name, curr->exit_status);
 
-  while(!list_empty(&curr->wait_sema.waiters))
-  {
-    sema_up(&curr->wait_sema);
-  }
-  file_close(curr->img_file);
-  curr->img_file = NULL;
+  sema_up(&curr->wait_sema);
   enum intr_level old_level = intr_disable();
   thread_block();
-  intr_set_level (old_level);
+  //intr_set_level (old_level);
 
   /* Destroy the current process's page directory and switch back
      to the kernel-only page directory. */

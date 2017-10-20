@@ -264,17 +264,19 @@ filesize (int fd)
   return -1;
 }
 
-struct thread_file *
-file_by_fd (int fd)
+struct thread_file*
+thread_file_by_fd(int fd)
 {
-  struct list_elem * itr;
-  struct list files = thread_current()->file_list;
-  struct thread_file * itrfile;
+  struct list_elem* i;
+  struct list files;
+  files = thread_current()->file_list;
+  struct thread_file * thread_file;
 
-  for (itr = list_begin(&files); itr != list_end(&files); itr = list_next(itr))
+  for(i=list_begin(&files); i!=list_end(&files);i=list_next(i))
   {
-    itrfile = list_entry(itr, struct thread_file, file_elem);
-    if (itrfile->fd == fd){ return itrfile; }
+    if (i == list_tail(&files)){ break; }
+    thread_file = list_entry(i, struct thread_file, file_elem);
+    if (thread_file->fd == fd){ return thread_file; }
   }
   return NULL;
 }
@@ -296,7 +298,7 @@ read (int fd, void *buffer, unsigned size)
   else if (fd == 1){ return -1; }
   else
   {
-    /*struct thread* curr = thread_current();
+    struct thread* curr = thread_current();
     struct list_elem * itr;
     struct list files = curr->file_list;
     struct thread_file * itrfile;
@@ -307,13 +309,7 @@ read (int fd, void *buffer, unsigned size)
       itrfile = list_entry(itr, struct thread_file, file_elem);
       if (itrfile->fd == fd){ return file_read (itrfile->file, buffer, size); }
     }
-    return -1;*/
-
-    struct thread_file * itrfile = file_by_fd(fd);
-    if (!itrfile){ return -1; }
-    else{
-      return file_read(itrfile->file, buffer, size);
-    }
+    return -1;
   }
 }
 
@@ -321,6 +317,7 @@ int
 write (int fd, const void * buffer, unsigned int size)
 {
   int written;
+  //printf("WRITE\n");
   if (!is_user_vaddr(buffer))
   {
     exit(-1);
@@ -352,20 +349,14 @@ write (int fd, const void * buffer, unsigned int size)
         written = file_write(itrfile->file, buffer, size);
         break;
       }
-    }*/
-    lock_acquire(&file_lock);
-    struct thread_file * itrfile = file_by_fd(fd);
-    if (!itrfile)
-    {
-      lock_release(&file_lock);
-      return -1; 
     }
-    else
-    {
-      written = file_write(itrfile->file, buffer, size);
-      lock_release(&file_lock);
-      return written;
-    }
+    */
+
+    struct thread_file * itrfile;
+    itrfile = thread_file_by_fd(fd);
+    if(!itrfile){ return -1; }
+    written = file_write(itrfile->file, buffer, size);
+    return written;
   }
 }
 

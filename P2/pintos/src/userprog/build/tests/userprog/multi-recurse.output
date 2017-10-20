@@ -1,6 +1,6 @@
-Copying tests/userprog/multi-recurse into /tmp/Ke20URVpoO.dsk...
-Writing command line to /tmp/Ezq8x5HtOj.dsk...
-qemu -hda /tmp/Ezq8x5HtOj.dsk -hdb /tmp/M0CZwUhwUP.dsk -hdc /tmp/Ke20URVpoO.dsk -m 4 -net none -nographic -monitor null
+Copying tests/userprog/multi-recurse into /tmp/RhhRe6kbLp.dsk...
+Writing command line to /tmp/wrORrJntwy.dsk...
+qemu -hda /tmp/wrORrJntwy.dsk -hdb /tmp/t2ze423fcP.dsk -hdc /tmp/RhhRe6kbLp.dsk -m 4 -net none -nographic -monitor null
 Kernel command line: -q -f put multi-recurse run 'multi-recurse 15'
 Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
@@ -78,9 +78,9 @@ multi-recurse: exit(14)
 multi-recurse: exit(15)
 Execution of 'multi-recurse 15' complete.
 Timer: 63 ticks
-Thread: 0 idle ticks, 55 kernel ticks, 8 user ticks
+Thread: 0 idle ticks, 54 kernel ticks, 9 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 576 reads, 226 writes
+hd0:1: 558 reads, 226 writes
 hd1:0: 109 reads, 0 writes
 Console: 2503 characters output
 Keyboard: 0 keys pressed

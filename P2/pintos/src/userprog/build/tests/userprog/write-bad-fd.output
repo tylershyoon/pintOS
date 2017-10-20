@@ -1,6 +1,6 @@
-Copying tests/userprog/write-bad-fd into /tmp/lrpiwG74Va.dsk...
-Writing command line to /tmp/deCNWwC1dl.dsk...
-qemu -hda /tmp/deCNWwC1dl.dsk -hdb /tmp/EKTiarfsJf.dsk -hdc /tmp/lrpiwG74Va.dsk -m 4 -net none -nographic -monitor null
+Copying tests/userprog/write-bad-fd into /tmp/uxrGQUk14B.dsk...
+Writing command line to /tmp/bH9zqYbama.dsk...
+qemu -hda /tmp/bH9zqYbama.dsk -hdb /tmp/WIctan59Cm.dsk -hdc /tmp/uxrGQUk14B.dsk -m 4 -net none -nographic -monitor null
 Kernel command line: -q -f put write-bad-fd run write-bad-fd
 Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
@@ -15,14 +15,14 @@ Putting 'write-bad-fd' into the file system...
 Executing 'write-bad-fd':
 (write-bad-fd) begin
 Kernel PANIC at ../../lib/kernel/list.c:84 in list_next(): assertion `is_head (elem) || is_interior (elem)' failed.
-Call stack: 0xc010716c 0xc01075a4 0xc010a634 0xc010a927 0xc010ab8e 0xc010177d 0xc01018af 0x804a1da 0x80480c6 0x8048194 0x80487e0.
+Call stack: 0xc010716c 0xc01075a4 0xc010a6ec 0xc010a8e0 0xc010ab95 0xc010177d 0xc01018af 0x804a1da 0x80480c6 0x8048194 0x80487e0.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
 Timer: 53 ticks
 Thread: 0 idle ticks, 53 kernel ticks, 0 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 62 reads, 204 writes
+hd0:1: 59 reads, 204 writes
 hd1:0: 98 reads, 0 writes
 Console: 1140 characters output
 Keyboard: 0 keys pressed

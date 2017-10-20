@@ -1,6 +1,6 @@
-Copying tests/userprog/create-bound into /tmp/0iaifBslLR.dsk...
-Writing command line to /tmp/axdMYl76b7.dsk...
-qemu -hda /tmp/axdMYl76b7.dsk -hdb /tmp/q4I31hJvOj.dsk -hdc /tmp/0iaifBslLR.dsk -m 4 -net none -nographic -monitor null
+Copying tests/userprog/create-bound into /tmp/GZoprD0uOE.dsk...
+Writing command line to /tmp/1OvKBpBRwt.dsk...
+qemu -hda /tmp/1OvKBpBRwt.dsk -hdb /tmp/WckvqSpPif.dsk -hdc /tmp/GZoprD0uOE.dsk -m 4 -net none -nographic -monitor null
 Kernel command line: -q -f put create-bound run create-bound
 Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
@@ -13,13 +13,17 @@ Formatting file system...done.
 Boot complete.
 Putting 'create-bound' into the file system...
 Executing 'create-bound':
+(create-bound) begin
+(create-bound) create("quux.dat"): 1
+(create-bound) end
+create-bound: exit(0)
 Execution of 'create-bound' complete.
-Timer: 53 ticks
-Thread: 0 idle ticks, 53 kernel ticks, 0 user ticks
+Timer: 54 ticks
+Thread: 0 idle ticks, 54 kernel ticks, 0 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 62 reads, 208 writes
+hd0:1: 81 reads, 212 writes
 hd1:0: 100 reads, 0 writes
-Console: 759 characters output
+Console: 858 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

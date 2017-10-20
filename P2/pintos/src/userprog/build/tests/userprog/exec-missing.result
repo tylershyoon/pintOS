@@ -1,14 +1,14 @@
 FAIL
 Kernel panic in run: PANIC at ../../threads/palloc.c:147 in palloc_free_multiple(): assertion `bitmap_all (pool->used_map, page_idx, page_cnt)' failed.
-Call stack: 0xc010716c 0xc0102de3 0xc0102e27 0xc01092ce 0xc010a88b 0xc010ac3c 0xc010177d 0xc01018af 0x804a0c2 0x80480b2 0x80480fc 0x8048750
+Call stack: 0xc010716c 0xc0102de3 0xc0102e27 0xc01092a6 0xc010a856 0xc010ac44 0xc010177d 0xc01018af 0x804a0c2 0x80480b2 0x80480fc 0x8048750
 Translation of call stack:
 In kernel.o:
 0xc010716c: debug_panic (.../../lib/kernel/debug.c:34)
 0xc0102de3: palloc_free_multiple (..../../threads/palloc.c:148)
 0xc0102e27: palloc_free_page (..../../threads/palloc.c:156)
-0xc01092ce: process_execute (.../../userprog/process.c:69)
-0xc010a88b: exec (...../userprog/syscall.c:186)
-0xc010ac3c: syscall_handler (...../userprog/syscall.c:124)
+0xc01092a6: process_execute (.../../userprog/process.c:69)
+0xc010a856: exec (...../userprog/syscall.c:186)
+0xc010ac44: syscall_handler (...../userprog/syscall.c:124)
 0xc010177d: intr_handler (..../threads/interrupt.c:361)
 0xc01018af: intr_entry (threads/intr-stubs.S:38)
 In tests/userprog/exec-missing:
