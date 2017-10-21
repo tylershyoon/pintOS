@@ -116,11 +116,6 @@ start_process (void *f_name)
   }
   else /* : when success -> arg passing */
   {
-    /* tokenize file_name & keep argument addresses into argv */
-    /*for (token = strtok_r (file_name, " ", &save_ptr); token != NULL; token = strtok_r (NULL, " ", &save_ptr))
-    {
-      argv[++argc] = save_ptr - file_name;
-    }*/
     /*printf("argv[0] : %d\n", argv[0]);
     printf("argv[1] : %d\n", argv[1]);
     printf("argv[2] : %d\n", argv[2]);
@@ -204,7 +199,7 @@ int
 process_wait (tid_t child_tid)
 {
   struct thread* child = thread_by_tid(child_tid);
-  if (child->exit_status != 0xcdcdcdcd || child->status == THREAD_DYING)
+  if (!child || child->exit_status != 0xcdcdcdcd || child->status == THREAD_DYING)
     return -1;
   int exit_status;
 

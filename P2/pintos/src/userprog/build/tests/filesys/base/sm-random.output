@@ -1,11 +1,11 @@
-Copying tests/filesys/base/sm-random into /tmp/ddu5LgegD0.dsk...
-Writing command line to /tmp/qZNS8ZIoQi.dsk...
-qemu -hda /tmp/qZNS8ZIoQi.dsk -hdb /tmp/oZTkKciS6v.dsk -hdc /tmp/ddu5LgegD0.dsk -m 4 -net none -nographic -monitor null
+Copying tests/filesys/base/sm-random into /tmp/zoK96uCpid.dsk...
+Writing command line to /tmp/GfWBje2J8z.dsk...
+qemu -hda /tmp/GfWBje2J8z.dsk -hdb /tmp/gsIUXFsPB1.dsk -hdc /tmp/zoK96uCpid.dsk -m 4 -net none -nographic -monitor null
 Kernel command line: -q -f put sm-random run sm-random
 Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
 374 pages available in user pool.
-Calibrating timer...  111,206,400 loops/s.
+Calibrating timer...  130,867,200 loops/s.
 hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
 hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
 hd1:0: detected 104 sector (52 kB) disk, model "QEMU HARDDISK", serial "QM00003"
@@ -17,15 +17,17 @@ Executing 'sm-random':
 (sm-random) create "bazzle"
 (sm-random) open "bazzle"
 (sm-random) write "bazzle" in random order
-(sm-random) write 13 bytes at offset 858 failed: FAILED
-sm-random: exit(1)
+(sm-random) read "bazzle" in random order
+(sm-random) close "bazzle"
+(sm-random) end
+sm-random: exit(0)
 Execution of 'sm-random' complete.
 Timer: 57 ticks
-Thread: 0 idle ticks, 56 kernel ticks, 1 user ticks
+Thread: 0 idle ticks, 56 kernel ticks, 2 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 87 reads, 224 writes
+hd0:1: 339 reads, 350 writes
 hd1:0: 104 reads, 0 writes
-Console: 934 characters output
+Console: 964 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

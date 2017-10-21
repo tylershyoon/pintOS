@@ -1,11 +1,11 @@
-Copying tests/filesys/base/lg-random into /tmp/ApWG6FQFhT.dsk...
-Writing command line to /tmp/Hzcpve7LCV.dsk...
-qemu -hda /tmp/Hzcpve7LCV.dsk -hdb /tmp/Zck2XD3Uuv.dsk -hdc /tmp/ApWG6FQFhT.dsk -m 4 -net none -nographic -monitor null
+Copying tests/filesys/base/lg-random into /tmp/byCoOLQlfQ.dsk...
+Writing command line to /tmp/pCppXPdUlX.dsk...
+qemu -hda /tmp/pCppXPdUlX.dsk -hdb /tmp/ATRsfpZY1O.dsk -hdc /tmp/byCoOLQlfQ.dsk -m 4 -net none -nographic -monitor null
 Kernel command line: -q -f put lg-random run lg-random
 Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
 374 pages available in user pool.
-Calibrating timer...  130,867,200 loops/s.
+Calibrating timer...  145,612,800 loops/s.
 hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
 hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
 hd1:0: detected 104 sector (52 kB) disk, model "QEMU HARDDISK", serial "QM00003"
@@ -17,15 +17,17 @@ Executing 'lg-random':
 (lg-random) create "bazzle"
 (lg-random) open "bazzle"
 (lg-random) write "bazzle" in random order
-(lg-random) write 512 bytes at offset 6144 failed: FAILED
-lg-random: exit(1)
+(lg-random) read "bazzle" in random order
+(lg-random) close "bazzle"
+(lg-random) end
+lg-random: exit(0)
 Execution of 'lg-random' complete.
-Timer: 57 ticks
-Thread: 0 idle ticks, 55 kernel ticks, 2 user ticks
+Timer: 60 ticks
+Thread: 0 idle ticks, 56 kernel ticks, 4 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 87 reads, 370 writes
+hd0:1: 237 reads, 520 writes
 hd1:0: 104 reads, 0 writes
-Console: 936 characters output
+Console: 964 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

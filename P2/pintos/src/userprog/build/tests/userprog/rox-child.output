@@ -1,12 +1,12 @@
-Copying tests/userprog/rox-child into /tmp/EfTLgWVhmq.dsk...
-Copying tests/userprog/child-rox into /tmp/EfTLgWVhmq.dsk...
-Writing command line to /tmp/wvPdumtBMJ.dsk...
-qemu -hda /tmp/wvPdumtBMJ.dsk -hdb /tmp/LQCdGgto35.dsk -hdc /tmp/EfTLgWVhmq.dsk -m 4 -net none -nographic -monitor null
+Copying tests/userprog/rox-child into /tmp/iYcYk1eRe9.dsk...
+Copying tests/userprog/child-rox into /tmp/iYcYk1eRe9.dsk...
+Writing command line to /tmp/SarvfiD4kV.dsk...
+qemu -hda /tmp/SarvfiD4kV.dsk -hdb /tmp/0hQwGPpRbW.dsk -hdc /tmp/iYcYk1eRe9.dsk -m 4 -net none -nographic -monitor null
 Kernel command line: -q -f put rox-child put child-rox run rox-child
 Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
 374 pages available in user pool.
-Calibrating timer...  157,081,600 loops/s.
+Calibrating timer...  104,755,200 loops/s.
 hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
 hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
 hd1:0: detected 209 sector (104 kB) disk, model "QEMU HARDDISK", serial "QM00003"
@@ -19,15 +19,20 @@ Executing 'rox-child':
 (rox-child) open "child-rox"
 (rox-child) read "child-rox"
 (rox-child) write "child-rox"
-(rox-child) write "child-rox": FAILED
+(rox-child) exec "child-rox 1"
+(child-rox) begin
+(child-rox) try to write "child-rox"
+(child-rox) try to write "child-rox": FAILED
+child-rox: exit(1)
+(rox-child) wait for child: FAILED
 rox-child: exit(1)
 Execution of 'rox-child' complete.
-Timer: 54 ticks
-Thread: 0 idle ticks, 54 kernel ticks, 0 user ticks
+Timer: 53 ticks
+Thread: 0 idle ticks, 52 kernel ticks, 1 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 92 reads, 428 writes
+hd0:1: 130 reads, 430 writes
 hd1:0: 209 reads, 0 writes
-Console: 966 characters output
+Console: 1114 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

@@ -27,7 +27,39 @@ int wait (int pid);
 /* lock for accessing file - for synchronization purpose */
 struct lock file_lock;
 
+/* struct thread_file for thread to hold a list of files */
+struct thread_file
+{
+  struct file * file;
+  int fd;
+  struct list_elem file_elem;
+};
+/* END of struct declaration */
 
+
+/* few helper functions */
+static void is_valid (const void *vaddr)
+{
+  if (!is_user_valid(vaddr)){ exit(-1); }
+}
+
+static struct file* file_by_fd(int fd, struct thread *t)
+{
+  struct list_elem *itr;
+  struct thread_file* itrfile;
+  struct list *file_list = &t->file_list;
+
+  int size = list_size(file_list);
+  int i = 0;
+  if (size == 0){ return NULL; }
+  for (itr = list_begin(file_list); i < size; ++i)
+  {
+    itrfile = list_entry(itr, struct thread_file, file_elem);
+    if (itrfile->fd == fd){ return itrfile->file; }
+    itr = list_next(itr);
+  }
+  return NULL;
+}
 
 void
 syscall_init (void) 
@@ -131,16 +163,6 @@ syscall_handler (struct intr_frame *f)
   //thread_exit ();
 }
 
-/* struct thread_file for thread to hold a list of files */
-struct thread_file
-{
-  struct file * file;
-  int fd;
-  struct list_elem file_elem;
-};
-/* END of struct declaration */
-
-
 /* syscall functions */
 void
 halt (void)
@@ -151,17 +173,6 @@ halt (void)
 void
 exit (int status)
 {
-  //printf("%s: exit(%d)\n", thread_current()->name, status);
-  /*struct thread * curr = thread_current();
-  struct list file_list = curr->file_list;
-  struct list_elem* el;
-  struct thread_file* tf;
-  while(!list_empty(&file_list))
-  {
-    el = list_pop_front(&file_list);
-    tf = list_entry(el, struct thread_file, file_elem);
-    close(tf->fd);
-  }*/
 
   struct thread * curr = thread_current();
   curr->exit_status = status;
@@ -175,13 +186,12 @@ exit (int status)
   }
 
   thread_exit ();
-  return -1;
 }
 
 int
 exec (const char *cmd_line)
 {
-  //if (!cmd_line){ return -1; }
+  if (!cmd_line){ return -1; }
   return process_execute(cmd_line);
 }
 
@@ -205,6 +215,7 @@ create (const char *file, unsigned initial_size)
 bool
 remove (const char *file)
 {
+  if (!file){ return false; }
   if(!is_user_vaddr(file)){ exit(-1); }
   lock_acquire(&file_lock);
   bool success = filesys_remove (file);
@@ -226,7 +237,7 @@ open (const char *file)
   }
   else
   {
-    file_deny_write(openfile);
+    //file_deny_write(openfile);
     int fd = thread_current()->fd_grant;
     thread_current()->fd_grant = fd + 1;
 
@@ -272,6 +283,7 @@ thread_file_by_fd(int fd)
   files = thread_current()->file_list;
   struct thread_file * thread_file;
 
+  if (list_size(&files) == 0){ return NULL; }
   for(i=list_begin(&files); i!=list_end(&files);i=list_next(i))
   {
     if (i == list_tail(&files)){ break; }
@@ -298,7 +310,7 @@ read (int fd, void *buffer, unsigned size)
   else if (fd == 1){ return -1; }
   else
   {
-    struct thread* curr = thread_current();
+    /*struct thread* curr = thread_current();
     struct list_elem * itr;
     struct list files = curr->file_list;
     struct thread_file * itrfile;
@@ -309,7 +321,11 @@ read (int fd, void *buffer, unsigned size)
       itrfile = list_entry(itr, struct thread_file, file_elem);
       if (itrfile->fd == fd){ return file_read (itrfile->file, buffer, size); }
     }
-    return -1;
+    return -1;*/
+
+    struct file* file = file_by_fd (fd, thread_current());
+    if (!file){ return -1; }
+    else{ return file_read(file, buffer, size); }
   }
 }
 
@@ -330,33 +346,11 @@ write (int fd, const void * buffer, unsigned int size)
   else if (fd == 0){ return -1; }
   else
   {
-    /*struct thread* curr = thread_current ();
-    struct list_elem * itr;
-    struct list files = curr->file_list;
-    struct thread_file * itrfile;
-
-    for(itr=list_begin(&files); itr!=list_end(&files); itr = list_next(itr))
-    {
-      itrfile = list_entry(itr, struct thread_file, file_elem);
-      if (itrfile->fd == fd)
-      {
-        written = file_write(itrfile->file, buffer, size);
-        if (list_next(itr) == list_tail(&files)){ exit(-1); written = -1; }
-        break;
-      }
-      else{
-        //if(itrfile->file == NULL){ exit(-1); }
-        written = file_write(itrfile->file, buffer, size);
-        break;
-      }
-    }
-    */
-
-    struct thread_file * itrfile;
-    itrfile = thread_file_by_fd(fd);
-    if(!itrfile){ return -1; }
-    written = file_write(itrfile->file, buffer, size);
-    return written;
+    if (size == 0) { return 0; }
+    //else { return size; }
+    struct file * file = file_by_fd(fd, thread_current());
+    if(!file){ return -1; }
+    else{ return file_write(file, buffer, size); }
   }
 }
 
@@ -409,6 +403,7 @@ void
 close (int fd)
 {
   if (fd == 0 || fd == 1){ return ; }
+
   struct thread* curr = thread_current();
   struct list_elem * itr;
   struct list *files = &curr->file_list;
