@@ -1,11 +1,11 @@
-Copying tests/userprog/no-vm/multi-oom into /tmp/KEUE8kHrgT.dsk...
-Writing command line to /tmp/jCh6hnTj8f.dsk...
-qemu -hda /tmp/jCh6hnTj8f.dsk -hdb /tmp/sQbm2oTwRO.dsk -hdc /tmp/KEUE8kHrgT.dsk -m 4 -net none -nographic -monitor null
+Copying tests/userprog/no-vm/multi-oom into /tmp/JPtS6qPOsl.dsk...
+Writing command line to /tmp/iodXWQIrJx.dsk...
+qemu -hda /tmp/iodXWQIrJx.dsk -hdb /tmp/xF15Fww4ot.dsk -hdc /tmp/JPtS6qPOsl.dsk -m 4 -net none -nographic -monitor null
 Kernel command line: -q -f put multi-oom run multi-oom
 Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
 374 pages available in user pool.
-Calibrating timer...  130,867,200 loops/s.
+Calibrating timer...  157,081,600 loops/s.
 hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
 hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
 hd1:0: detected 114 sector (57 kB) disk, model "QEMU HARDDISK", serial "QM00003"
@@ -18,17 +18,28 @@ multi-oom: exit(-1)
 multi-oom: exit(-1)
 (multi-oom) wait returned -1.: FAILED
 multi-oom: exit(1)
-Kernel PANIC at ../../lib/kernel/list.c:84 in list_next(): assertion `is_head (elem) || is_interior (elem)' failed.
-Call stack: 0xc010716c 0xc01075a4 0xc010111a 0xc0109138 0xc010a885 0xc010ac4a 0xc010177d 0xc01018af 0x804a701 0x8048296 0x80489a0.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
-Timer: 60 ticks
-Thread: 0 idle ticks, 55 kernel ticks, 5 user ticks
+multi-oom: exit(1)
+multi-oom: exit(1)
+multi-oom: exit(1)
+multi-oom: exit(1)
+multi-oom: exit(1)
+multi-oom: exit(1)
+multi-oom: exit(1)
+multi-oom: exit(1)
+multi-oom: exit(1)
+multi-oom: exit(1)
+multi-oom: exit(1)
+multi-oom: exit(1)
+multi-oom: exit(1)
+multi-oom: exit(1)
+multi-oom: exit(-1)
+Execution of 'multi-oom' complete.
+Timer: 74 ticks
+Thread: 0 idle ticks, 54 kernel ticks, 21 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 1250 reads, 236 writes
+hd0:1: 4585 reads, 236 writes
 hd1:0: 114 reads, 0 writes
-Console: 1227 characters output
+Console: 1148 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 3 page faults
 Powering off...

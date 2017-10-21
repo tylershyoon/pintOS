@@ -5,6 +5,7 @@
 #include <list.h>
 #include <stdint.h>
 #include "threads/synch.h"
+#include "filesys/file.h"
 
 /* States in a thread's life cycle. */
 enum thread_status
@@ -107,6 +108,9 @@ struct thread
     /* reckon that each thread holds files */
     int fd_grant; /* needed for assigning new fd number for files */
     struct list file_list; /* list of files */
+
+    /* denying writes to executables */
+    struct file* executable;
 #endif
 
     /* Owned by thread.c. */

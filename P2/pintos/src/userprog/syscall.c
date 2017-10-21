@@ -185,6 +185,11 @@ exit (int status)
     close(list_entry(itr, struct thread_file, file_elem)->fd);
   }
 
+  if (curr->executable != NULL)
+  {
+    file_allow_write(curr->executable);
+  }
+
   thread_exit ();
 }
 
@@ -414,6 +419,7 @@ close (int fd)
     itrfile = list_entry(itr, struct thread_file, file_elem);
     if(itrfile->fd != fd){ continue; }
     else{
+      if (itrfile->file->deny_write){ file_allow_write(itrfile->file); }
       file_close(itrfile->file);
       list_remove(itr);
       free(itrfile);

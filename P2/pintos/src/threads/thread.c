@@ -465,6 +465,7 @@ init_thread (struct thread *t, const char *name, int priority)
   t->magic = THREAD_MAGIC;
   /* : added for process list */
   list_push_back (&process_list, &t->process_elem);
+  t->executable = NULL;
 }
 
 /* Allocates a SIZE-byte frame at the top of thread T's stack and

@@ -199,7 +199,7 @@ int
 process_wait (tid_t child_tid)
 {
   struct thread* child = thread_by_tid(child_tid);
-  if (!child || child->exit_status != 0xcdcdcdcd || child->status == THREAD_DYING)
+  if (child->exit_status != 0xcdcdcdcd || child->status == THREAD_DYING)
     return -1;
   int exit_status;
 
@@ -451,6 +451,13 @@ load (const char *file_name, void (**eip) (void), void **esp)
  done:
   /* We arrive here whether the load is successful or not. */
   file_close (file);
+  /* ADDED */
+  if(success)
+  {
+    t->executable = filesys_open(file_name);
+    file_deny_write(t->executable);
+  }
+  /* ADDED */
   return success;
 }
 

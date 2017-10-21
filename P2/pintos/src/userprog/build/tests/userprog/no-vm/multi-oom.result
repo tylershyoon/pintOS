@@ -1,20 +1,2 @@
 FAIL
-Kernel panic in run: PANIC at ../../lib/kernel/list.c:84 in list_next(): assertion `is_head (elem) || is_interior (elem)' failed.
-Call stack: 0xc010716c 0xc01075a4 0xc010111a 0xc0109138 0xc010a885 0xc010ac4a 0xc010177d 0xc01018af 0x804a701 0x8048296 0x80489a0
-Translation of call stack:
-In kernel.o:
-0xc010716c: debug_panic (.../../lib/kernel/debug.c:34)
-0xc01075a4: is_interior (..../../lib/kernel/list.c:49)
-0xc010111a: thread_by_tid (...../../threads/thread.c:83)
-0xc0109138: process_wait (...../userprog/process.c:201)
-0xc010a885: wait (...../userprog/syscall.c:203)
-0xc010ac4a: syscall_handler (...../userprog/syscall.c:159)
-0xc010177d: intr_handler (..../threads/interrupt.c:361)
-0xc01018af: intr_entry (threads/intr-stubs.S:38)
-In tests/userprog/no-vm/multi-oom:
-0x0804a701: wait (.../../lib/user/syscall.c:87)
-0x08048296: main (...rog/no-vm/multi-oom.c:137)
-0x080489a0: _start (.../../../lib/user/entry.c:9)
-Translations of user virtual addresses above are based on a guess at
-the binary to use.  If this guess is incorrect, then those
-translations will be misleading.
+run: wait returned -1.: FAILED
