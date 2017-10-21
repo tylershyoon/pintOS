@@ -8,6 +8,8 @@
 #include "filesys/file.h"
 /* for accessing user memory */
 #include "threads/vaddr.h"
+/* for lock structure usage */
+#include "threads/synch.h"
 
 static void syscall_handler (struct intr_frame *);
 
@@ -190,6 +192,11 @@ exit (int status)
     file_allow_write(curr->executable);
   }
 
+  if (lock_held_by_current_thread(&file_lock))
+  {
+    lock_release(&file_lock);
+  }
+
   thread_exit ();
 }
 
@@ -232,12 +239,12 @@ int
 open (const char *file)
 {
   struct file* openfile;
-  lock_acquire(&file_lock);
+  //lock_acquire(&file_lock);
   openfile = filesys_open(file);
   //file_deny_write(openfile);
   if (openfile == NULL)
   {
-    lock_release(&file_lock);
+    //lock_release(&file_lock);
     return -1;
   }
   else
@@ -252,7 +259,7 @@ open (const char *file)
     thread_file->file = openfile;
     thread_file->fd = fd;
     list_push_back(&thread_current()->file_list, &thread_file->file_elem);
-    lock_release(&file_lock);
+    //lock_release(&file_lock);
     return fd;
   }
 }
@@ -301,7 +308,13 @@ thread_file_by_fd(int fd)
 int
 read (int fd, void *buffer, unsigned size)
 {
-  if (!is_user_vaddr(buffer)){ exit(-1); }
+  int actual_read;
+  lock_acquire(&file_lock);
+  if (!is_user_vaddr(buffer))
+  { 
+    lock_release(&file_lock);
+    exit(-1); 
+  }
   if (fd == 0)
   {
     /* std in*/
@@ -310,9 +323,14 @@ read (int fd, void *buffer, unsigned size)
     {
       *(uint8_t*)(buffer+itr) = input_getc ();
     }
+    lock_release(&file_lock);
     return size;
   }
-  else if (fd == 1){ return -1; }
+  else if (fd == 1)
+  { 
+    lock_release(&file_lock);
+    return -1; 
+  }
   else
   {
     /*struct thread* curr = thread_current();
@@ -329,33 +347,62 @@ read (int fd, void *buffer, unsigned size)
     return -1;*/
 
     struct file* file = file_by_fd (fd, thread_current());
-    if (!file){ return -1; }
-    else{ return file_read(file, buffer, size); }
+    if (!file)
+    {
+      lock_release(&file_lock);
+      return -1; 
+    }
+    else
+    {
+      actual_read = file_read(file, buffer, size); 
+      lock_release(&file_lock);
+      return actual_read;
+    }
   }
 }
 
 int
 write (int fd, const void * buffer, unsigned int size)
 {
-  int written;
+  int actual_write;
+  lock_acquire(&file_lock);
   //printf("WRITE\n");
   if (!is_user_vaddr(buffer))
   {
+    lock_release(&file_lock);
     exit(-1);
     return -1;
   }
-  if (fd == 1){ 
+  if (fd == 1){
+    lock_release(&file_lock);
     putbuf(buffer, size);
     return size;
   }
-  else if (fd == 0){ return -1; }
+  else if (fd == 0)
+  { 
+    lock_release(&file_lock);
+    return -1; 
+  }
   else
   {
-    if (size == 0) { return 0; }
+    if (size == 0) 
+    {
+      lock_release(&file_lock);
+      return 0; 
+    }
     //else { return size; }
     struct file * file = file_by_fd(fd, thread_current());
-    if(!file){ return -1; }
-    else{ return file_write(file, buffer, size); }
+    if(!file)
+    { 
+      lock_release(&file_lock);
+      return -1; 
+    }
+    else
+    {
+      actual_write = file_write(file, buffer, size);
+      lock_release(&file_lock);
+      return actual_write;
+    }
   }
 }
 
@@ -407,7 +454,12 @@ tell (int fd)
 void
 close (int fd)
 {
-  if (fd == 0 || fd == 1){ return ; }
+  //lock_acquire(&file_lock);
+  if (fd == 0 || fd == 1)
+  { 
+    //lock_release(&file_lock);
+    return ; 
+  }
 
   struct thread* curr = thread_current();
   struct list_elem * itr;
@@ -423,6 +475,7 @@ close (int fd)
       file_close(itrfile->file);
       list_remove(itr);
       free(itrfile);
+      //lock_release(&file_lock);
       break;
     }
   }

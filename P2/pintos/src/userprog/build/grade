@@ -194,10 +194,10 @@ Differences in `diff -u' format:
 
 OUTPUT FROM tests/userprog/exec-multiple:
 
-Copying tests/userprog/exec-multiple into /tmp/TkpBPggamM.dsk...
-Copying tests/userprog/child-simple into /tmp/TkpBPggamM.dsk...
-Writing command line to /tmp/B9TSNVmn0P.dsk...
-qemu -hda /tmp/B9TSNVmn0P.dsk -hdb /tmp/7HEtm63OD7.dsk -hdc /tmp/TkpBPggamM.dsk -m 4 -net none -nographic -monitor null
+Copying tests/userprog/exec-multiple into /tmp/rxcKZ5MDch.dsk...
+Copying tests/userprog/child-simple into /tmp/rxcKZ5MDch.dsk...
+Writing command line to /tmp/peKazFZCmA.dsk...
+qemu -hda /tmp/peKazFZCmA.dsk -hdb /tmp/tYOyVUOEME.dsk -hdc /tmp/rxcKZ5MDch.dsk -m 4 -net none -nographic -monitor null
 Kernel command line: -q -f put exec-multiple put child-simple run exec-multiple
 Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
@@ -232,15 +232,15 @@ Powering off...
 DETAILS OF tests/userprog/exec-missing FAILURE:
 
 Kernel panic in run: PANIC at ../../threads/palloc.c:147 in palloc_free_multiple(): assertion `bitmap_all (pool->used_map, page_idx, page_cnt)' failed.
-Call stack: 0xc010716c 0xc0102de3 0xc0102e27 0xc01092a6 0xc010a901 0xc010acab 0xc010177d 0xc01018af 0x804a0c2 0x80480b2 0x80480fc 0x8048750
+Call stack: 0xc010716c 0xc0102de3 0xc0102e27 0xc01092a6 0xc010a8db 0xc010ad3b 0xc010177d 0xc01018af 0x804a0c2 0x80480b2 0x80480fc 0x8048750
 Translation of call stack:
 In kernel.o:
 0xc010716c: debug_panic (.../../lib/kernel/debug.c:34)
 0xc0102de3: palloc_free_multiple (..../../threads/palloc.c:148)
 0xc0102e27: palloc_free_page (..../../threads/palloc.c:156)
 0xc01092a6: process_execute (.../../userprog/process.c:69)
-0xc010a901: exec (...../userprog/syscall.c:201)
-0xc010acab: syscall_handler (...../userprog/syscall.c:156)
+0xc010a8db: exec (...../userprog/syscall.c:203)
+0xc010ad3b: syscall_handler (...../userprog/syscall.c:158)
 0xc010177d: intr_handler (..../threads/interrupt.c:361)
 0xc01018af: intr_entry (threads/intr-stubs.S:38)
 In tests/userprog/exec-missing:
@@ -254,9 +254,9 @@ translations will be misleading.
 
 OUTPUT FROM tests/userprog/exec-missing:
 
-Copying tests/userprog/exec-missing into /tmp/VsXyoFT0C6.dsk...
-Writing command line to /tmp/nwCuNEYxgn.dsk...
-qemu -hda /tmp/nwCuNEYxgn.dsk -hdb /tmp/buZZW4IBH3.dsk -hdc /tmp/VsXyoFT0C6.dsk -m 4 -net none -nographic -monitor null
+Copying tests/userprog/exec-missing into /tmp/DYecKOps99.dsk...
+Writing command line to /tmp/BmkIZfmXwa.dsk...
+qemu -hda /tmp/BmkIZfmXwa.dsk -hdb /tmp/W2WvuF2Haj.dsk -hdc /tmp/DYecKOps99.dsk -m 4 -net none -nographic -monitor null
 Kernel command line: -q -f put exec-missing run exec-missing
 Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
@@ -272,7 +272,7 @@ Executing 'exec-missing':
 (exec-missing) begin
 load: no-such-file: open failed
 failKernel PANIC at ../../threads/palloc.c:147 in palloc_free_multiple(): assertion `bitmap_all (pool->used_map, page_idx, page_cnt)' failed.
-Call stack: 0xc010716c 0xc0102de3 0xc0102e27 0xc01092a6 0xc010a901 0xc010acab 0xc010177d 0xc01018af 0x804a0c2 0x80480b2 0x80480fc 0x8048750.
+Call stack: 0xc010716c 0xc0102de3 0xc0102e27 0xc01092a6 0xc010a8db 0xc010ad3b 0xc010177d 0xc01018af 0x804a0c2 0x80480b2 0x80480fc 0x8048750.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
@@ -294,9 +294,9 @@ run: wait returned -1.: FAILED
 
 OUTPUT FROM tests/userprog/no-vm/multi-oom:
 
-Copying tests/userprog/no-vm/multi-oom into /tmp/JPtS6qPOsl.dsk...
-Writing command line to /tmp/iodXWQIrJx.dsk...
-qemu -hda /tmp/iodXWQIrJx.dsk -hdb /tmp/xF15Fww4ot.dsk -hdc /tmp/JPtS6qPOsl.dsk -m 4 -net none -nographic -monitor null
+Copying tests/userprog/no-vm/multi-oom into /tmp/V57U6sHViw.dsk...
+Writing command line to /tmp/AarmM4mwDH.dsk...
+qemu -hda /tmp/AarmM4mwDH.dsk -hdb /tmp/gRSTwp3rVo.dsk -hdc /tmp/V57U6sHViw.dsk -m 4 -net none -nographic -monitor null
 Kernel command line: -q -f put multi-oom run multi-oom
 Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
@@ -330,8 +330,8 @@ multi-oom: exit(1)
 multi-oom: exit(1)
 multi-oom: exit(-1)
 Execution of 'multi-oom' complete.
-Timer: 74 ticks
-Thread: 0 idle ticks, 54 kernel ticks, 21 user ticks
+Timer: 78 ticks
+Thread: 0 idle ticks, 53 kernel ticks, 25 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 4585 reads, 236 writes
 hd1:0: 114 reads, 0 writes
@@ -348,15 +348,15 @@ run: wait for child 1 of 10 returned -1 (expected 0): FAILED
 
 OUTPUT FROM tests/filesys/base/syn-read:
 
-Copying tests/filesys/base/syn-read into /tmp/i6s8zD2bqO.dsk...
-Copying tests/filesys/base/child-syn-read into /tmp/i6s8zD2bqO.dsk...
-Writing command line to /tmp/CGZkTTXTwl.dsk...
-qemu -hda /tmp/CGZkTTXTwl.dsk -hdb /tmp/n2sbSXs0K4.dsk -hdc /tmp/i6s8zD2bqO.dsk -m 4 -net none -nographic -monitor null
+Copying tests/filesys/base/syn-read into /tmp/aSDWxK8SIO.dsk...
+Copying tests/filesys/base/child-syn-read into /tmp/aSDWxK8SIO.dsk...
+Writing command line to /tmp/exj8IAWIrb.dsk...
+qemu -hda /tmp/exj8IAWIrb.dsk -hdb /tmp/cmjRSezvEJ.dsk -hdc /tmp/aSDWxK8SIO.dsk -m 4 -net none -nographic -monitor null
 Kernel command line: -q -f put syn-read put child-syn-read run syn-read
 Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
 374 pages available in user pool.
-Calibrating timer...  157,081,600 loops/s.
+Calibrating timer...  130,867,200 loops/s.
 hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
 hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
 hd1:0: detected 215 sector (107 kB) disk, model "QEMU HARDDISK", serial "QM00003"
@@ -384,10 +384,10 @@ Executing 'syn-read':
 (syn-read) wait for child 1 of 10 returned -1 (expected 0): FAILED
 syn-read: exit(1)
 Execution of 'syn-read' complete.
-Timer: 88 ticks
-Thread: 0 idle ticks, 54 kernel ticks, 34 user ticks
+Timer: 92 ticks
+Thread: 0 idle ticks, 56 kernel ticks, 36 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 10770 reads, 448 writes
+hd0:1: 10717 reads, 448 writes
 hd1:0: 215 reads, 0 writes
 Console: 1570 characters output
 Keyboard: 0 keys pressed
@@ -402,15 +402,15 @@ run: wait for child 1 of 10 returned -1 (expected 0): FAILED
 
 OUTPUT FROM tests/filesys/base/syn-write:
 
-Copying tests/filesys/base/syn-write into /tmp/ZvTcisw1ec.dsk...
-Copying tests/filesys/base/child-syn-wrt into /tmp/ZvTcisw1ec.dsk...
-Writing command line to /tmp/UUKhqUjYLk.dsk...
-qemu -hda /tmp/UUKhqUjYLk.dsk -hdb /tmp/8nJeL6tBny.dsk -hdc /tmp/ZvTcisw1ec.dsk -m 4 -net none -nographic -monitor null
+Copying tests/filesys/base/syn-write into /tmp/SI0D8BAzUP.dsk...
+Copying tests/filesys/base/child-syn-wrt into /tmp/SI0D8BAzUP.dsk...
+Writing command line to /tmp/n9DYOcUUlb.dsk...
+qemu -hda /tmp/n9DYOcUUlb.dsk -hdb /tmp/l8e7w44qfs.dsk -hdc /tmp/SI0D8BAzUP.dsk -m 4 -net none -nographic -monitor null
 Kernel command line: -q -f put syn-write put child-syn-wrt run syn-write
 Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
 374 pages available in user pool.
-Calibrating timer...  104,755,200 loops/s.
+Calibrating timer...  157,081,600 loops/s.
 hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
 hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
 hd1:0: detected 216 sector (108 kB) disk, model "QEMU HARDDISK", serial "QM00003"
@@ -435,8 +435,8 @@ Executing 'syn-write':
 (syn-write) wait for child 1 of 10 returned -1 (expected 0): FAILED
 syn-write: exit(1)
 Execution of 'syn-write' complete.
-Timer: 56 ticks
-Thread: 0 idle ticks, 52 kernel ticks, 4 user ticks
+Timer: 58 ticks
+Thread: 0 idle ticks, 55 kernel ticks, 3 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 515 reads, 466 writes
 hd1:0: 216 reads, 0 writes
