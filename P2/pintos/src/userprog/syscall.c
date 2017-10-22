@@ -3,6 +3,8 @@
 #include <syscall-nr.h>
 #include "threads/interrupt.h"
 #include "threads/thread.h"
+/* for power off */
+#include "threads/init.h"`
 /* for filesys use */
 #include "filesys/filesys.h"
 #include "filesys/file.h"
@@ -175,8 +177,8 @@ halt (void)
 void
 exit (int status)
 {
-
   struct thread * curr = thread_current();
+  sema_down(&curr->exit_sema);
   curr->exit_status = status;
   //thread_current()->exit_status = status;
   struct list_elem* itr;

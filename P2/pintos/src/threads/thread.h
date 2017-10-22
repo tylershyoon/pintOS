@@ -102,9 +102,12 @@ struct thread
     uint32_t *pagedir;                  /* Page directory. */
 
     /*: */
+    struct semaphore load_sema;
     struct semaphore wait_sema;
+    struct semaphore exit_sema;
     int exit_status;
 
+    int is_load_success;
     /* reckon that each thread holds files */
     int fd_grant; /* needed for assigning new fd number for files */
     struct list file_list; /* list of files */

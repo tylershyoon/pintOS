@@ -38,10 +38,17 @@ process_execute (const char *file_name)
 
   /* Make a copy of FILE_NAME.
      Otherwise there's a race between the caller and load(). */
-  fn = palloc_get_page (0);
+  //fn = palloc_get_page (0);
   fn_copy = palloc_get_page (0);
-  if (fn_copy == NULL)
+  if (fn_copy == NULL){
+    //palloc_free_page(fn);
     return TID_ERROR;
+  }
+  fn = palloc_get_page(0);
+  if(!fn){
+    palloc_free_page(fn);
+    return TID_ERROR;
+  }
   strlcpy (fn, file_name, PGSIZE);
   strlcpy (fn_copy, file_name, PGSIZE);
 
@@ -50,23 +57,32 @@ process_execute (const char *file_name)
 
   /* Create a new thread to execute FILE_NAME. */
   tid = thread_create (fn, PRI_DEFAULT, start_process, fn_copy);
-  tid_th = thread_by_tid(tid); /* child */
-  sema_down(&tid_th->wait_sema);
-  if (tid_th->exit_status == -1)
-  { 
-    tid = TID_ERROR; 
-    thread_unblock (tid_th);
-    process_wait(tid_th->tid);
+  if (tid == TID_ERROR){
+    palloc_free_page(fn);
+    palloc_free_page(fn_copy);
+    return tid;
   }
-  else
+  tid_th = thread_by_tid(tid); /*  */
+  sema_down(&tid_th->load_sema); /* make sure execute file name thread loaded well */
+  if (tid_th->exit_status == -1 /* load failed */)
+  { 
+    //tid = TID_ERROR;
+    while(tid_th->status == THREAD_BLOCKED)
+      thread_unblock (tid_th);
+    //process_wait(tid_th->tid);
+  }
+  else /* when load success */
   {
-    thread_unblock(tid_th);
+    while(tid_th->status == THREAD_BLOCKED)
+      thread_unblock(tid_th);
   }
 
   palloc_free_page (fn);
 
   if (tid == TID_ERROR)
     palloc_free_page (fn_copy);
+
+  if (tid_th->is_load_success != 1){ return TID_ERROR; }
   return tid;
 }
 
@@ -101,14 +117,16 @@ start_process (void *f_name)
   }
 
   success = load (file_name, &if_.eip, &if_.esp);
+  thread_current()->is_load_success = success;
 
   if (!success)
   {
-    printf("fail");
+    //printf("fail");
     palloc_free_page (file_name);
     /* If load failed, quit. */
     thread_current()->exit_status = -1;
-    sema_up(&thread_current()->wait_sema);
+    sema_up(&thread_current()->load_sema);
+    list_remove(&thread_current()->process_elem);
     enum intr_level old_level = intr_disable();
     thread_block();
     intr_set_level (old_level);
@@ -167,7 +185,7 @@ start_process (void *f_name)
 
     //hex_dump(0, 0xbfffffc0, 100, true);
 
-    sema_up(&thread_current()->wait_sema);
+    sema_up(&thread_current()->load_sema);
     enum intr_level old_level = intr_disable();
     thread_block();
     intr_set_level (old_level);
@@ -199,8 +217,10 @@ int
 process_wait (tid_t child_tid)
 {
   struct thread* child = thread_by_tid(child_tid);
+  //if (child->exit_status != 0xcdcdcdcd || child->status == THREAD_DYING)
   if (child->exit_status != 0xcdcdcdcd || child->status == THREAD_DYING)
     return -1;
+  sema_up(&child->exit_sema);
   int exit_status;
 
   if (!child) { PANIC("child tid fail"); }
@@ -231,11 +251,12 @@ process_exit (void)
 
   // MOVED to process_wait()
   //printf("%s: exit(%d)\n", curr->name, curr->exit_status);
-
+  
+  //while(!list_empty(&curr->wait_sema.waiters))
   sema_up(&curr->wait_sema);
   enum intr_level old_level = intr_disable();
   thread_block();
-  intr_set_level (old_level);
+  //intr_set_level (old_level);
 
   /* Destroy the current process's page directory and switch back
      to the kernel-only page directory. */
