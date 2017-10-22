@@ -50,7 +50,7 @@ process_execute (const char *file_name)
 
   /* Create a new thread to execute FILE_NAME. */
   tid = thread_create (fn, PRI_DEFAULT, start_process, fn_copy);
-  tid_th = thread_by_tid(tid);
+  tid_th = thread_by_tid(tid); /* child */
   sema_down(&tid_th->wait_sema);
   if (tid_th->exit_status == -1)
   { 
@@ -213,9 +213,10 @@ process_wait (tid_t child_tid)
   }
 
   /* show exit on the screen */
+  /* after child successfully done exit */
   printf("%s: exit(%d)\n", child->name, child->exit_status);
 
-  /* make thread pushed back to the ready list */
+  /* child pushed back to the ready list by unblocking thread */
   thread_unblock(child);
 
   return exit_status;
@@ -234,7 +235,7 @@ process_exit (void)
   sema_up(&curr->wait_sema);
   enum intr_level old_level = intr_disable();
   thread_block();
-  //intr_set_level (old_level);
+  intr_set_level (old_level);
 
   /* Destroy the current process's page directory and switch back
      to the kernel-only page directory. */

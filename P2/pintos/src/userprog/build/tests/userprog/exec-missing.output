@@ -1,6 +1,6 @@
-Copying tests/userprog/exec-missing into /tmp/W0PrCoxY22.dsk...
-Writing command line to /tmp/121tPbKynv.dsk...
-qemu -hda /tmp/121tPbKynv.dsk -hdb /tmp/Ht60BvhtMN.dsk -hdc /tmp/W0PrCoxY22.dsk -m 4 -net none -nographic -monitor null
+Copying tests/userprog/exec-missing into /tmp/pp0nzpoQtV.dsk...
+Writing command line to /tmp/UOO5qSOj02.dsk...
+qemu -hda /tmp/UOO5qSOj02.dsk -hdb /tmp/lXAkEhfd1A.dsk -hdc /tmp/pp0nzpoQtV.dsk -m 4 -net none -nographic -monitor null
 Kernel command line: -q -f put exec-missing run exec-missing
 Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
@@ -16,7 +16,7 @@ Executing 'exec-missing':
 (exec-missing) begin
 load: no-such-file: open failed
 failKernel PANIC at ../../threads/palloc.c:147 in palloc_free_multiple(): assertion `bitmap_all (pool->used_map, page_idx, page_cnt)' failed.
-Call stack: 0xc010716c 0xc0102de3 0xc0102e27 0xc01092a6 0xc010a8db 0xc010ad5b 0xc010177d 0xc01018af 0x804a0c2 0x80480b2 0x80480fc 0x8048750.
+Call stack: 0xc010716c 0xc0102de3 0xc0102e27 0xc01092b0 0xc010a94b 0xc010adcb 0xc010177d 0xc01018af 0x804a0c2 0x80480b2 0x80480fc 0x8048750.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
