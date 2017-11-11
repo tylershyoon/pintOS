@@ -18,6 +18,10 @@
 #include "threads/thread.h"
 #include "threads/vaddr.h"
 #include "threads/synch.h"
+/* Added for project 3 */
+#include "vm/frame.h"
+#include "vm/swap.h"
+#include "lib/kernel/hash.h"
 
 static thread_func start_process NO_RETURN;
 static bool load (const char *cmdline, void (**eip) (void), void **esp);

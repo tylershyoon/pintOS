@@ -1,10 +1,2 @@
 FAIL
-Kernel panic in run: PANIC at ../../threads/palloc.c:147 in palloc_free_multiple(): assertion `bitmap_all (pool->used_map, page_idx, page_cnt)' failed.
-Call stack: 0xc010716c 0xc0102de3 0xc0102e27 0xc01092b0 0xc01000b7 0xc01006df
-Translation of call stack:
-0xc010716c: debug_panic (.../../lib/kernel/debug.c:34)
-0xc0102de3: palloc_free_multiple (..../../threads/palloc.c:148)
-0xc0102e27: palloc_free_page (..../../threads/palloc.c:156)
-0xc01092b0: process_execute (.../../userprog/process.c:69)
-0xc01000b7: run_task (.../../../threads/init.c:266)
-0xc01006df: run_actions (.../../../threads/init.c:319)
+run: try to mmap over data segment: FAILED

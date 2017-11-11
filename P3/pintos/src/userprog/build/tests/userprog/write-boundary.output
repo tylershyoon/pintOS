@@ -1,12 +1,12 @@
-Copying tests/userprog/write-boundary into /tmp/bKz1nr3ZgZ.dsk...
-Copying ../../tests/userprog/sample.txt into /tmp/bKz1nr3ZgZ.dsk...
-Writing command line to /tmp/padquDiVbf.dsk...
-qemu -hda /tmp/padquDiVbf.dsk -hdb /tmp/z0OLy5thNZ.dsk -hdc /tmp/bKz1nr3ZgZ.dsk -m 4 -net none -nographic -monitor null
+Copying tests/userprog/write-boundary into /tmp/LUvaqgUADN.dsk...
+Copying ../../tests/userprog/sample.txt into /tmp/LUvaqgUADN.dsk...
+Writing command line to /tmp/Snnkqf0XW7.dsk...
+qemu -hda /tmp/Snnkqf0XW7.dsk -hdb /tmp/FMXU5NwoW0.dsk -hdc /tmp/LUvaqgUADN.dsk -m 4 -net none -nographic -monitor null
 Kernel command line: -q -f put write-boundary put sample.txt run write-boundary
 Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
 374 pages available in user pool.
-Calibrating timer...  157,081,600 loops/s.
+Calibrating timer...  130,867,200 loops/s.
 hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
 hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
 hd1:0: detected 104 sector (52 kB) disk, model "QEMU HARDDISK", serial "QM00003"
@@ -20,8 +20,8 @@ Executing 'write-boundary':
 (write-boundary) end
 write-boundary: exit(0)
 Execution of 'write-boundary' complete.
-Timer: 54 ticks
-Thread: 0 idle ticks, 53 kernel ticks, 1 user ticks
+Timer: 55 ticks
+Thread: 0 idle ticks, 54 kernel ticks, 1 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 102 reads, 219 writes
 hd1:0: 104 reads, 0 writes

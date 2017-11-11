@@ -1,11 +1,11 @@
-Copying tests/userprog/multi-recurse into /tmp/BZZcWJ9xql.dsk...
-Writing command line to /tmp/28iVCr3tjX.dsk...
-qemu -hda /tmp/28iVCr3tjX.dsk -hdb /tmp/BsD1Dk1fRk.dsk -hdc /tmp/BZZcWJ9xql.dsk -m 4 -net none -nographic -monitor null
+Copying tests/userprog/multi-recurse into /tmp/wZjm3RADPb.dsk...
+Writing command line to /tmp/mzcSg79ngK.dsk...
+qemu -hda /tmp/mzcSg79ngK.dsk -hdb /tmp/VUAXhlyW4x.dsk -hdc /tmp/wZjm3RADPb.dsk -m 4 -net none -nographic -monitor null
 Kernel command line: -q -f put multi-recurse run 'multi-recurse 15'
 Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
 374 pages available in user pool.
-Calibrating timer...  130,867,200 loops/s.
+Calibrating timer...  157,081,600 loops/s.
 hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
 hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
 hd1:0: detected 109 sector (54 kB) disk, model "QEMU HARDDISK", serial "QM00003"
@@ -77,8 +77,8 @@ multi-recurse: exit(14)
 (multi-recurse) end 15
 multi-recurse: exit(15)
 Execution of 'multi-recurse 15' complete.
-Timer: 64 ticks
-Thread: 0 idle ticks, 55 kernel ticks, 9 user ticks
+Timer: 62 ticks
+Thread: 0 idle ticks, 53 kernel ticks, 9 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 576 reads, 226 writes
 hd1:0: 109 reads, 0 writes

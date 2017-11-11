@@ -6,6 +6,7 @@
 #include <stdint.h>
 #include "threads/synch.h"
 #include "filesys/file.h"
+#include "lib/kernel/hash.h"
 
 /* States in a thread's life cycle. */
 enum thread_status
@@ -115,6 +116,9 @@ struct thread
     /* denying writes to executables */
     struct file* executable;
 #endif
+
+    /* supp page table */
+    struct hash spt;
 
     /* Owned by thread.c. */
     unsigned magic;                     /* Detects stack overflow. */

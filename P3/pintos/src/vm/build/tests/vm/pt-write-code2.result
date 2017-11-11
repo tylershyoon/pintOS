@@ -1,10 +1,25 @@
 FAIL
-Kernel panic in run: PANIC at ../../threads/palloc.c:147 in palloc_free_multiple(): assertion `bitmap_all (pool->used_map, page_idx, page_cnt)' failed.
-Call stack: 0xc010716c 0xc0102de3 0xc0102e27 0xc01092b0 0xc01000b7 0xc01006df
+Kernel panic in run: PANIC at ../../userprog/exception.c:102 in kill(): Kernel bug - unexpected interrupt in kernel
+Call stack: 0xc010718c 0xc010a578 0xc010a641 0xc010179d 0xc01018cf 0xc0106c64 0xc010c2f3 0xc010b91f 0xc010ac0a 0xc010ae49 0xc010179d 0xc01018cf 0x804a165 0x80480e7 0x8048750 0x8048784
 Translation of call stack:
-0xc010716c: debug_panic (.../../lib/kernel/debug.c:34)
-0xc0102de3: palloc_free_multiple (..../../threads/palloc.c:148)
-0xc0102e27: palloc_free_page (..../../threads/palloc.c:156)
-0xc01092b0: process_execute (.../../userprog/process.c:69)
-0xc01000b7: run_task (.../../../threads/init.c:266)
-0xc01006df: run_actions (.../../../threads/init.c:319)
+In kernel.o:
+0xc010718c: debug_panic (.../../lib/kernel/debug.c:34)
+0xc010a578: kill (.../userprog/exception.c:107)
+0xc010a641: page_fault (.../userprog/exception.c:177)
+0xc010179d: intr_handler (..../threads/interrupt.c:361)
+0xc01018cf: intr_entry (threads/intr-stubs.S:38)
+0xc0106c64: memcpy (...ild/../../lib/string.c:16)
+0xc010c2f3: inode_read_at (...../../filesys/inode.c:243)
+0xc010b91f: file_read (...d/../../filesys/file.c:75)
+0xc010ac0a: read (...../userprog/syscall.c:359)
+0xc010ae49: syscall_handler (...../userprog/syscall.c:147)
+0xc010179d: intr_handler (..../threads/interrupt.c:361)
+0xc01018cf: intr_entry (threads/intr-stubs.S:38)
+In tests/vm/pt-write-code2:
+0x0804a165: read (...../lib/user/syscall.c:117)
+0x080480e7: test_main (...s/vm/pt-write-code-2.c:14)
+0x08048750: main (...ild/../../tests/main.c:13)
+0x08048784: _start (.../../../lib/user/entry.c:9)
+Translations of user virtual addresses above are based on a guess at
+the binary to use.  If this guess is incorrect, then those
+translations will be misleading.

@@ -1,31 +1,41 @@
-Copying tests/vm/page-shuffle into /tmp/GvjwCoHITW.dsk...
-Writing command line to /tmp/fHRrDpDVbp.dsk...
-qemu -hda /tmp/fHRrDpDVbp.dsk -hdb /tmp/GcaLlcN3fs.dsk -hdc /tmp/GvjwCoHITW.dsk -hdd /tmp/CRZoAWqWy8.dsk -m 4 -net none -nographic -monitor null
+Copying tests/vm/page-shuffle into /tmp/r1cqCofeCq.dsk...
+Writing command line to /tmp/iRwaqV1Ln7.dsk...
+squish-pty bochs -q
 Kernel command line: -q -f put page-shuffle run page-shuffle
-Pintos booting with 65,536 kB RAM...
-8054 pages available in kernel pool.
-8054 pages available in user pool.
-Calibrating timer...  157,081,600 loops/s.
-hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
-hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
-hd1:0: detected 107 sector (53 kB) disk, model "QEMU HARDDISK", serial "QM00003"
-hd1:1: detected 8,064 sector (3 MB) disk, model "QEMU HARDDISK", serial "QM00004"
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  204,600 loops/s.
+hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
+hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
+hd1:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00021"
+hd1:1: detected 8,064 sector (3 MB) disk, model "Generic 1234", serial "BXHD00022"
 Formatting file system...done.
 Boot complete.
 Putting 'page-shuffle' into the file system...
 Executing 'page-shuffle':
-failKernel PANIC at ../../threads/palloc.c:147 in palloc_free_multiple(): assertion `bitmap_all (pool->used_map, page_idx, page_cnt)' failed.
-Call stack: 0xc010716c 0xc0102de3 0xc0102e27 0xc01092b0 0xc01000b7 0xc01006df.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
-Timer: 53 ticks
-Thread: 0 idle ticks, 53 kernel ticks, 0 user ticks
+(page-shuffle) begin
+(page-shuffle) init: cksum=3115322833
+(page-shuffle) shuffle 0: cksum=1691062564
+(page-shuffle) shuffle 1: cksum=1973575879
+(page-shuffle) shuffle 2: cksum=1647619479
+(page-shuffle) shuffle 3: cksum=96566261
+(page-shuffle) shuffle 4: cksum=3885786467
+(page-shuffle) shuffle 5: cksum=3022003332
+(page-shuffle) shuffle 6: cksum=3614934266
+(page-shuffle) shuffle 7: cksum=2704001777
+(page-shuffle) shuffle 8: cksum=735775156
+(page-shuffle) shuffle 9: cksum=1864109763
+(page-shuffle) end
+page-shuffle: exit(0)
+Execution of 'page-shuffle' complete.
+Timer: 23571 ticks
+Thread: 0 idle ticks, 269 kernel ticks, 23305 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 35 reads, 222 writes
+hd0:1: 65 reads, 222 writes
 hd1:0: 107 reads, 0 writes
 hd1:1: 0 reads, 0 writes
-Console: 1206 characters output
+Console: 1407 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

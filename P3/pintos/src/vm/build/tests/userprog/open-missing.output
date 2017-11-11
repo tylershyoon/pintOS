@@ -1,31 +1,30 @@
-Copying tests/userprog/open-missing into /tmp/5D77dFayxg.dsk...
-Writing command line to /tmp/ZffnOhD5F3.dsk...
-qemu -hda /tmp/ZffnOhD5F3.dsk -hdb /tmp/p1TG3bOUOC.dsk -hdc /tmp/5D77dFayxg.dsk -hdd /tmp/l1aDGJq3EK.dsk -m 4 -net none -nographic -monitor null
+Copying tests/userprog/open-missing into /tmp/asTj19A4AM.dsk...
+Writing command line to /tmp/OYCZKl4iWb.dsk...
+squish-pty bochs -q
 Kernel command line: -q -f put open-missing run open-missing
-Pintos booting with 65,536 kB RAM...
-8054 pages available in kernel pool.
-8054 pages available in user pool.
-Calibrating timer...  157,081,600 loops/s.
-hd0:0: detected 137 sector (68 kB) disk, model "QEMU HARDDISK", serial "QM00001"
-hd0:1: detected 4,032 sector (1 MB) disk, model "QEMU HARDDISK", serial "QM00002"
-hd1:0: detected 98 sector (49 kB) disk, model "QEMU HARDDISK", serial "QM00003"
-hd1:1: detected 8,064 sector (3 MB) disk, model "QEMU HARDDISK", serial "QM00004"
+Pintos booting with 4,096 kB RAM...
+374 pages available in kernel pool.
+374 pages available in user pool.
+Calibrating timer...  204,600 loops/s.
+hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
+hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
+hd1:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00021"
+hd1:1: detected 8,064 sector (3 MB) disk, model "Generic 1234", serial "BXHD00022"
 Formatting file system...done.
 Boot complete.
 Putting 'open-missing' into the file system...
 Executing 'open-missing':
-failKernel PANIC at ../../threads/palloc.c:147 in palloc_free_multiple(): assertion `bitmap_all (pool->used_map, page_idx, page_cnt)' failed.
-Call stack: 0xc010716c 0xc0102de3 0xc0102e27 0xc01092b0 0xc01000b7 0xc01006df.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
-Timer: 53 ticks
-Thread: 0 idle ticks, 53 kernel ticks, 0 user ticks
+(open-missing) begin
+(open-missing) end
+open-missing: exit(0)
+Execution of 'open-missing' complete.
+Timer: 303 ticks
+Thread: 0 idle ticks, 263 kernel ticks, 43 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 35 reads, 204 writes
+hd0:1: 79 reads, 204 writes
 hd1:0: 98 reads, 0 writes
 hd1:1: 0 reads, 0 writes
-Console: 1204 characters output
+Console: 936 characters output
 Keyboard: 0 keys pressed
 Exception: 0 page faults
 Powering off...

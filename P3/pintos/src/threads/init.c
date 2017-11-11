@@ -20,6 +20,8 @@
 #include "threads/palloc.h"
 #include "threads/pte.h"
 #include "threads/thread.h"
+#include "vm/frame.h"
+#include "vm/swap.h"
 #ifdef USERPROG
 #include "userprog/process.h"
 #include "userprog/exception.h"
@@ -114,6 +116,11 @@ main (void)
   disk_init ();
   filesys_init (format_filesys);
 #endif
+
+  /* Added in project3 */
+  ft_init();
+  swap_init();
+  /**/
 
   printf ("Boot complete.\n");
   
