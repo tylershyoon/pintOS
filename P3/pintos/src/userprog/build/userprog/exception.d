@@ -5,4 +5,5 @@ userprog/exception.o: ../../userprog/exception.c \
   ../../userprog/gdt.h ../../threads/loader.h ../../threads/interrupt.h \
   ../../threads/thread.h ../../lib/kernel/list.h ../../threads/synch.h \
   ../../filesys/file.h ../../filesys/off_t.h ../../filesys/inode.h \
-  ../../devices/disk.h ../../threads/vaddr.h ../../threads/loader.h
+  ../../devices/disk.h ../../lib/kernel/hash.h ../../lib/kernel/list.h \
+  ../../threads/vaddr.h ../../threads/loader.h

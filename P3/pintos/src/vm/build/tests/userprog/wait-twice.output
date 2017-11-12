@@ -1,6 +1,6 @@
-Copying tests/userprog/wait-twice into /tmp/ccEUA3CR0R.dsk...
-Copying tests/userprog/child-simple into /tmp/ccEUA3CR0R.dsk...
-Writing command line to /tmp/0mY4ruOsF6.dsk...
+Copying tests/userprog/wait-twice into /tmp/sdU0gmcKaN.dsk...
+Copying tests/userprog/child-simple into /tmp/sdU0gmcKaN.dsk...
+Writing command line to /tmp/ae3dMpj4PV.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put wait-twice put child-simple run wait-twice
 Pintos booting with 4,096 kB RAM...
@@ -20,15 +20,21 @@ Executing 'wait-twice':
 (child-simple) run
 child-simple: exit(81)
 (wait-twice) wait(exec()) = 81
-wait-twice: exit(-1)
-Execution of 'wait-twice' complete.
-Timer: 410 ticks
-Thread: 0 idle ticks, 340 kernel ticks, 73 user ticks
+(wait-twice) wait(exec()) = -1
+(wait-twice) end
+wait-twice: exit(0)
+Kernel PANIC at ../../lib/kernel/list.c:259 in list_remove(): assertion `is_interior (elem)' failed.
+Call stack: 0xc01071dc 0xc0107275 0xc0107e74 0xc0102649 0xc010915b 0xc0100c7e 0xc010a679 0xc01017ed 0xc010191f 0xc0107275 0xc010925a 0xc01000bf 0xc01006e4.
+The `backtrace' program can make call stacks useful.
+Read "Backtraces" in the "Debugging Tools" chapter
+of the Pintos documentation for more information.
+Timer: 412 ticks
+Thread: 0 idle ticks, 332 kernel ticks, 80 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 129 reads, 400 writes
 hd1:0: 195 reads, 0 writes
 hd1:1: 0 reads, 0 writes
-Console: 1043 characters output
+Console: 1465 characters output
 Keyboard: 0 keys pressed
 Exception: 1 page faults
 Powering off...

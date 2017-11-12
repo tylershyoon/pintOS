@@ -1,5 +1,5 @@
-Copying tests/vm/page-linear into /tmp/db9Qg1QGsU.dsk...
-Writing command line to /tmp/xUUohvOqFr.dsk...
+Copying tests/vm/page-linear into /tmp/d1MtURdHVC.dsk...
+Writing command line to /tmp/ZGqeGypns5.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put page-linear run page-linear
 Pintos booting with 4,096 kB RAM...
@@ -14,18 +14,14 @@ Formatting file system...done.
 Boot complete.
 Putting 'page-linear' into the file system...
 Executing 'page-linear':
-Kernel PANIC at ../../lib/kernel/list.c:259 in list_remove(): assertion `is_interior (elem)' failed.
-Call stack: 0xc010718c 0xc0107225 0xc0107e24 0xc01025f9 0xc010910b 0xc0100c7e 0xc010a5e9 0xc010179d 0xc01018cf 0xc010915a 0xc01000bf 0xc01006e4.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
-Timer: 1449 ticks
-Thread: 0 idle ticks, 253 kernel ticks, 1196 user ticks
+Execution of 'page-linear' complete.
+Timer: 1454 ticks
+Thread: 0 idle ticks, 261 kernel ticks, 1196 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 59 reads, 216 writes
 hd1:0: 104 reads, 0 writes
 hd1:1: 0 reads, 0 writes
-Console: 1236 characters output
+Console: 873 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 0 page faults
 Powering off...

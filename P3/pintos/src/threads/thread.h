@@ -102,6 +102,8 @@ struct thread
     /* Owned by userprog/process.c. */
     uint32_t *pagedir;                  /* Page directory. */
 
+    bool waitby;
+
     /*: */
     struct semaphore load_sema;
     struct semaphore wait_sema;
@@ -131,7 +133,7 @@ extern bool thread_mlfqs;
 
 /* added */
 struct thread * thread_by_tid(tid_t);
-
+struct list_elem * elem_by_tid(tid_t);
 void thread_init (void);
 void thread_start (void);
 

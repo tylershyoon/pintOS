@@ -1,6 +1,6 @@
-Copying tests/userprog/exec-multiple into /tmp/Ji7cIUEnQK.dsk...
-Copying tests/userprog/child-simple into /tmp/Ji7cIUEnQK.dsk...
-Writing command line to /tmp/g4CTFUDYIO.dsk...
+Copying tests/userprog/exec-multiple into /tmp/FgghoV5RoE.dsk...
+Copying tests/userprog/child-simple into /tmp/FgghoV5RoE.dsk...
+Writing command line to /tmp/df6gM4AT75.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put exec-multiple put child-simple run exec-multiple
 Pintos booting with 4,096 kB RAM...
@@ -20,15 +20,21 @@ Executing 'exec-multiple':
 (child-simple) run
 child-simple: exit(81)
 (child-simple) run
-exec-multiple: exit(-1)
+child-simple: exit(81)
+(child-simple) run
+child-simple: exit(81)
+(child-simple) run
+child-simple: exit(81)
+(exec-multiple) end
+exec-multiple: exit(0)
 Execution of 'exec-multiple' complete.
-Timer: 443 ticks
-Thread: 0 idle ticks, 346 kernel ticks, 99 user ticks
+Timer: 529 ticks
+Thread: 0 idle ticks, 353 kernel ticks, 179 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 167 reads, 400 writes
+hd0:1: 243 reads, 400 writes
 hd1:0: 195 reads, 0 writes
 hd1:1: 0 reads, 0 writes
-Console: 1052 characters output
+Console: 1179 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 0 page faults
 Powering off...

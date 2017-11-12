@@ -1,6 +1,6 @@
-Copying tests/userprog/rox-multichild into /tmp/TLoMc2LZMa.dsk...
-Copying tests/userprog/child-rox into /tmp/TLoMc2LZMa.dsk...
-Writing command line to /tmp/Gnx6dh1WfM.dsk...
+Copying tests/userprog/rox-multichild into /tmp/p8CosEpGxC.dsk...
+Copying tests/userprog/child-rox into /tmp/p8CosEpGxC.dsk...
+Writing command line to /tmp/SvgC7jZSPj.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put rox-multichild put child-rox run rox-multichild
 Pintos booting with 4,096 kB RAM...
@@ -44,23 +44,19 @@ child-rox: exit(12)
 (child-rox) try to write "child-rox"
 (child-rox) end
 child-rox: exit(12)
-(child-rox) try to write "child-rox"
-(child-rox) end
-child-rox: exit(12)
-(child-rox) try to write "child-rox"
-(child-rox) end
-child-rox: exit(12)
-(rox-multichild) write "child-rox"
-(rox-multichild) end
-rox-multichild: exit(0)
+child-rox: exit(-1)
+(child-rox) wait for "child-rox": FAILED
+child-rox: exit(1)
+(rox-multichild) wait for child: FAILED
+rox-multichild: exit(1)
 Execution of 'rox-multichild' complete.
-Timer: 715 ticks
-Thread: 0 idle ticks, 360 kernel ticks, 358 user ticks
+Timer: 697 ticks
+Thread: 0 idle ticks, 359 kernel ticks, 340 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 307 reads, 430 writes
+hd0:1: 300 reads, 429 writes
 hd1:0: 209 reads, 0 writes
 hd1:1: 0 reads, 0 writes
-Console: 1951 characters output
+Console: 1869 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 1 page faults
 Powering off...

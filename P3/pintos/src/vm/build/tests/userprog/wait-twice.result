@@ -1,20 +1,17 @@
 FAIL
-Test output failed to match any acceptable form.
-
-Acceptable output:
-  (wait-twice) begin
-  (child-simple) run
-  child-simple: exit(81)
-  (wait-twice) wait(exec()) = 81
-  (wait-twice) wait(exec()) = -1
-  (wait-twice) end
-  wait-twice: exit(0)
-Differences in `diff -u' format:
-  (wait-twice) begin
-  (child-simple) run
-  child-simple: exit(81)
-  (wait-twice) wait(exec()) = 81
-- (wait-twice) wait(exec()) = -1
-- (wait-twice) end
-- wait-twice: exit(0)
-+ wait-twice: exit(-1)
+Kernel panic in run: PANIC at ../../lib/kernel/list.c:259 in list_remove(): assertion `is_interior (elem)' failed.
+Call stack: 0xc01071dc 0xc0107275 0xc0107e74 0xc0102649 0xc010915b 0xc0100c7e 0xc010a679 0xc01017ed 0xc010191f 0xc0107275 0xc010925a 0xc01000bf 0xc01006e4
+Translation of call stack:
+0xc01071dc: debug_panic (.../../lib/kernel/debug.c:34)
+0xc0107275: list_remove (.../../lib/kernel/list.c:260)
+0xc0107e74: list_pop_front (.../../lib/kernel/list.c:273)
+0xc0102649: sema_up (...../../threads/synch.c:118)
+0xc010915b: process_exit (...../userprog/process.c:264)
+0xc0100c7e: thread_exit (..../../threads/thread.c:327)
+0xc010a679: page_fault (.../userprog/exception.c:162)
+0xc01017ed: intr_handler (..../threads/interrupt.c:361)
+0xc010191f: intr_entry (threads/intr-stubs.S:38)
+0xc0107275: list_remove (.../../lib/kernel/list.c:260)
+0xc010925a: process_wait (...../userprog/process.c:247)
+0xc01000bf: run_task (.../../../threads/init.c:277)
+0xc01006e4: run_actions (.../../../threads/init.c:326)

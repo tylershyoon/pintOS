@@ -10,4 +10,7 @@ userprog/process.o: ../../userprog/process.c ../../userprog/process.h \
   ../../filesys/directory.h ../../filesys/file.h ../../filesys/filesys.h \
   ../../threads/flags.h ../../threads/init.h ../../threads/interrupt.h \
   ../../threads/palloc.h ../../threads/vaddr.h ../../threads/loader.h \
-  ../../threads/synch.h
+  ../../threads/synch.h ../../vm/frame.h ../../vm/page.h \
+  ../../devices/disk.h ../../threads/thread.h ../../lib/kernel/hash.h \
+  ../../filesys/file.h ../../filesys/off_t.h ../../threads/palloc.h \
+  ../../lib/kernel/list.h ../../vm/swap.h ../../lib/kernel/hash.h

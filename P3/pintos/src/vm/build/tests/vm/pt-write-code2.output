@@ -1,6 +1,6 @@
-Copying tests/vm/pt-write-code2 into /tmp/vASYzwcozD.dsk...
-Copying ../../tests/vm/sample.txt into /tmp/vASYzwcozD.dsk...
-Writing command line to /tmp/XIdecwS0wS.dsk...
+Copying tests/vm/pt-write-code2 into /tmp/EiCNdYQpJu.dsk...
+Copying ../../tests/vm/sample.txt into /tmp/EiCNdYQpJu.dsk...
+Writing command line to /tmp/sgYTuuP8MX.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put pt-write-code2 put sample.txt run pt-write-code2
 Pintos booting with 4,096 kB RAM...
@@ -19,18 +19,18 @@ Executing 'pt-write-code2':
 (pt-write-code2) begin
 (pt-write-code2) open "sample.txt"
 Page fault at 0x80480a0: rights violation error writing page in kernel context.
-Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0106c64
+Interrupt 0x0e (#PF Page-Fault Exception) at eip=0xc0106cb4
  cr2=080480a0 error=00000003
  eax=0000003d ebx=080480a0 ecx=00000001 edx=00000000
  esi=c011820c edi=00000000 esp=c011186c ebp=c011ced4
  cs=0008 ds=0010 es=0010 ss=c000
 Kernel PANIC at ../../userprog/exception.c:102 in kill(): Kernel bug - unexpected interrupt in kernel
-Call stack: 0xc010718c 0xc010a578 0xc010a641 0xc010179d 0xc01018cf 0xc0106c64 0xc010c2f3 0xc010b91f 0xc010ac0a 0xc010ae49 0xc010179d 0xc01018cf 0x804a165 0x80480e7 0x8048750 0x8048784.
+Call stack: 0xc01071dc 0xc010a608 0xc010a6d1 0xc01017ed 0xc010191f 0xc0106cb4 0xc010c393 0xc010b9bf 0xc010acb3 0xc010aee9 0xc01017ed 0xc010191f 0x804a165 0x80480e7 0x8048750 0x8048784.
 The `backtrace' program can make call stacks useful.
 Read "Backtraces" in the "Debugging Tools" chapter
 of the Pintos documentation for more information.
-Timer: 356 ticks
-Thread: 0 idle ticks, 278 kernel ticks, 78 user ticks
+Timer: 357 ticks
+Thread: 0 idle ticks, 278 kernel ticks, 79 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 94 reads, 212 writes
 hd1:0: 101 reads, 0 writes

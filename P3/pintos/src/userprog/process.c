@@ -220,7 +220,11 @@ start_process (void *f_name)
 int
 process_wait (tid_t child_tid)
 {
+  struct list_elem* le = elem_by_tid(child_tid);
+  if(!le){ return -1; }
   struct thread* child = thread_by_tid(child_tid);
+  if(child->waitby){ return -1; }
+  else{ child->waitby = 1; }
   //if (child->exit_status != 0xcdcdcdcd || child->status == THREAD_DYING)
   if (child->exit_status != 0xcdcdcdcd || child->status == THREAD_DYING)
     return -1;
@@ -231,18 +235,17 @@ process_wait (tid_t child_tid)
   sema_down(&child->wait_sema);
   exit_status = child->exit_status;
 
-  if (exit_status == -1)
-  {
-
-  }
-
   /* show exit on the screen */
   /* after child successfully done exit */
   printf("%s: exit(%d)\n", child->name, child->exit_status);
 
   /* child pushed back to the ready list by unblocking thread */
-  thread_unblock(child);
-
+  if (child->status == THREAD_BLOCKED){
+    thread_unblock(child);
+  }
+  if (le != NULL && le->prev != NULL && le->next != NULL){
+    list_remove(le);
+  }
   return exit_status;
 }
 

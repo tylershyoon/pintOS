@@ -1,5 +1,5 @@
-Copying tests/vm/mmap-write into /tmp/KtCo6XpNzy.dsk...
-Writing command line to /tmp/rI0OAhoL2T.dsk...
+Copying tests/vm/mmap-write into /tmp/bXFlPYmJ8w.dsk...
+Writing command line to /tmp/7r1cRpd8NY.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put mmap-write run mmap-write
 Pintos booting with 4,096 kB RAM...
@@ -20,8 +20,8 @@ Executing 'mmap-write':
 (mmap-write) mmap "sample.txt"
 mmap-write: exit(-1)
 Execution of 'mmap-write' complete.
-Timer: 323 ticks
-Thread: 0 idle ticks, 265 kernel ticks, 61 user ticks
+Timer: 322 ticks
+Thread: 0 idle ticks, 262 kernel ticks, 63 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 98 reads, 216 writes
 hd1:0: 101 reads, 0 writes

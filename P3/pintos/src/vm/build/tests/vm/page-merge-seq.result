@@ -1,16 +1,2 @@
 FAIL
-Kernel panic in run: PANIC at ../../lib/kernel/list.c:259 in list_remove(): assertion `is_interior (elem)' failed.
-Call stack: 0xc010718c 0xc0107225 0xc0107e24 0xc01025f9 0xc010910b 0xc0100c7e 0xc010a5e9 0xc010179d 0xc01018cf 0xc010915a 0xc01000bf 0xc01006e4
-Translation of call stack:
-0xc010718c: debug_panic (.../../lib/kernel/debug.c:34)
-0xc0107225: list_remove (.../../lib/kernel/list.c:260)
-0xc0107e24: list_pop_front (.../../lib/kernel/list.c:273)
-0xc01025f9: sema_up (...../../threads/synch.c:118)
-0xc010910b: process_exit (...../userprog/process.c:257)
-0xc0100c7e: thread_exit (..../../threads/thread.c:314)
-0xc010a5e9: page_fault (.../userprog/exception.c:162)
-0xc010179d: intr_handler (..../threads/interrupt.c:361)
-0xc01018cf: intr_entry (threads/intr-stubs.S:38)
-0xc010915a: process_wait (...../userprog/process.c:221)
-0xc01000bf: run_task (.../../../threads/init.c:277)
-0xc01006e4: run_actions (.../../../threads/init.c:326)
+Run didn't produce any output

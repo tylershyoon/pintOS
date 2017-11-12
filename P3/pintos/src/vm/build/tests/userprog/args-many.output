@@ -1,5 +1,5 @@
-Copying tests/userprog/args-many into /tmp/VL40oTumMR.dsk...
-Writing command line to /tmp/YkLR6gShFb.dsk...
+Copying tests/userprog/args-many into /tmp/fewSIXZUlx.dsk...
+Writing command line to /tmp/kpVjiw1gQy.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put args-many run 'args-many a b c d e f g h i j k l m n o p q r s t u v'
 Pintos booting with 4,096 kB RAM...
@@ -43,8 +43,8 @@ Executing 'args-many a b c d e f g h i j k l m n o p q r s t u v':
 (args) end
 args-many: exit(0)
 Execution of 'args-many a b c d e f g h i j k l m n o p q r s t u v' complete.
-Timer: 390 ticks
-Thread: 0 idle ticks, 271 kernel ticks, 122 user ticks
+Timer: 389 ticks
+Thread: 0 idle ticks, 271 kernel ticks, 121 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 62 reads, 202 writes
 hd1:0: 97 reads, 0 writes

@@ -1,6 +1,6 @@
-Copying tests/vm/page-merge-stk into /tmp/DfZL7ljxCC.dsk...
-Copying tests/vm/child-qsort into /tmp/DfZL7ljxCC.dsk...
-Writing command line to /tmp/1aAcGbr5FH.dsk...
+Copying tests/vm/page-merge-stk into /tmp/6wtwVJPNQX.dsk...
+Copying tests/vm/child-qsort into /tmp/6wtwVJPNQX.dsk...
+Writing command line to /tmp/gpHLFTq02y.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put page-merge-stk put child-qsort run page-merge-stk
 Pintos booting with 4,096 kB RAM...
@@ -16,18 +16,14 @@ Boot complete.
 Putting 'page-merge-stk' into the file system...
 Putting 'child-qsort' into the file system...
 Executing 'page-merge-stk':
-Kernel PANIC at ../../lib/kernel/list.c:259 in list_remove(): assertion `is_interior (elem)' failed.
-Call stack: 0xc010718c 0xc0107225 0xc0107e24 0xc01025f9 0xc010910b 0xc0100c7e 0xc010a5e9 0xc010179d 0xc01018cf 0xc010915a 0xc01000bf 0xc01006e4.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
-Timer: 1533 ticks
-Thread: 0 idle ticks, 338 kernel ticks, 1195 user ticks
+Execution of 'page-merge-stk' complete.
+Timer: 1539 ticks
+Thread: 0 idle ticks, 347 kernel ticks, 1195 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 88 reads, 436 writes
 hd1:0: 213 reads, 0 writes
 hd1:1: 0 reads, 0 writes
-Console: 1310 characters output
+Console: 950 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 0 page faults
 Powering off...

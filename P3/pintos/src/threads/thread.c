@@ -78,12 +78,25 @@ static tid_t allocate_tid (void);
 struct thread *
 thread_by_tid (tid_t tid)
 {
-  struct thread * th;
+  struct thread* th;
   struct list_elem * le;
   for (le = list_begin(&process_list); le != list_end(&process_list); le = list_next(le))
   {
     th = list_entry (le, struct thread, process_elem);
     if (tid == th->tid){ return th; }
+  }
+  return NULL;
+}
+
+struct list_elem*
+elem_by_tid(tid_t tid)
+{
+  struct thread* th;
+  struct list_elem * le;
+  for (le = list_begin(&process_list); le != list_end(&process_list); le = list_next(le))
+  {
+    th = list_entry (le, struct thread, process_elem);
+    if (tid == th->tid){ return le; }
   }
   return NULL;
 }
@@ -468,6 +481,7 @@ init_thread (struct thread *t, const char *name, int priority)
   /* : added for process list */
   list_push_back (&process_list, &t->process_elem);
   t->executable = NULL;
+  t->waitby = 0;
 }
 
 /* Allocates a SIZE-byte frame at the top of thread T's stack and
