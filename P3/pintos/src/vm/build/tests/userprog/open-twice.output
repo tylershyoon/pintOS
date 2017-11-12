@@ -1,6 +1,6 @@
-Copying tests/userprog/open-twice into /tmp/FVsSpRAZ8Z.dsk...
-Copying ../../tests/userprog/sample.txt into /tmp/FVsSpRAZ8Z.dsk...
-Writing command line to /tmp/BBCTqRMTBI.dsk...
+Copying tests/userprog/open-twice into /tmp/07PDzyiYc9.dsk...
+Copying ../../tests/userprog/sample.txt into /tmp/07PDzyiYc9.dsk...
+Writing command line to /tmp/rwGDX3RTN0.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put open-twice put sample.txt run open-twice
 Pintos booting with 4,096 kB RAM...
@@ -22,13 +22,13 @@ Executing 'open-twice':
 (open-twice) end
 open-twice: exit(0)
 Execution of 'open-twice' complete.
-Timer: 338 ticks
-Thread: 0 idle ticks, 290 kernel ticks, 51 user ticks
+Timer: 340 ticks
+Thread: 0 idle ticks, 290 kernel ticks, 53 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 102 reads, 210 writes
 hd1:0: 100 reads, 0 writes
 hd1:1: 0 reads, 0 writes
 Console: 1055 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 4 page faults
 Powering off...

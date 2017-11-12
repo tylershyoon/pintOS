@@ -6,6 +6,9 @@
 #include "threads/thread.h"
 /* added */
 #include "threads/vaddr.h"
+#include "userprog/pagedir.h"
+#include "vm/page.h"
+#include "vm/frame.h"
 
 /* Number of page faults processed. */
 static long long page_fault_cnt;
@@ -126,6 +129,10 @@ page_fault (struct intr_frame *f)
 {
   /* added */
   struct thread* curr = thread_current();
+
+  /* in project 3 */
+  struct spte* spte;
+  void* frame;
   /* END */
 
   bool not_present;  /* True: not-present page, false: writing r/o page. */
@@ -157,13 +164,50 @@ page_fault (struct intr_frame *f)
   if (not_present == 1)
   {
     curr->exit_status = -1;
-    thread_exit();
+    //thread_exit();
   }
-  if (user && is_kernel_vaddr(fault_addr))
+  if (not_present && is_user_vaddr(fault_addr) && fault_addr > (void*)0x8048000)
+  {
+    spte = page_lookup(&thread_current()->spt, fault_addr);
+    if(spte)
+    {
+      if(spte->type == SWAP)
+      {
+        if(get_swap(spte)){ return; }
+      }
+      else if (spte->type == FILE)
+      {
+        if(get_lazy_file(spte)){ return; }
+      }
+      else
+      {
+        if(get_lazy_file(spte)){
+          pagedir_set_dirty(spte->thread->pagedir, spte->address, 0);
+          return ;
+        }
+      }
+    }
+    else
+    {
+      if(f->esp - 32 <= fault_addr && fault_addr >= PHYS_BASE - 0x40000)
+      {
+        spte = get_spte(pg_round_down(fault_addr), MEMORY, true);
+        frame = f_allocate(PAL_USER, spte);
+        if(!pagedir_set_page(spte->thread->pagedir, spte->address, frame, spte->writable))
+        {
+          f_free(frame);
+          return;
+        }
+        return;
+      }
+    }
+
+  }
+  /*if (user && is_kernel_vaddr(fault_addr))
   {
     exit(-1);
-  }
-  //exit(-1);
+  }*/
+  exit(-1);
 
   /* To implement virtual memory, delete the rest of the function
      body, and replace it with code that brings in the page to

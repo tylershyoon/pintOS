@@ -1,5 +1,5 @@
-Copying tests/userprog/open-empty into /tmp/sYBaQElrCB.dsk...
-Writing command line to /tmp/xj4D08CsbC.dsk...
+Copying tests/userprog/open-empty into /tmp/Rd0bH54gYb.dsk...
+Writing command line to /tmp/x4L07Ggejl.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put open-empty run open-empty
 Pintos booting with 4,096 kB RAM...
@@ -18,13 +18,13 @@ Executing 'open-empty':
 (open-empty) end
 open-empty: exit(0)
 Execution of 'open-empty' complete.
-Timer: 300 ticks
-Thread: 0 idle ticks, 262 kernel ticks, 41 user ticks
+Timer: 304 ticks
+Thread: 0 idle ticks, 263 kernel ticks, 44 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 79 reads, 204 writes
 hd1:0: 98 reads, 0 writes
 hd1:1: 0 reads, 0 writes
 Console: 920 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 4 page faults
 Powering off...

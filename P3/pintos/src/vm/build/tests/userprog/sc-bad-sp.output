@@ -1,5 +1,5 @@
-Copying tests/userprog/sc-bad-sp into /tmp/rZcQwvyec5.dsk...
-Writing command line to /tmp/ird5yezkR4.dsk...
+Copying tests/userprog/sc-bad-sp into /tmp/MqBHkdexvt.dsk...
+Writing command line to /tmp/ms4ISj3a0j.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put sc-bad-sp run sc-bad-sp
 Pintos booting with 4,096 kB RAM...
@@ -17,13 +17,13 @@ Executing 'sc-bad-sp':
 (sc-bad-sp) begin
 sc-bad-sp: exit(-1)
 Execution of 'sc-bad-sp' complete.
-Timer: 289 ticks
-Thread: 0 idle ticks, 262 kernel ticks, 30 user ticks
+Timer: 291 ticks
+Thread: 0 idle ticks, 262 kernel ticks, 32 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 62 reads, 204 writes
 hd1:0: 98 reads, 0 writes
 hd1:1: 0 reads, 0 writes
 Console: 897 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 5 page faults
 Powering off...

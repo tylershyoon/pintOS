@@ -1,6 +1,6 @@
-Copying tests/vm/mmap-close into /tmp/JuD5o1Zx1B.dsk...
-Copying ../../tests/vm/sample.txt into /tmp/JuD5o1Zx1B.dsk...
-Writing command line to /tmp/yV25tE3Vv5.dsk...
+Copying tests/vm/mmap-close into /tmp/AWcaysRn4T.dsk...
+Copying ../../tests/vm/sample.txt into /tmp/AWcaysRn4T.dsk...
+Writing command line to /tmp/z77VBPGqMA.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put mmap-close put sample.txt run mmap-close
 Pintos booting with 4,096 kB RAM...
@@ -21,13 +21,13 @@ Executing 'mmap-close':
 (mmap-close) mmap "sample.txt"
 mmap-close: exit(-1)
 Execution of 'mmap-close' complete.
-Timer: 329 ticks
-Thread: 0 idle ticks, 290 kernel ticks, 42 user ticks
+Timer: 333 ticks
+Thread: 0 idle ticks, 292 kernel ticks, 44 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 102 reads, 218 writes
 hd1:0: 104 reads, 0 writes
 hd1:1: 0 reads, 0 writes
 Console: 1028 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 4 page faults
 Powering off...

@@ -1,5 +1,5 @@
-Copying tests/userprog/rox-simple into /tmp/uKaGYZY52V.dsk...
-Writing command line to /tmp/EbEPp6pC60.dsk...
+Copying tests/userprog/rox-simple into /tmp/Qt0uP7Uosb.dsk...
+Writing command line to /tmp/2YaaCvJ5Qb.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put rox-simple run rox-simple
 Pintos booting with 4,096 kB RAM...
@@ -21,13 +21,13 @@ Executing 'rox-simple':
 (rox-simple) end
 rox-simple: exit(0)
 Execution of 'rox-simple' complete.
-Timer: 310 ticks
-Thread: 0 idle ticks, 264 kernel ticks, 49 user ticks
+Timer: 312 ticks
+Thread: 0 idle ticks, 264 kernel ticks, 51 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 65 reads, 204 writes
 hd1:0: 98 reads, 0 writes
 hd1:1: 0 reads, 0 writes
 Console: 1021 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 4 page faults
 Powering off...

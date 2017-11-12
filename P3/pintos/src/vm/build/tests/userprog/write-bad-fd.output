@@ -1,5 +1,5 @@
-Copying tests/userprog/write-bad-fd into /tmp/DLAU0MI8YY.dsk...
-Writing command line to /tmp/dpQqikjcG9.dsk...
+Copying tests/userprog/write-bad-fd into /tmp/UdPKE6432e.dsk...
+Writing command line to /tmp/fNqIwHG5PW.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put write-bad-fd run write-bad-fd
 Pintos booting with 4,096 kB RAM...
@@ -18,13 +18,13 @@ Executing 'write-bad-fd':
 (write-bad-fd) end
 write-bad-fd: exit(0)
 Execution of 'write-bad-fd' complete.
-Timer: 295 ticks
-Thread: 0 idle ticks, 263 kernel ticks, 35 user ticks
+Timer: 297 ticks
+Thread: 0 idle ticks, 263 kernel ticks, 37 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 62 reads, 204 writes
 hd1:0: 98 reads, 0 writes
 hd1:1: 0 reads, 0 writes
 Console: 936 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 4 page faults
 Powering off...

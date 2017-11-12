@@ -1,5 +1,5 @@
-Copying tests/vm/pt-big-stk-obj into /tmp/wQJ7oSGbKp.dsk...
-Writing command line to /tmp/oEA8cYZ9mm.dsk...
+Copying tests/vm/pt-big-stk-obj into /tmp/qn7gcgKqWz.dsk...
+Writing command line to /tmp/iUCZ4MeEGq.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put pt-big-stk-obj run pt-big-stk-obj
 Pintos booting with 4,096 kB RAM...
@@ -15,15 +15,17 @@ Boot complete.
 Putting 'pt-big-stk-obj' into the file system...
 Executing 'pt-big-stk-obj':
 (pt-big-stk-obj) begin
-pt-big-stk-obj: exit(-1)
+(pt-big-stk-obj) cksum: 3256410166
+(pt-big-stk-obj) end
+pt-big-stk-obj: exit(0)
 Execution of 'pt-big-stk-obj' complete.
-Timer: 296 ticks
-Thread: 0 idle ticks, 269 kernel ticks, 30 user ticks
+Timer: 566 ticks
+Thread: 0 idle ticks, 269 kernel ticks, 300 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 65 reads, 222 writes
 hd1:0: 107 reads, 0 writes
 hd1:1: 0 reads, 0 writes
-Console: 933 characters output
+Console: 989 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 20 page faults
 Powering off...

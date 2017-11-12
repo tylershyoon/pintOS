@@ -1,5 +1,5 @@
-Copying tests/vm/page-linear into /tmp/d1MtURdHVC.dsk...
-Writing command line to /tmp/ZGqeGypns5.dsk...
+Copying tests/vm/page-linear into /tmp/ZxubDFbBP2.dsk...
+Writing command line to /tmp/mHR53ERvV3.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put page-linear run page-linear
 Pintos booting with 4,096 kB RAM...
@@ -14,14 +14,22 @@ Formatting file system...done.
 Boot complete.
 Putting 'page-linear' into the file system...
 Executing 'page-linear':
+(page-linear) begin
+(page-linear) initialize
+(page-linear) read pass
+(page-linear) read/modify/write pass one
+(page-linear) read/modify/write pass two
+(page-linear) read pass
+(page-linear) end
+page-linear: exit(0)
 Execution of 'page-linear' complete.
-Timer: 1454 ticks
-Thread: 0 idle ticks, 261 kernel ticks, 1196 user ticks
+Timer: 43236 ticks
+Thread: 0 idle ticks, 266 kernel ticks, 42973 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 59 reads, 216 writes
+hd0:1: 63 reads, 216 writes
 hd1:0: 104 reads, 0 writes
-hd1:1: 0 reads, 0 writes
-Console: 873 characters output
+hd1:1: 16632 reads, 17784 writes
+Console: 1097 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 2595 page faults
 Powering off...

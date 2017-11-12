@@ -1,6 +1,6 @@
-Copying tests/userprog/exec-once into /tmp/vKoNNTN97A.dsk...
-Copying tests/userprog/child-simple into /tmp/vKoNNTN97A.dsk...
-Writing command line to /tmp/QydTLp7bGj.dsk...
+Copying tests/userprog/exec-once into /tmp/AGj07geU1o.dsk...
+Copying tests/userprog/child-simple into /tmp/AGj07geU1o.dsk...
+Writing command line to /tmp/yyJx7rhUpf.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put exec-once put child-simple run exec-once
 Pintos booting with 4,096 kB RAM...
@@ -22,13 +22,13 @@ child-simple: exit(81)
 (exec-once) end
 exec-once: exit(0)
 Execution of 'exec-once' complete.
-Timer: 409 ticks
-Thread: 0 idle ticks, 341 kernel ticks, 70 user ticks
+Timer: 410 ticks
+Thread: 0 idle ticks, 342 kernel ticks, 71 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 129 reads, 400 writes
 hd1:0: 195 reads, 0 writes
 hd1:1: 0 reads, 0 writes
 Console: 1020 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 6 page faults
 Powering off...

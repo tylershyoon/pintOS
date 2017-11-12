@@ -1,6 +1,6 @@
-Copying tests/vm/mmap-unmap into /tmp/Qsx5RanGNx.dsk...
-Copying ../../tests/vm/sample.txt into /tmp/Qsx5RanGNx.dsk...
-Writing command line to /tmp/F2doIeebA6.dsk...
+Copying tests/vm/mmap-unmap into /tmp/VvIvcdmj7B.dsk...
+Copying ../../tests/vm/sample.txt into /tmp/VvIvcdmj7B.dsk...
+Writing command line to /tmp/mhZihgcmol.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put mmap-unmap put sample.txt run mmap-unmap
 Pintos booting with 4,096 kB RAM...
@@ -21,13 +21,13 @@ Executing 'mmap-unmap':
 (mmap-unmap) mmap "sample.txt"
 mmap-unmap: exit(-1)
 Execution of 'mmap-unmap' complete.
-Timer: 330 ticks
-Thread: 0 idle ticks, 292 kernel ticks, 41 user ticks
+Timer: 331 ticks
+Thread: 0 idle ticks, 291 kernel ticks, 43 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 101 reads, 216 writes
 hd1:0: 103 reads, 0 writes
 hd1:1: 0 reads, 0 writes
 Console: 1028 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 4 page faults
 Powering off...

@@ -1,1 +1,8 @@
-PASS
+FAIL
+Kernel panic in run: PANIC at ../../filesys/file.c:124 in file_deny_write(): assertion `file != NULL' failed.
+Call stack: 0xc01071dc 0xc010baea 0xc0109a83 0xc0100f66
+Translation of call stack:
+0xc01071dc: debug_panic (.../../lib/kernel/debug.c:34)
+0xc010baea: file_deny_write (.../../../filesys/file.c:125)
+0xc0109a83: start_process (...../userprog/process.c:124)
+0xc0100f66: kernel_thread (..../../threads/thread.c:442)

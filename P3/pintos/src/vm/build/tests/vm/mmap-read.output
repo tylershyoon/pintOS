@@ -1,6 +1,6 @@
-Copying tests/vm/mmap-read into /tmp/JIZbxX0Oia.dsk...
-Copying ../../tests/vm/sample.txt into /tmp/JIZbxX0Oia.dsk...
-Writing command line to /tmp/JUig8vg0Nu.dsk...
+Copying tests/vm/mmap-read into /tmp/UMoIMQjgp9.dsk...
+Copying ../../tests/vm/sample.txt into /tmp/UMoIMQjgp9.dsk...
+Writing command line to /tmp/IhJbXUVuja.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put mmap-read put sample.txt run mmap-read
 Pintos booting with 4,096 kB RAM...
@@ -21,13 +21,13 @@ Executing 'mmap-read':
 (mmap-read) mmap "sample.txt"
 mmap-read: exit(-1)
 Execution of 'mmap-read' complete.
-Timer: 328 ticks
-Thread: 0 idle ticks, 291 kernel ticks, 40 user ticks
+Timer: 332 ticks
+Thread: 0 idle ticks, 292 kernel ticks, 43 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 102 reads, 218 writes
 hd1:0: 104 reads, 0 writes
 hd1:1: 0 reads, 0 writes
 Console: 1019 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 4 page faults
 Powering off...

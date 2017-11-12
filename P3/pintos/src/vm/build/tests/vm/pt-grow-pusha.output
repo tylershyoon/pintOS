@@ -1,5 +1,5 @@
-Copying tests/vm/pt-grow-pusha into /tmp/MXet2hUgFY.dsk...
-Writing command line to /tmp/ifU7QkLLO1.dsk...
+Copying tests/vm/pt-grow-pusha into /tmp/F3aFw3VN8V.dsk...
+Writing command line to /tmp/oOayX3UhiM.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put pt-grow-pusha run pt-grow-pusha
 Pintos booting with 4,096 kB RAM...
@@ -15,15 +15,16 @@ Boot complete.
 Putting 'pt-grow-pusha' into the file system...
 Executing 'pt-grow-pusha':
 (pt-grow-pusha) begin
-pt-grow-pusha: exit(-1)
+(pt-grow-pusha) end
+pt-grow-pusha: exit(0)
 Execution of 'pt-grow-pusha' complete.
-Timer: 292 ticks
-Thread: 0 idle ticks, 265 kernel ticks, 30 user ticks
+Timer: 298 ticks
+Thread: 0 idle ticks, 265 kernel ticks, 36 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 62 reads, 204 writes
 hd1:0: 98 reads, 0 writes
 hd1:1: 0 reads, 0 writes
-Console: 925 characters output
+Console: 944 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 5 page faults
 Powering off...

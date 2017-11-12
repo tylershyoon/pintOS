@@ -1,6 +1,6 @@
-Copying tests/vm/mmap-remove into /tmp/VOa5GO0Nmj.dsk...
-Copying ../../tests/vm/sample.txt into /tmp/VOa5GO0Nmj.dsk...
-Writing command line to /tmp/iFRIHTS8mo.dsk...
+Copying tests/vm/mmap-remove into /tmp/DoBp8o81xB.dsk...
+Copying ../../tests/vm/sample.txt into /tmp/DoBp8o81xB.dsk...
+Writing command line to /tmp/JCSHmVuhZv.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put mmap-remove put sample.txt run mmap-remove
 Pintos booting with 4,096 kB RAM...
@@ -24,13 +24,13 @@ Executing 'mmap-remove':
 (mmap-remove) create "another"
 mmap-remove: exit(-1)
 Execution of 'mmap-remove' complete.
-Timer: 390 ticks
-Thread: 0 idle ticks, 293 kernel ticks, 100 user ticks
+Timer: 392 ticks
+Thread: 0 idle ticks, 293 kernel ticks, 102 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 149 reads, 305 writes
 hd1:0: 104 reads, 0 writes
 hd1:1: 0 reads, 0 writes
 Console: 1142 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 4 page faults
 Powering off...

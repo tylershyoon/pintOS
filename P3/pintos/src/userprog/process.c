@@ -243,9 +243,8 @@ process_wait (tid_t child_tid)
   if (child->status == THREAD_BLOCKED){
     thread_unblock(child);
   }
-  if (le != NULL && le->prev != NULL && le->next != NULL){
-    list_remove(le);
-  }
+
+  list_remove(le);
   return exit_status;
 }
 
@@ -253,6 +252,7 @@ process_wait (tid_t child_tid)
 void
 process_exit (void)
 {
+  struct hash_iterator itr;
   struct thread *curr = thread_current ();
   uint32_t *pd;
 
@@ -270,6 +270,15 @@ process_exit (void)
   pd = curr->pagedir;
   if (pd != NULL) 
     {
+      hash_first (&itr, &curr->spt);
+      while(hash_next(&itr))
+      {
+        struct spte* spte = hash_entry(hash_cur (&itr), struct spte, hash_elem);
+        if(spte->type == MEMORY){ f_free_spte(spte); }
+        hash_delete(&curr->spt, &spte->hash_elem);
+        free(spte);
+        hash_first(&itr, &curr->spt);
+      }
       /* Correct ordering here is crucial.  We must set
          cur->pagedir to NULL before switching page directories,
          so that a timer interrupt can't switch back to the
@@ -384,6 +393,10 @@ load (const char *file_name, void (**eip) (void), void **esp)
 
   /* Allocate and activate page directory. */
   t->pagedir = pagedir_create ();
+  
+  /* added */
+  spt_init(&t->spt);
+
   if (t->pagedir == NULL) 
     goto done;
   process_activate ();
@@ -571,24 +584,40 @@ load_segment (struct file *file, off_t ofs, uint8_t *upage,
       size_t page_zero_bytes = PGSIZE - page_read_bytes;
 
       /* Get a page of memory. */
-      uint8_t *kpage = palloc_get_page (PAL_USER);
-      if (kpage == NULL)
-        return false;
+      //uint8_t *kpage = palloc_get_page (PAL_USER);
+      
+      struct spte* spte = get_spte(upage, MEMORY, writable);
+      if(!(page_read_bytes % PGSIZE))
+      {
+        spte->type = FILE;
+        spte->file = file;
+        spte->size = page_read_bytes;
+        spte->offset = file_tell(file);
+        file_seek(file, file_tell(file)+PGSIZE);
+      }
+      else
+      {
+        uint8_t* kpage = f_allocate(PAL_USER, spte);
+      /*if (kpage == NULL)
+        return false;*/
 
-      /* Load this page. */
-      if (file_read (file, kpage, page_read_bytes) != (int) page_read_bytes)
+        /* Load this page. */
+        if (file_read (file, kpage, page_read_bytes) != (int) page_read_bytes)
         {
-          palloc_free_page (kpage);
+          //palloc_free_page (kpage);
+          f_free(kpage);
           return false; 
         }
-      memset (kpage + page_read_bytes, 0, page_zero_bytes);
+        memset (kpage + page_read_bytes, 0, page_zero_bytes);
 
-      /* Add the page to the process's address space. */
-      if (!install_page (upage, kpage, writable)) 
+        /* Add the page to the process's address space. */
+        if (!install_page (upage, kpage, writable)) 
         {
-          palloc_free_page (kpage);
+          //palloc_free_page (kpage);
+          f_free(kpage);
           return false; 
         }
+      }
 
       /* Advance. */
       read_bytes -= page_read_bytes;
@@ -606,15 +635,19 @@ setup_stack (void **esp)
   uint8_t *kpage;
   bool success = false;
 
-  kpage = palloc_get_page (PAL_USER | PAL_ZERO);
+  //kpage = palloc_get_page (PAL_USER | PAL_ZERO);
+  struct spte* spte = get_spte( ((uint8_t*)PHYS_BASE) - PGSIZE, MEMORY, true);
+  kpage = f_allocate(PAL_USER|PAL_ZERO, spte);
   if (kpage != NULL) 
     {
       success = install_page (((uint8_t *) PHYS_BASE) - PGSIZE, kpage, true);
       if (success)
         //*esp = PHYS_BASE - 12 ; /* Modified temporarily */
         *esp = PHYS_BASE;
-      else
-        palloc_free_page (kpage);
+      else{
+        //palloc_free_page (kpage);
+        f_free(kpage);
+      }
     }
   return success;
 }

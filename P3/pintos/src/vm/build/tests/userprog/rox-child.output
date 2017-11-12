@@ -1,6 +1,6 @@
-Copying tests/userprog/rox-child into /tmp/hEU5CFW7lG.dsk...
-Copying tests/userprog/child-rox into /tmp/hEU5CFW7lG.dsk...
-Writing command line to /tmp/MkvZ2InopQ.dsk...
+Copying tests/userprog/rox-child into /tmp/0d35w7sHyL.dsk...
+Copying tests/userprog/child-rox into /tmp/0d35w7sHyL.dsk...
+Writing command line to /tmp/1hh0dBHTej.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put rox-child put child-rox run rox-child
 Pintos booting with 4,096 kB RAM...
@@ -21,5 +21,22 @@ Executing 'rox-child':
 (rox-child) read "child-rox"
 (rox-child) write "child-rox"
 (rox-child) exec "child-rox 1"
-
-TIMEOUT after 60 seconds of host CPU time
+(child-rox) begin
+(child-rox) try to write "child-rox"
+(child-rox) try to write "child-rox"
+(child-rox) end
+child-rox: exit(12)
+(rox-child) write "child-rox"
+(rox-child) end
+rox-child: exit(0)
+Execution of 'rox-child' complete.
+Timer: 462 ticks
+Thread: 0 idle ticks, 348 kernel ticks, 117 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 139 reads, 430 writes
+hd1:0: 209 reads, 0 writes
+hd1:1: 0 reads, 0 writes
+Console: 1250 characters output
+Keyboard: 0 keys pressed
+Exception: 7 page faults
+Powering off...

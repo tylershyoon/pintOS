@@ -1,5 +1,5 @@
-Copying tests/vm/mmap-zero into /tmp/ptKR5DHVmr.dsk...
-Writing command line to /tmp/X7wPKW9faZ.dsk...
+Copying tests/vm/mmap-zero into /tmp/1JBTydrJmE.dsk...
+Writing command line to /tmp/9qUitzrQVy.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put mmap-zero run mmap-zero
 Pintos booting with 4,096 kB RAM...
@@ -20,13 +20,13 @@ Executing 'mmap-zero':
 (mmap-zero) mmap "empty"
 mmap-zero: exit(-1)
 Execution of 'mmap-zero' complete.
-Timer: 318 ticks
-Thread: 0 idle ticks, 262 kernel ticks, 59 user ticks
+Timer: 321 ticks
+Thread: 0 idle ticks, 264 kernel ticks, 60 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 88 reads, 208 writes
 hd1:0: 98 reads, 0 writes
 hd1:1: 0 reads, 0 writes
 Console: 985 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 5 page faults
 Powering off...

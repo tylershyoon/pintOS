@@ -1,5 +1,5 @@
-Copying tests/userprog/multi-recurse into /tmp/AwpJ1segNy.dsk...
-Writing command line to /tmp/XGsVh3W9Pz.dsk...
+Copying tests/userprog/multi-recurse into /tmp/vIe7GvCXie.dsk...
+Writing command line to /tmp/wb5TKMsX8g.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put multi-recurse run 'multi-recurse 15'
 Pintos booting with 4,096 kB RAM...
@@ -42,49 +42,3 @@ Executing 'multi-recurse 15':
 (multi-recurse) exec("multi-recurse 2")
 (multi-recurse) begin 2
 (multi-recurse) exec("multi-recurse 1")
-(multi-recurse) begin 1
-(multi-recurse) exec("multi-recurse 0")
-(multi-recurse) begin 0
-(multi-recurse) end 0
-multi-recurse: exit(0)
-(multi-recurse) end 1
-multi-recurse: exit(1)
-(multi-recurse) end 2
-multi-recurse: exit(2)
-(multi-recurse) end 3
-multi-recurse: exit(3)
-(multi-recurse) end 4
-multi-recurse: exit(4)
-(multi-recurse) end 5
-multi-recurse: exit(5)
-(multi-recurse) end 6
-multi-recurse: exit(6)
-(multi-recurse) end 7
-multi-recurse: exit(7)
-(multi-recurse) end 8
-multi-recurse: exit(8)
-(multi-recurse) end 9
-multi-recurse: exit(9)
-(multi-recurse) end 10
-multi-recurse: exit(10)
-(multi-recurse) end 11
-multi-recurse: exit(11)
-(multi-recurse) end 12
-multi-recurse: exit(12)
-(multi-recurse) end 13
-multi-recurse: exit(13)
-(multi-recurse) end 14
-multi-recurse: exit(14)
-(multi-recurse) end 15
-multi-recurse: exit(15)
-Execution of 'multi-recurse 15' complete.
-Timer: 1071 ticks
-Thread: 0 idle ticks, 317 kernel ticks, 758 user ticks
-hd0:0: 0 reads, 0 writes
-hd0:1: 576 reads, 226 writes
-hd1:0: 109 reads, 0 writes
-hd1:1: 0 reads, 0 writes
-Console: 2621 characters output
-Keyboard: 0 keys pressed
-Exception: 0 page faults
-Powering off...

@@ -1,5 +1,5 @@
-Copying tests/userprog/exec-missing into /tmp/DakNgfl84r.dsk...
-Writing command line to /tmp/i4osiQA0Yl.dsk...
+Copying tests/userprog/exec-missing into /tmp/DCtd1cWLk4.dsk...
+Writing command line to /tmp/xcoK89aN80.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put exec-missing run exec-missing
 Pintos booting with 4,096 kB RAM...
@@ -20,13 +20,13 @@ load: no-such-file: open failed
 (exec-missing) end
 exec-missing: exit(0)
 Execution of 'exec-missing' complete.
-Timer: 321 ticks
-Thread: 0 idle ticks, 265 kernel ticks, 59 user ticks
+Timer: 324 ticks
+Thread: 0 idle ticks, 266 kernel ticks, 61 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 79 reads, 204 writes
 hd1:0: 98 reads, 0 writes
 hd1:1: 0 reads, 0 writes
 Console: 1008 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 4 page faults
 Powering off...

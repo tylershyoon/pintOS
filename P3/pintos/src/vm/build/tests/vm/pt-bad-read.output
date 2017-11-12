@@ -1,6 +1,6 @@
-Copying tests/vm/pt-bad-read into /tmp/2tIgIRSR8y.dsk...
-Copying ../../tests/vm/sample.txt into /tmp/2tIgIRSR8y.dsk...
-Writing command line to /tmp/VzS8B5Gu35.dsk...
+Copying tests/vm/pt-bad-read into /tmp/97FH7kOKQ5.dsk...
+Copying ../../tests/vm/sample.txt into /tmp/97FH7kOKQ5.dsk...
+Writing command line to /tmp/694uhJXeXM.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put pt-bad-read put sample.txt run pt-bad-read
 Pintos booting with 4,096 kB RAM...
@@ -20,13 +20,13 @@ Executing 'pt-bad-read':
 (pt-bad-read) open "sample.txt"
 pt-bad-read: exit(-1)
 Execution of 'pt-bad-read' complete.
-Timer: 325 ticks
-Thread: 0 idle ticks, 292 kernel ticks, 36 user ticks
+Timer: 327 ticks
+Thread: 0 idle ticks, 291 kernel ticks, 39 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 94 reads, 212 writes
 hd1:0: 101 reads, 0 writes
 hd1:1: 0 reads, 0 writes
 Console: 1004 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 5 page faults
 Powering off...

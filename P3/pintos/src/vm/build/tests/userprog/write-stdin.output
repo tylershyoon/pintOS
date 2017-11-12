@@ -1,5 +1,5 @@
-Copying tests/userprog/write-stdin into /tmp/PRZqgF9KKX.dsk...
-Writing command line to /tmp/sQ6K1HRBpc.dsk...
+Copying tests/userprog/write-stdin into /tmp/ZiqOz7XNWZ.dsk...
+Writing command line to /tmp/FOLGzEqBrO.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put write-stdin run write-stdin
 Pintos booting with 4,096 kB RAM...
@@ -18,13 +18,13 @@ Executing 'write-stdin':
 (write-stdin) end
 write-stdin: exit(0)
 Execution of 'write-stdin' complete.
-Timer: 293 ticks
-Thread: 0 idle ticks, 263 kernel ticks, 33 user ticks
+Timer: 296 ticks
+Thread: 0 idle ticks, 264 kernel ticks, 35 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 62 reads, 204 writes
 hd1:0: 98 reads, 0 writes
 hd1:1: 0 reads, 0 writes
 Console: 928 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 4 page faults
 Powering off...

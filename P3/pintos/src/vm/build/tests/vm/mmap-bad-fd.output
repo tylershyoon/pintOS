@@ -1,5 +1,5 @@
-Copying tests/vm/mmap-bad-fd into /tmp/bKYllo56Jn.dsk...
-Writing command line to /tmp/L73fu77WjA.dsk...
+Copying tests/vm/mmap-bad-fd into /tmp/kW8nLNiXME.dsk...
+Writing command line to /tmp/I3OOe5CAWj.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put mmap-bad-fd run mmap-bad-fd
 Pintos booting with 4,096 kB RAM...
@@ -19,13 +19,13 @@ Executing 'mmap-bad-fd':
 (mmap-bad-fd) try to mmap invalid fd: FAILED
 mmap-bad-fd: exit(1)
 Execution of 'mmap-bad-fd' complete.
-Timer: 301 ticks
-Thread: 0 idle ticks, 263 kernel ticks, 41 user ticks
+Timer: 304 ticks
+Thread: 0 idle ticks, 264 kernel ticks, 43 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 62 reads, 204 writes
 hd1:0: 98 reads, 0 writes
 hd1:1: 0 reads, 0 writes
 Console: 992 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 4 page faults
 Powering off...

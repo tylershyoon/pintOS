@@ -1,5 +1,5 @@
-Copying tests/userprog/open-missing into /tmp/2BQpwgznoP.dsk...
-Writing command line to /tmp/sbCz25SztI.dsk...
+Copying tests/userprog/open-missing into /tmp/RnB19L4vA2.dsk...
+Writing command line to /tmp/2yThGEaEkQ.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put open-missing run open-missing
 Pintos booting with 4,096 kB RAM...
@@ -18,13 +18,13 @@ Executing 'open-missing':
 (open-missing) end
 open-missing: exit(0)
 Execution of 'open-missing' complete.
-Timer: 303 ticks
-Thread: 0 idle ticks, 263 kernel ticks, 43 user ticks
+Timer: 305 ticks
+Thread: 0 idle ticks, 263 kernel ticks, 45 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 79 reads, 204 writes
 hd1:0: 98 reads, 0 writes
 hd1:1: 0 reads, 0 writes
 Console: 936 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 4 page faults
 Powering off...

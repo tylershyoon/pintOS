@@ -35,6 +35,7 @@ f_allocate(enum palloc_flags flags, struct spte *spte)
   list_push_back (&ft_lst, &fte->elem);
   
   lock_release(&ft_lock);
+  return frame;
 }
 
 void

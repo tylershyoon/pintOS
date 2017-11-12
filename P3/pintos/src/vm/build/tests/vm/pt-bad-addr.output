@@ -1,5 +1,5 @@
-Copying tests/vm/pt-bad-addr into /tmp/ZaQONORZYm.dsk...
-Writing command line to /tmp/UUsLlmBCgP.dsk...
+Copying tests/vm/pt-bad-addr into /tmp/JZff6qXoyh.dsk...
+Writing command line to /tmp/s9MYOirZJ6.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put pt-bad-addr run pt-bad-addr
 Pintos booting with 4,096 kB RAM...
@@ -17,13 +17,13 @@ Executing 'pt-bad-addr':
 (pt-bad-addr) begin
 pt-bad-addr: exit(-1)
 Execution of 'pt-bad-addr' complete.
-Timer: 290 ticks
-Thread: 0 idle ticks, 264 kernel ticks, 29 user ticks
+Timer: 293 ticks
+Thread: 0 idle ticks, 263 kernel ticks, 32 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 62 reads, 204 writes
 hd1:0: 98 reads, 0 writes
 hd1:1: 0 reads, 0 writes
 Console: 911 characters output
 Keyboard: 0 keys pressed
-Exception: 1 page faults
+Exception: 5 page faults
 Powering off...

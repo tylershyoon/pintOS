@@ -1,6 +1,6 @@
-Copying tests/vm/page-merge-mm into /tmp/XIWvdSAavR.dsk...
-Copying tests/vm/child-qsort-mm into /tmp/XIWvdSAavR.dsk...
-Writing command line to /tmp/LdfTF0Sy91.dsk...
+Copying tests/vm/page-merge-mm into /tmp/G2Jxud2umR.dsk...
+Copying tests/vm/child-qsort-mm into /tmp/G2Jxud2umR.dsk...
+Writing command line to /tmp/GpxJ8ddixS.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put page-merge-mm put child-qsort-mm run page-merge-mm
 Pintos booting with 4,096 kB RAM...
@@ -16,14 +16,27 @@ Boot complete.
 Putting 'page-merge-mm' into the file system...
 Putting 'child-qsort-mm' into the file system...
 Executing 'page-merge-mm':
+(page-merge-mm) begin
+(page-merge-mm) init
+(page-merge-mm) sort chunk 0
+(page-merge-mm) sort chunk 1
+(page-merge-mm) sort chunk 2
+(page-merge-mm) sort chunk 3
+(page-merge-mm) sort chunk 4
+(page-merge-mm) sort chunk 5
+(page-merge-mm) sort chunk 6
+(page-merge-mm) sort chunk 7
+(page-merge-mm) wait for child 0
+(page-merge-mm) wait for child 0: FAILED
+page-merge-mm: exit(1)
 Execution of 'page-merge-mm' complete.
-Timer: 1539 ticks
-Thread: 0 idle ticks, 347 kernel ticks, 1195 user ticks
+Timer: 5435 ticks
+Thread: 0 idle ticks, 376 kernel ticks, 5062 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 88 reads, 436 writes
+hd0:1: 707 reads, 4564 writes
 hd1:0: 213 reads, 0 writes
 hd1:1: 0 reads, 0 writes
-Console: 951 characters output
+Console: 1325 characters output
 Keyboard: 0 keys pressed
-Exception: 0 page faults
+Exception: 277 page faults
 Powering off...

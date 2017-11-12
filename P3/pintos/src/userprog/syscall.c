@@ -180,7 +180,6 @@ exit (int status)
   struct thread * curr = thread_current();
   sema_down(&curr->exit_sema);
   curr->exit_status = status;
-  //thread_current()->exit_status = status;
   struct list_elem* itr;
 
   while(!list_empty(&curr->file_list))
