@@ -1,5 +1,5 @@
-Copying tests/filesys/base/sm-create into /tmp/AMcGZVdsEo.dsk...
-Writing command line to /tmp/NVXCGV3AQd.dsk...
+Copying tests/filesys/base/sm-create into /tmp/jJQYGO9JpL.dsk...
+Writing command line to /tmp/y6TIwm3nuc.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put sm-create run sm-create
 Pintos booting with 4,096 kB RAM...
@@ -22,8 +22,8 @@ Executing 'sm-create':
 (sm-create) end
 sm-create: exit(0)
 Execution of 'sm-create' complete.
-Timer: 342 ticks
-Thread: 0 idle ticks, 264 kernel ticks, 81 user ticks
+Timer: 343 ticks
+Thread: 0 idle ticks, 258 kernel ticks, 92 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 101 reads, 226 writes
 hd1:0: 101 reads, 0 writes

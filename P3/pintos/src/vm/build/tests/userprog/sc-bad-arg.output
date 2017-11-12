@@ -1,5 +1,5 @@
-Copying tests/userprog/sc-bad-arg into /tmp/vgl4wMvbFi.dsk...
-Writing command line to /tmp/g8h70Ebxk4.dsk...
+Copying tests/userprog/sc-bad-arg into /tmp/JS7BV5ToyY.dsk...
+Writing command line to /tmp/Z6uwlQHXJu.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put sc-bad-arg run sc-bad-arg
 Pintos booting with 4,096 kB RAM...
@@ -18,7 +18,7 @@ Executing 'sc-bad-arg':
 sc-bad-arg: exit(-1)
 Execution of 'sc-bad-arg' complete.
 Timer: 292 ticks
-Thread: 0 idle ticks, 264 kernel ticks, 31 user ticks
+Thread: 0 idle ticks, 256 kernel ticks, 43 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 62 reads, 204 writes
 hd1:0: 98 reads, 0 writes

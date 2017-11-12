@@ -1,5 +1,5 @@
-Copying tests/userprog/args-none into /tmp/f5ANpLCBxR.dsk...
-Writing command line to /tmp/WbVUxEUXIn.dsk...
+Copying tests/userprog/args-none into /tmp/YvVMiTrKWV.dsk...
+Writing command line to /tmp/EgUjMBLyHg.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put args-none run args-none
 Pintos booting with 4,096 kB RAM...
@@ -21,8 +21,8 @@ Executing 'args-none':
 (args) end
 args-none: exit(0)
 Execution of 'args-none' complete.
-Timer: 302 ticks
-Thread: 0 idle ticks, 261 kernel ticks, 44 user ticks
+Timer: 303 ticks
+Thread: 0 idle ticks, 255 kernel ticks, 55 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 62 reads, 202 writes
 hd1:0: 97 reads, 0 writes

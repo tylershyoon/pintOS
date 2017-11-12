@@ -33,6 +33,7 @@ static bool load (const char *cmdline, void (**eip) (void), void **esp);
 tid_t
 process_execute (const char *file_name) 
 {
+  struct thread* curr = thread_current();
   struct thread* tid_th;
   /* : For tokenize file_name */
   char * save_ptr;
@@ -61,21 +62,25 @@ process_execute (const char *file_name)
 
   /* Create a new thread to execute FILE_NAME. */
   tid = thread_create (fn, PRI_DEFAULT, start_process, fn_copy);
-  if (tid == TID_ERROR){
+  /*if (tid == TID_ERROR){
     palloc_free_page(fn);
     palloc_free_page(fn_copy);
     return tid;
+  }*/
+  tid_th = thread_by_tid(tid, curr); /*  */
+  if(tid_th)
+  {
+    sema_down(&tid_th->load_sema);
   }
-  tid_th = thread_by_tid(tid); /*  */
-  sema_down(&tid_th->load_sema); /* make sure execute file name thread loaded well */
-  if (tid_th->exit_status == -1 /* load failed */)
+  /*sema_down(&tid_th->load_sema); 
+  if (tid_th->exit_status == -1 )
   { 
     //tid = TID_ERROR;
     while(tid_th->status == THREAD_BLOCKED)
       thread_unblock (tid_th);
     //process_wait(tid_th->tid);
   }
-  else /* when load success */
+  else // when load success
   {
     while(tid_th->status == THREAD_BLOCKED)
       thread_unblock(tid_th);
@@ -84,7 +89,14 @@ process_execute (const char *file_name)
   palloc_free_page (fn);
 
   if (tid == TID_ERROR)
-    palloc_free_page (fn_copy);
+    palloc_free_page (fn_copy);*/
+
+  if (tid == TID_ERROR)
+  {
+    palloc_free_page(fn);
+    palloc_free_page(fn_copy);
+    return tid;
+  }
 
   if (tid_th->is_load_success != 1){ return TID_ERROR; }
   return tid;
@@ -130,10 +142,10 @@ start_process (void *f_name)
     /* If load failed, quit. */
     thread_current()->exit_status = -1;
     sema_up(&thread_current()->load_sema);
-    list_remove(&thread_current()->process_elem);
-    enum intr_level old_level = intr_disable();
+    list_remove(&thread_current()->child_elem);
+    /*enum intr_level old_level = intr_disable();
     thread_block();
-    intr_set_level (old_level);
+    intr_set_level (old_level);*/
     thread_exit ();
   }
   else /* : when success -> arg passing */
@@ -190,9 +202,9 @@ start_process (void *f_name)
     //hex_dump(0, 0xbfffffc0, 100, true);
 
     sema_up(&thread_current()->load_sema);
-    enum intr_level old_level = intr_disable();
+    /*enum intr_level old_level = intr_disable();
     thread_block();
-    intr_set_level (old_level);
+    intr_set_level (old_level);*/
 
     palloc_free_page (argv);
     palloc_free_page (file_name);
@@ -220,29 +232,35 @@ start_process (void *f_name)
 int
 process_wait (tid_t child_tid)
 {
-  struct list_elem* le = elem_by_tid(child_tid);
+  struct thread* curr = thread_current();
+  struct list_elem* le = elem_by_tid(child_tid, curr);
   if(!le){ return -1; }
-  struct thread* child = thread_by_tid(child_tid);
+  struct thread* child = thread_by_tid(child_tid, curr);
   if(child->waitby){ return -1; }
   else{ child->waitby = 1; }
   //if (child->exit_status != 0xcdcdcdcd || child->status == THREAD_DYING)
-  if (child->exit_status != 0xcdcdcdcd || child->status == THREAD_DYING)
+  /*if (child->exit_status != 0xcdcdcdcd || child->status == THREAD_DYING)
     return -1;
-  sema_up(&child->exit_sema);
+  sema_up(&child->exit_sema);*/
   int exit_status;
 
-  if (!child) { PANIC("child tid fail"); }
-  sema_down(&child->wait_sema);
+  if(!child->exit){ sema_down(&child->wait_sema); }
+
+
+  /*if (!child) { PANIC("child tid fail"); }
+  sema_down(&child->wait_sema);*/
   exit_status = child->exit_status;
 
   /* show exit on the screen */
   /* after child successfully done exit */
-  printf("%s: exit(%d)\n", child->name, child->exit_status);
+  //printf("%s: exit(%d)\n", child->name, child->exit_status);
 
   /* child pushed back to the ready list by unblocking thread */
-  if (child->status == THREAD_BLOCKED){
+  /*if (child->status == THREAD_BLOCKED){
     thread_unblock(child);
-  }
+  }*/
+
+  sema_up(&child->exit_sema);
 
   list_remove(le);
   return exit_status;
@@ -260,9 +278,9 @@ process_exit (void)
   //printf("%s: exit(%d)\n", curr->name, curr->exit_status);
   
   //while(!list_empty(&curr->wait_sema.waiters))
-  sema_up(&curr->wait_sema);
+  /*sema_up(&curr->wait_sema);
   enum intr_level old_level = intr_disable();
-  thread_block();
+  thread_block();*/
   //intr_set_level (old_level);
 
   /* Destroy the current process's page directory and switch back

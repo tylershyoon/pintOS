@@ -1,5 +1,5 @@
-Copying tests/userprog/create-empty into /tmp/CRdsWhNAhd.dsk...
-Writing command line to /tmp/EEDnp2veHa.dsk...
+Copying tests/userprog/create-empty into /tmp/heTbMczZ2f.dsk...
+Writing command line to /tmp/q4fpr6MiGx.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put create-empty run create-empty
 Pintos booting with 4,096 kB RAM...
@@ -20,7 +20,7 @@ Executing 'create-empty':
 create-empty: exit(0)
 Execution of 'create-empty' complete.
 Timer: 306 ticks
-Thread: 0 idle ticks, 263 kernel ticks, 46 user ticks
+Thread: 0 idle ticks, 257 kernel ticks, 56 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 66 reads, 208 writes
 hd1:0: 98 reads, 0 writes

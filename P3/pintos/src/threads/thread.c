@@ -76,26 +76,28 @@ static tid_t allocate_tid (void);
 
 /* get thread by tid -> used in process_wait () */
 struct thread *
-thread_by_tid (tid_t tid)
+thread_by_tid (tid_t tid, struct thread* curr)
 {
   struct thread* th;
   struct list_elem * le;
-  for (le = list_begin(&process_list); le != list_end(&process_list); le = list_next(le))
+  struct list *childs = &curr->childs;
+  for (le = list_begin(childs); le != list_end(childs); le = list_next(le))
   {
-    th = list_entry (le, struct thread, process_elem);
+    th = list_entry (le, struct thread, child_elem);
     if (tid == th->tid){ return th; }
   }
   return NULL;
 }
 
 struct list_elem*
-elem_by_tid(tid_t tid)
+elem_by_tid(tid_t tid, struct thread* curr)
 {
   struct thread* th;
   struct list_elem * le;
-  for (le = list_begin(&process_list); le != list_end(&process_list); le = list_next(le))
+  struct list *childs = &curr->childs;
+  for (le = list_begin(childs); le != list_end(childs); le = list_next(le))
   {
-    th = list_entry (le, struct thread, process_elem);
+    th = list_entry (le, struct thread, child_elem);
     if (tid == th->tid){ return le; }
   }
   return NULL;
@@ -225,6 +227,11 @@ thread_create (const char *name, int priority,
   sf = alloc_frame (t, sizeof *sf);
   sf->eip = switch_entry;
 
+  /* added */
+  t->parent = thread_current();
+  //list_init(&t->childs);
+  list_push_back(&thread_current()->childs, &t->child_elem);
+
   /* Add to run queue. */
   thread_unblock (t);
 
@@ -236,6 +243,7 @@ thread_create (const char *name, int priority,
   t->fd_grant = 2;
   list_init(&t->file_list);
 #endif
+  //list_init(&t->childs);
 
   return tid;
 }
@@ -479,9 +487,12 @@ init_thread (struct thread *t, const char *name, int priority)
   t->priority = priority;
   t->magic = THREAD_MAGIC;
   /* : added for process list */
-  list_push_back (&process_list, &t->process_elem);
+  //list_push_back (&thread_current()->childs, &t->child_elem);
   t->executable = NULL;
   t->waitby = 0;
+  t->exit = 0;
+  list_init(&t->childs);
+
 }
 
 /* Allocates a SIZE-byte frame at the top of thread T's stack and

@@ -1,5 +1,5 @@
-Copying tests/vm/pt-grow-bad into /tmp/sxXpVc7mx6.dsk...
-Writing command line to /tmp/BncqnMN1Ow.dsk...
+Copying tests/vm/pt-grow-bad into /tmp/0FvSibHhV3.dsk...
+Writing command line to /tmp/mf0dLS3H9K.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put pt-grow-bad run pt-grow-bad
 Pintos booting with 4,096 kB RAM...
@@ -18,7 +18,7 @@ Executing 'pt-grow-bad':
 pt-grow-bad: exit(-1)
 Execution of 'pt-grow-bad' complete.
 Timer: 293 ticks
-Thread: 0 idle ticks, 265 kernel ticks, 32 user ticks
+Thread: 0 idle ticks, 257 kernel ticks, 43 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 62 reads, 204 writes
 hd1:0: 98 reads, 0 writes

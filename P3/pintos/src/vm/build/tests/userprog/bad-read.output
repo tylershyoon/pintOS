@@ -1,5 +1,5 @@
-Copying tests/userprog/bad-read into /tmp/bmqNwLANcJ.dsk...
-Writing command line to /tmp/MFWr9BAOMW.dsk...
+Copying tests/userprog/bad-read into /tmp/7Ew3PA52EA.dsk...
+Writing command line to /tmp/vSLqa78IrL.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put bad-read run bad-read
 Pintos booting with 4,096 kB RAM...
@@ -17,8 +17,8 @@ Executing 'bad-read':
 (bad-read) begin
 bad-read: exit(-1)
 Execution of 'bad-read' complete.
-Timer: 290 ticks
-Thread: 0 idle ticks, 260 kernel ticks, 33 user ticks
+Timer: 291 ticks
+Thread: 0 idle ticks, 255 kernel ticks, 43 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 62 reads, 204 writes
 hd1:0: 98 reads, 0 writes

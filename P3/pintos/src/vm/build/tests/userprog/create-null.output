@@ -1,5 +1,5 @@
-Copying tests/userprog/create-null into /tmp/WQ8jHJyqfS.dsk...
-Writing command line to /tmp/Tbty85ge7F.dsk...
+Copying tests/userprog/create-null into /tmp/ScqX0XDcly.dsk...
+Writing command line to /tmp/uUp4vQyU6z.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put create-null run create-null
 Pintos booting with 4,096 kB RAM...
@@ -18,7 +18,7 @@ Executing 'create-null':
 create-null: exit(-1)
 Execution of 'create-null' complete.
 Timer: 293 ticks
-Thread: 0 idle ticks, 264 kernel ticks, 32 user ticks
+Thread: 0 idle ticks, 257 kernel ticks, 43 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 62 reads, 204 writes
 hd1:0: 98 reads, 0 writes

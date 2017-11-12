@@ -1,5 +1,5 @@
-Copying tests/userprog/open-bad-ptr into /tmp/A8gmUea8U0.dsk...
-Writing command line to /tmp/p1WQSNriF9.dsk...
+Copying tests/userprog/open-bad-ptr into /tmp/CpFM6k344a.dsk...
+Writing command line to /tmp/D6EUL92jO6.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put open-bad-ptr run open-bad-ptr
 Pintos booting with 4,096 kB RAM...
@@ -18,7 +18,7 @@ Executing 'open-bad-ptr':
 open-bad-ptr: exit(-1)
 Execution of 'open-bad-ptr' complete.
 Timer: 294 ticks
-Thread: 0 idle ticks, 263 kernel ticks, 34 user ticks
+Thread: 0 idle ticks, 256 kernel ticks, 45 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 64 reads, 204 writes
 hd1:0: 98 reads, 0 writes

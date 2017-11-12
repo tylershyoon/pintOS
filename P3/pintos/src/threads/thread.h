@@ -96,13 +96,16 @@ struct thread
     struct list_elem elem;              /* List element. */
 
     /* for process.c, get thread by tid */
-    struct list_elem process_elem;
+    struct list_elem child_elem;
+    struct list childs;
+    struct thread* parent;
 
 #ifdef USERPROG
     /* Owned by userprog/process.c. */
     uint32_t *pagedir;                  /* Page directory. */
 
     bool waitby;
+    bool exit;
 
     /*: */
     struct semaphore load_sema;
@@ -132,8 +135,8 @@ struct thread
 extern bool thread_mlfqs;
 
 /* added */
-struct thread * thread_by_tid(tid_t);
-struct list_elem * elem_by_tid(tid_t);
+struct thread * thread_by_tid(tid_t, struct thread*);
+struct list_elem * elem_by_tid(tid_t, struct thread*);
 void thread_init (void);
 void thread_start (void);
 

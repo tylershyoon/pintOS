@@ -1,5 +1,5 @@
-Copying tests/userprog/bad-jump into /tmp/6v2z8jm449.dsk...
-Writing command line to /tmp/laJYbQ7Y6v.dsk...
+Copying tests/userprog/bad-jump into /tmp/zt6jKQhjpM.dsk...
+Writing command line to /tmp/9RVtQ5z8Fr.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put bad-jump run bad-jump
 Pintos booting with 4,096 kB RAM...
@@ -18,7 +18,7 @@ Executing 'bad-jump':
 bad-jump: exit(-1)
 Execution of 'bad-jump' complete.
 Timer: 291 ticks
-Thread: 0 idle ticks, 261 kernel ticks, 33 user ticks
+Thread: 0 idle ticks, 255 kernel ticks, 43 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 62 reads, 204 writes
 hd1:0: 98 reads, 0 writes

@@ -1,6 +1,6 @@
-Copying tests/vm/page-merge-seq into /tmp/tZat5DpwiA.dsk...
-Copying tests/vm/child-sort into /tmp/tZat5DpwiA.dsk...
-Writing command line to /tmp/6gA5IfpbOT.dsk...
+Copying tests/vm/page-merge-seq into /tmp/Wy8959It2u.dsk...
+Copying tests/vm/child-sort into /tmp/Wy8959It2u.dsk...
+Writing command line to /tmp/PKiAMNzn8X.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put page-merge-seq put child-sort run page-merge-seq
 Pintos booting with 4,096 kB RAM...
@@ -30,15 +30,39 @@ child-sort: exit(123)
 child-sort: exit(123)
 (page-merge-seq) sort chunk 5
 child-sort: exit(123)
-page-merge-seq: exit(-1)
+(page-merge-seq) sort chunk 6
+child-sort: exit(123)
+(page-merge-seq) sort chunk 7
+child-sort: exit(123)
+(page-merge-seq) sort chunk 8
+child-sort: exit(123)
+(page-merge-seq) sort chunk 9
+child-sort: exit(123)
+(page-merge-seq) sort chunk 10
+child-sort: exit(123)
+(page-merge-seq) sort chunk 11
+child-sort: exit(123)
+(page-merge-seq) sort chunk 12
+child-sort: exit(123)
+(page-merge-seq) sort chunk 13
+child-sort: exit(123)
+(page-merge-seq) sort chunk 14
+child-sort: exit(123)
+(page-merge-seq) sort chunk 15
+child-sort: exit(123)
+(page-merge-seq) merge
+(page-merge-seq) verify
+(page-merge-seq) success, buf_idx=1,032,192
+(page-merge-seq) end
+page-merge-seq: exit(0)
 Execution of 'page-merge-seq' complete.
-Timer: 5652 ticks
-Thread: 0 idle ticks, 362 kernel ticks, 5293 user ticks
+Timer: 29098 ticks
+Thread: 0 idle ticks, 490 kernel ticks, 28615 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 1767 reads, 2062 writes
+hd0:1: 4868 reads, 4582 writes
 hd1:0: 205 reads, 0 writes
-hd1:1: 0 reads, 0 writes
-Console: 1333 characters output
+hd1:1: 488 reads, 1576 writes
+Console: 1977 characters output
 Keyboard: 0 keys pressed
-Exception: 366 page faults
+Exception: 857 page faults
 Powering off...

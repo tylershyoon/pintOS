@@ -177,7 +177,9 @@ halt (void)
 void
 exit (int status)
 {
-  struct thread * curr = thread_current();
+  struct thread* curr = thread_current();
+  printf("%s: exit(%d)\n", thread_current()->name, status);
+  /*struct thread * curr = thread_current();
   sema_down(&curr->exit_sema);
   curr->exit_status = status;
   struct list_elem* itr;
@@ -196,8 +198,41 @@ exit (int status)
   if (lock_held_by_current_thread(&file_lock))
   {
     lock_release(&file_lock);
+  }*/
+
+  struct list_elem* itr;
+  struct thread* child;
+  while (!list_empty(&curr->childs))
+  {
+    itr = list_front(&curr->childs);
+    child = list_entry(itr, struct thread, child_elem);
+    child->parent = NULL;
+    list_pop_front(&curr->childs);
+  }
+  if(lock_held_by_current_thread(&file_lock))
+  {
+    lock_release(&file_lock);
+  }
+  while(!list_empty(&curr->file_list))
+  {
+    itr = list_pop_front(&curr->file_list);
+    close(list_entry(itr, struct thread_file, file_elem)->fd);
+  }
+  if (curr->executable != NULL)
+  {
+    file_allow_write(curr->executable);
+  }
+  while(!list_empty(&curr->wait_sema.waiters))
+  {
+    sema_up(&curr->wait_sema);
   }
 
+  curr->exit = 1;
+  curr->exit_status = status;
+  if(curr->parent)
+  {
+    sema_down(&curr->exit_sema);
+  }
   thread_exit ();
 }
 
@@ -240,12 +275,12 @@ int
 open (const char *file)
 {
   struct file* openfile;
-  //lock_acquire(&file_lock);
+  lock_acquire(&file_lock);
   openfile = filesys_open(file);
   //file_deny_write(openfile);
   if (openfile == NULL)
   {
-    //lock_release(&file_lock);
+    lock_release(&file_lock);
     return -1;
   }
   else
@@ -260,7 +295,7 @@ open (const char *file)
     thread_file->file = openfile;
     thread_file->fd = fd;
     list_push_back(&thread_current()->file_list, &thread_file->file_elem);
-    //lock_release(&file_lock);
+    lock_release(&file_lock);
     return fd;
   }
 }
@@ -455,10 +490,10 @@ tell (int fd)
 void
 close (int fd)
 {
-  //lock_acquire(&file_lock);
+  lock_acquire(&file_lock);
   if (fd == 0 || fd == 1)
   { 
-    //lock_release(&file_lock);
+    lock_release(&file_lock);
     return ; 
   }
 
@@ -480,5 +515,7 @@ close (int fd)
       break;
     }
   }
+  lock_release(&file_lock);
+  return;
 }
 

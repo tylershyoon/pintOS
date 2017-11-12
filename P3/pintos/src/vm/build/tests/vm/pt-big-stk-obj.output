@@ -1,5 +1,5 @@
-Copying tests/vm/pt-big-stk-obj into /tmp/qn7gcgKqWz.dsk...
-Writing command line to /tmp/iUCZ4MeEGq.dsk...
+Copying tests/vm/pt-big-stk-obj into /tmp/6mqGOrKb06.dsk...
+Writing command line to /tmp/brMbxNn9kN.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put pt-big-stk-obj run pt-big-stk-obj
 Pintos booting with 4,096 kB RAM...
@@ -20,7 +20,7 @@ Executing 'pt-big-stk-obj':
 pt-big-stk-obj: exit(0)
 Execution of 'pt-big-stk-obj' complete.
 Timer: 566 ticks
-Thread: 0 idle ticks, 269 kernel ticks, 300 user ticks
+Thread: 0 idle ticks, 261 kernel ticks, 312 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 65 reads, 222 writes
 hd1:0: 107 reads, 0 writes

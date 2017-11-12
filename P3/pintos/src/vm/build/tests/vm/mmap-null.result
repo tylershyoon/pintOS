@@ -1,2 +1,2 @@
 FAIL
-run: TIMEOUT after 60 seconds of host CPU time
+run: try to mmap at address 0: FAILED

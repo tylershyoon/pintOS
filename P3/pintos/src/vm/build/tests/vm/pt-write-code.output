@@ -1,5 +1,5 @@
-Copying tests/vm/pt-write-code into /tmp/9dENLLuroO.dsk...
-Writing command line to /tmp/P8Ezqw3qYO.dsk...
+Copying tests/vm/pt-write-code into /tmp/7LGX86EFKS.dsk...
+Writing command line to /tmp/KkMEoeVZmV.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put pt-write-code run pt-write-code
 Pintos booting with 4,096 kB RAM...
@@ -17,8 +17,8 @@ Executing 'pt-write-code':
 (pt-write-code) begin
 pt-write-code: exit(-1)
 Execution of 'pt-write-code' complete.
-Timer: 294 ticks
-Thread: 0 idle ticks, 265 kernel ticks, 32 user ticks
+Timer: 295 ticks
+Thread: 0 idle ticks, 258 kernel ticks, 44 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 62 reads, 204 writes
 hd1:0: 98 reads, 0 writes

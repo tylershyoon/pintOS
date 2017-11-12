@@ -1,5 +1,5 @@
-Copying tests/userprog/bad-read2 into /tmp/G5JxQ65ozb.dsk...
-Writing command line to /tmp/aUDksSssqH.dsk...
+Copying tests/userprog/bad-read2 into /tmp/m8nZxC77h2.dsk...
+Writing command line to /tmp/CcUEnwgp1e.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put bad-read2 run bad-read2
 Pintos booting with 4,096 kB RAM...
@@ -18,7 +18,7 @@ Executing 'bad-read2':
 bad-read2: exit(-1)
 Execution of 'bad-read2' complete.
 Timer: 292 ticks
-Thread: 0 idle ticks, 262 kernel ticks, 32 user ticks
+Thread: 0 idle ticks, 257 kernel ticks, 42 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 62 reads, 204 writes
 hd1:0: 98 reads, 0 writes

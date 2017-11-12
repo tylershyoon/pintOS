@@ -1,5 +1,5 @@
-Copying tests/userprog/create-exists into /tmp/zXluI1utzZ.dsk...
-Writing command line to /tmp/eCFVGQG1L1.dsk...
+Copying tests/userprog/create-exists into /tmp/du7slRzsbH.dsk...
+Writing command line to /tmp/8ECV8fu9Y7.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put create-exists run create-exists
 Pintos booting with 4,096 kB RAM...
@@ -24,7 +24,7 @@ Executing 'create-exists':
 create-exists: exit(0)
 Execution of 'create-exists' complete.
 Timer: 380 ticks
-Thread: 0 idle ticks, 265 kernel ticks, 118 user ticks
+Thread: 0 idle ticks, 257 kernel ticks, 130 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 145 reads, 224 writes
 hd1:0: 98 reads, 0 writes

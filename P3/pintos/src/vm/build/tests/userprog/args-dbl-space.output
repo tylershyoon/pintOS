@@ -1,5 +1,5 @@
-Copying tests/userprog/args-dbl-space into /tmp/6wyCyaPbTt.dsk...
-Writing command line to /tmp/mONCOZZtyv.dsk...
+Copying tests/userprog/args-dbl-space into /tmp/q8cr8nhgc6.dsk...
+Writing command line to /tmp/kAzcfpMcWQ.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put args-dbl-space run 'args-dbl-space two  spaces!'
 Pintos booting with 4,096 kB RAM...
@@ -23,8 +23,8 @@ Executing 'args-dbl-space two  spaces!':
 (args) end
 args-dbl-space: exit(0)
 Execution of 'args-dbl-space two  spaces!' complete.
-Timer: 316 ticks
-Thread: 0 idle ticks, 267 kernel ticks, 52 user ticks
+Timer: 321 ticks
+Thread: 0 idle ticks, 261 kernel ticks, 63 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 62 reads, 202 writes
 hd1:0: 97 reads, 0 writes

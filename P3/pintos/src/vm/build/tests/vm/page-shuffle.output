@@ -1,5 +1,5 @@
-Copying tests/vm/page-shuffle into /tmp/Eo6mbMceBT.dsk...
-Writing command line to /tmp/MJodRgZjMs.dsk...
+Copying tests/vm/page-shuffle into /tmp/NvGjrxEOMS.dsk...
+Writing command line to /tmp/enBo5FcRfq.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put page-shuffle run page-shuffle
 Pintos booting with 4,096 kB RAM...
@@ -30,7 +30,7 @@ Executing 'page-shuffle':
 page-shuffle: exit(0)
 Execution of 'page-shuffle' complete.
 Timer: 23588 ticks
-Thread: 0 idle ticks, 268 kernel ticks, 23323 user ticks
+Thread: 0 idle ticks, 262 kernel ticks, 23333 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 65 reads, 222 writes
 hd1:0: 107 reads, 0 writes

@@ -1,5 +1,5 @@
-Copying tests/userprog/read-stdout into /tmp/CeOEie1krk.dsk...
-Writing command line to /tmp/qRVfqwqSgm.dsk...
+Copying tests/userprog/read-stdout into /tmp/s0WHiBQ5v4.dsk...
+Writing command line to /tmp/1SUaE8aO42.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put read-stdout run read-stdout
 Pintos booting with 4,096 kB RAM...
@@ -18,8 +18,8 @@ Executing 'read-stdout':
 (read-stdout) end
 read-stdout: exit(0)
 Execution of 'read-stdout' complete.
-Timer: 295 ticks
-Thread: 0 idle ticks, 263 kernel ticks, 35 user ticks
+Timer: 296 ticks
+Thread: 0 idle ticks, 257 kernel ticks, 46 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 62 reads, 204 writes
 hd1:0: 98 reads, 0 writes

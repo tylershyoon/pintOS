@@ -1,5 +1,5 @@
-Copying tests/userprog/exec-bad-ptr into /tmp/n2LBcvNJ8u.dsk...
-Writing command line to /tmp/5ZKBicD6xl.dsk...
+Copying tests/userprog/exec-bad-ptr into /tmp/5mGGuwueV6.dsk...
+Writing command line to /tmp/ZmFE1mbCY7.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put exec-bad-ptr run exec-bad-ptr
 Pintos booting with 4,096 kB RAM...
@@ -14,5 +14,16 @@ Formatting file system...done.
 Boot complete.
 Putting 'exec-bad-ptr' into the file system...
 Executing 'exec-bad-ptr':
-
-TIMEOUT after 60 seconds of host CPU time
+(exec-bad-ptr) begin
+exec-bad-ptr: exit(-1)
+Execution of 'exec-bad-ptr' complete.
+Timer: 294 ticks
+Thread: 0 idle ticks, 257 kernel ticks, 44 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 62 reads, 204 writes
+hd1:0: 98 reads, 0 writes
+hd1:1: 0 reads, 0 writes
+Console: 918 characters output
+Keyboard: 0 keys pressed
+Exception: 5 page faults
+Powering off...

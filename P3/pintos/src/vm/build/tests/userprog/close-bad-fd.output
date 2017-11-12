@@ -1,5 +1,5 @@
-Copying tests/userprog/close-bad-fd into /tmp/UYjd1p7uAr.dsk...
-Writing command line to /tmp/MJwVDMYhnI.dsk...
+Copying tests/userprog/close-bad-fd into /tmp/hzuHve7F14.dsk...
+Writing command line to /tmp/esPVg9uAz6.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put close-bad-fd run close-bad-fd
 Pintos booting with 4,096 kB RAM...
@@ -14,5 +14,17 @@ Formatting file system...done.
 Boot complete.
 Putting 'close-bad-fd' into the file system...
 Executing 'close-bad-fd':
-
-TIMEOUT after 60 seconds of host CPU time
+(close-bad-fd) begin
+(close-bad-fd) end
+close-bad-fd: exit(0)
+Execution of 'close-bad-fd' complete.
+Timer: 297 ticks
+Thread: 0 idle ticks, 257 kernel ticks, 47 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 62 reads, 204 writes
+hd1:0: 98 reads, 0 writes
+hd1:1: 0 reads, 0 writes
+Console: 936 characters output
+Keyboard: 0 keys pressed
+Exception: 4 page faults
+Powering off...

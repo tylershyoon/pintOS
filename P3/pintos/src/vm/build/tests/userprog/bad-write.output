@@ -1,5 +1,5 @@
-Copying tests/userprog/bad-write into /tmp/cHJPKXFf5m.dsk...
-Writing command line to /tmp/qfSKbDcQ6i.dsk...
+Copying tests/userprog/bad-write into /tmp/wjtdU9nPk1.dsk...
+Writing command line to /tmp/RU9GXDT9a0.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put bad-write run bad-write
 Pintos booting with 4,096 kB RAM...
@@ -17,8 +17,8 @@ Executing 'bad-write':
 (bad-write) begin
 bad-write: exit(-1)
 Execution of 'bad-write' complete.
-Timer: 291 ticks
-Thread: 0 idle ticks, 262 kernel ticks, 32 user ticks
+Timer: 292 ticks
+Thread: 0 idle ticks, 256 kernel ticks, 43 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 62 reads, 204 writes
 hd1:0: 98 reads, 0 writes

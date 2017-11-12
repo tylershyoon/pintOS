@@ -1,5 +1,5 @@
-Copying tests/filesys/base/lg-seq-block into /tmp/Hk1uIpBWOb.dsk...
-Writing command line to /tmp/WzyzEQqB5p.dsk...
+Copying tests/filesys/base/lg-seq-block into /tmp/CTSPDpkvqI.dsk...
+Writing command line to /tmp/Qj6Cvc4iFe.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put lg-seq-block run lg-seq-block
 Pintos booting with 4,096 kB RAM...
@@ -24,18 +24,14 @@ Executing 'lg-seq-block':
 (lg-seq-block) close "noodle"
 (lg-seq-block) end
 lg-seq-block: exit(0)
-Kernel PANIC at ../../lib/kernel/list.c:171 in list_insert(): assertion `is_interior (before) || is_tail (before)' failed.
-Call stack: 0xc01071dc 0xc0107308 0xc01075c3 0xc0102a26 0xc010ac9f 0xc010a800 0xc01017ed 0xc010191f 0xc0107275 0xc01092ca 0xc01000bf 0xc01006e4.
-The `backtrace' program can make call stacks useful.
-Read "Backtraces" in the "Debugging Tools" chapter
-of the Pintos documentation for more information.
-Timer: 836 ticks
-Thread: 0 idle ticks, 257 kernel ticks, 579 user ticks
+Execution of 'lg-seq-block' complete.
+Timer: 843 ticks
+Thread: 0 idle ticks, 259 kernel ticks, 591 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 535 reads, 659 writes
 hd1:0: 102 reads, 0 writes
 hd1:1: 0 reads, 0 writes
-Console: 1566 characters output
+Console: 1182 characters output
 Keyboard: 0 keys pressed
-Exception: 23 page faults
+Exception: 22 page faults
 Powering off...
