@@ -1,10 +1,10 @@
-Copying tests/filesys/base/lg-full into /tmp/UeklkaxrAu.dsk...
-Writing command line to /tmp/Xoep78WrRS.dsk...
+Copying tests/filesys/base/lg-full into /tmp/w3z1tdk3Za.dsk...
+Writing command line to /tmp/xKmHeU5Iir.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put lg-full run lg-full
 Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
-374 pages available in user pool.
+373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
 hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
@@ -25,8 +25,8 @@ Executing 'lg-full':
 (lg-full) end
 lg-full: exit(0)
 Execution of 'lg-full' complete.
-Timer: 661 ticks
-Thread: 0 idle ticks, 256 kernel ticks, 408 user ticks
+Timer: 662 ticks
+Thread: 0 idle ticks, 257 kernel ticks, 412 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 242 reads, 512 writes
 hd1:0: 102 reads, 0 writes

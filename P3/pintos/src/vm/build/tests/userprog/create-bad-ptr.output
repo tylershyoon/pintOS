@@ -1,10 +1,10 @@
-Copying tests/userprog/create-bad-ptr into /tmp/ss7XGY4JWj.dsk...
-Writing command line to /tmp/76ISwP5Y0u.dsk...
+Copying tests/userprog/create-bad-ptr into /tmp/leZhPQ7b2k.dsk...
+Writing command line to /tmp/2dfUtiDri5.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put create-bad-ptr run create-bad-ptr
 Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
-374 pages available in user pool.
+373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
 hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
@@ -17,10 +17,10 @@ Executing 'create-bad-ptr':
 (create-bad-ptr) begin
 create-bad-ptr: exit(-1)
 Execution of 'create-bad-ptr' complete.
-Timer: 298 ticks
-Thread: 0 idle ticks, 258 kernel ticks, 47 user ticks
+Timer: 295 ticks
+Thread: 0 idle ticks, 258 kernel ticks, 44 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 65 reads, 207 writes
+hd0:1: 62 reads, 204 writes
 hd1:0: 98 reads, 0 writes
 hd1:1: 0 reads, 0 writes
 Console: 932 characters output

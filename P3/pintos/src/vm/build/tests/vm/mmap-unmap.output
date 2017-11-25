@@ -1,11 +1,11 @@
-Copying tests/vm/mmap-unmap into /tmp/dVa5Ld2X1w.dsk...
-Copying ../../tests/vm/sample.txt into /tmp/dVa5Ld2X1w.dsk...
-Writing command line to /tmp/PssxrH3FCx.dsk...
+Copying tests/vm/mmap-unmap into /tmp/SUpXNoxnxt.dsk...
+Copying ../../tests/vm/sample.txt into /tmp/SUpXNoxnxt.dsk...
+Writing command line to /tmp/TuDb9VlJnh.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put mmap-unmap put sample.txt run mmap-unmap
 Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
-374 pages available in user pool.
+373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
 hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
@@ -22,7 +22,7 @@ Executing 'mmap-unmap':
 mmap-unmap: exit(-1)
 Execution of 'mmap-unmap' complete.
 Timer: 333 ticks
-Thread: 0 idle ticks, 286 kernel ticks, 54 user ticks
+Thread: 0 idle ticks, 285 kernel ticks, 55 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 101 reads, 216 writes
 hd1:0: 103 reads, 0 writes

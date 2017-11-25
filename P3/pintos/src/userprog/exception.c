@@ -175,7 +175,7 @@ page_fault (struct intr_frame *f)
       {
         if(get_swap(spte)){ return; }
       }
-      else if (spte->type == FILE)
+      else if (spte->type == FILE_t)
       {
         if(get_lazy_file(spte)){ return; }
       }
@@ -218,5 +218,6 @@ page_fault (struct intr_frame *f)
           write ? "writing" : "reading",
           user ? "user" : "kernel");
   kill (f);
+  exit(-1);
 }
 

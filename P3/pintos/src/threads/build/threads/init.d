@@ -8,4 +8,10 @@ threads/init.o: ../../threads/init.c ../../threads/init.h \
   ../../threads/interrupt.h ../../threads/io.h ../../threads/loader.h \
   ../../threads/malloc.h ../../threads/palloc.h ../../threads/pte.h \
   ../../threads/vaddr.h ../../threads/thread.h ../../lib/kernel/list.h \
-  ../../threads/synch.h ../../tests/threads/tests.h
+  ../../threads/synch.h ../../filesys/file.h ../../filesys/off_t.h \
+  ../../filesys/inode.h ../../devices/disk.h ../../lib/inttypes.h \
+  ../../lib/kernel/hash.h ../../lib/kernel/list.h ../../vm/frame.h \
+  ../../vm/page.h ../../devices/disk.h ../../threads/thread.h \
+  ../../lib/kernel/hash.h ../../filesys/file.h ../../filesys/off_t.h \
+  ../../threads/palloc.h ../../lib/kernel/list.h ../../vm/swap.h \
+  ../../tests/threads/tests.h

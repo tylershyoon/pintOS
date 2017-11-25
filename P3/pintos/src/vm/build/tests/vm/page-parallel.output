@@ -1,11 +1,11 @@
-Copying tests/vm/page-parallel into /tmp/UHf0B7KAoX.dsk...
-Copying tests/vm/child-linear into /tmp/UHf0B7KAoX.dsk...
-Writing command line to /tmp/jyCRClI8Ug.dsk...
+Copying tests/vm/page-parallel into /tmp/lrueOZtNnR.dsk...
+Copying tests/vm/child-linear into /tmp/lrueOZtNnR.dsk...
+Writing command line to /tmp/IWFuVG97NK.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put page-parallel put child-linear run page-parallel
 Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
-374 pages available in user pool.
+373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
 hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
@@ -25,20 +25,20 @@ Executing 'page-parallel':
 child-linear: exit(66)
 (page-parallel) wait for child 1
 child-linear: exit(66)
+child-linear: exit(66)
 (page-parallel) wait for child 2
 child-linear: exit(66)
 (page-parallel) wait for child 3
-child-linear: exit(66)
 (page-parallel) end
 page-parallel: exit(0)
 Execution of 'page-parallel' complete.
-Timer: 98742 ticks
-Thread: 0 idle ticks, 360 kernel ticks, 98390 user ticks
+Timer: 101594 ticks
+Thread: 0 idle ticks, 354 kernel ticks, 101248 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 219 reads, 410 writes
 hd1:0: 200 reads, 0 writes
-hd1:1: 16952 reads, 21344 writes
-Console: 1391 characters output
+hd1:1: 16976 reads, 21912 writes
+Console: 1393 characters output
 Keyboard: 0 keys pressed
-Exception: 3151 page faults
+Exception: 3154 page faults
 Powering off...

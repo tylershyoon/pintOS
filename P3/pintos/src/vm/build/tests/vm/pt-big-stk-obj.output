@@ -1,10 +1,10 @@
-Copying tests/vm/pt-big-stk-obj into /tmp/6mqGOrKb06.dsk...
-Writing command line to /tmp/brMbxNn9kN.dsk...
+Copying tests/vm/pt-big-stk-obj into /tmp/nY2qJPh2lE.dsk...
+Writing command line to /tmp/BMOt9xsJIM.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put pt-big-stk-obj run pt-big-stk-obj
 Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
-374 pages available in user pool.
+373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
 hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
@@ -19,7 +19,7 @@ Executing 'pt-big-stk-obj':
 (pt-big-stk-obj) end
 pt-big-stk-obj: exit(0)
 Execution of 'pt-big-stk-obj' complete.
-Timer: 566 ticks
+Timer: 567 ticks
 Thread: 0 idle ticks, 261 kernel ticks, 312 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 65 reads, 222 writes

@@ -122,6 +122,10 @@ struct thread
     struct file* executable;
 #endif
 
+    /* for mmap */
+    int mapid;
+    struct list mmap_lst;
+
     /* supp page table */
     struct hash spt;
 

@@ -12,6 +12,15 @@
 #include "threads/vaddr.h"
 /* for lock structure usage */
 #include "threads/synch.h"
+/* open file using memory alloc */
+#include "threads/malloc.h"
+/* for impl mmap */
+#include "userprog/process.h"
+#include "userprog/pagedir.h"
+#include "vm/page.h"
+#include "vm/frame.h"
+#include "vm/swap.h"
+#include "lib/kernel/hash.h"
 
 static void syscall_handler (struct intr_frame *);
 
@@ -27,6 +36,10 @@ unsigned tell (int fd);
 /* syscall regarding pid */
 int exec (const char * cmd_line);
 int wait (int pid);
+
+/* few helper header */
+
+struct thread_file* thread_file_by_fd(int fd);
 
 /* lock for accessing file - for synchronization purpose */
 struct lock file_lock;
@@ -44,7 +57,7 @@ struct thread_file
 /* few helper functions */
 static void is_valid (const void *vaddr)
 {
-  if (!is_user_valid(vaddr)){ exit(-1); }
+  if (!is_user_vaddr(vaddr)){ exit(-1); }
 }
 
 static struct file* file_by_fd(int fd, struct thread *t)
@@ -80,7 +93,7 @@ syscall_handler (struct intr_frame *f)
   int args[3];     /* For arguments - maximum three for syscalls */
 
   //if(!is_user_vaddr(f->esp)){ exit(-1); }
-  if(!is_user_vaddr(f->esp + 4) || !is_user_vaddr(f->esp + 8) || ! is_user_vaddr(f->esp + 12)){ exit(-1); }
+  //if(!is_user_vaddr(f->esp + 4) || !is_user_vaddr(f->esp + 8) || ! is_user_vaddr(f->esp + 12)){ exit(-1); }
   /* FIRST switch-case for confirming arguments */
   switch (*(int*)f->esp)
   {
@@ -93,17 +106,22 @@ syscall_handler (struct intr_frame *f)
     case SYS_FILESIZE:
     case SYS_TELL:
     case SYS_CLOSE:
+    case SYS_MUNMAP:
+      is_valid((const void*)(4 + f->esp));
       args[0] = *(int *)(4 + f->esp);
       break;
     /* two-argument syscalls */
     case SYS_CREATE:
     case SYS_SEEK:
+    case SYS_MMAP:
+      is_valid((const void*)(8 + f->esp));
       args[0] = *(int *)(4 + f->esp);
       args[1] = *(int *)(8 + f->esp);
       break;
     /* three-argument syscalls */
     case SYS_READ:
     case SYS_WRITE:
+      is_valid((const void*)(12 + f->esp));
       args[0] = *(int *)(4 + f->esp);
       args[1] = *(int *)(8 + f->esp);
       args[2] = *(int *)(12 + f->esp);
@@ -162,6 +180,12 @@ syscall_handler (struct intr_frame *f)
     case SYS_WAIT:
       f->eax = wait((int)args[0]);
       break;
+    case SYS_MMAP:
+      f->eax = mmap(args[0], (void*)args[1]);
+      break;
+    case SYS_MUNMAP:
+      munmap(args[0]);
+      break;
   }
 
   //thread_exit ();
@@ -177,6 +201,7 @@ halt (void)
 void
 exit (int status)
 {
+  int munmap_itr;
   struct thread* curr = thread_current();
   printf("%s: exit(%d)\n", thread_current()->name, status);
   /*struct thread * curr = thread_current();
@@ -213,6 +238,10 @@ exit (int status)
   {
     lock_release(&file_lock);
   }
+  for (munmap_itr = 0; munmap_itr <= curr->mapid; munmap_itr++)
+  {
+    munmap(munmap_itr);
+  }
   while(!list_empty(&curr->file_list))
   {
     itr = list_pop_front(&curr->file_list);
@@ -239,7 +268,7 @@ exit (int status)
 int
 exec (const char *cmd_line)
 {
-  if (!cmd_line){ return -1; }
+  is_valid(cmd_line);
   return process_execute(cmd_line);
 }
 
@@ -253,7 +282,8 @@ wait (int pid)
 bool
 create (const char *file, unsigned initial_size)
 {
-  if(!file){ exit(-1); return -1; }
+  is_valid(file);
+  if(*file==0){ return 0; }
   lock_acquire(&file_lock);
   bool success = filesys_create (file, (off_t)initial_size);
   lock_release(&file_lock);
@@ -263,8 +293,8 @@ create (const char *file, unsigned initial_size)
 bool
 remove (const char *file)
 {
-  if (!file){ return false; }
-  if(!is_user_vaddr(file)){ exit(-1); }
+  is_valid (file);
+  if (*file ==0) { return false;}
   lock_acquire(&file_lock);
   bool success = filesys_remove (file);
   lock_release(&file_lock);
@@ -274,6 +304,8 @@ remove (const char *file)
 int 
 open (const char *file)
 {
+  is_valid(file);
+  if(*file==0){ return -1; }
   struct file* openfile;
   lock_acquire(&file_lock);
   openfile = filesys_open(file);
@@ -345,12 +377,9 @@ int
 read (int fd, void *buffer, unsigned size)
 {
   int actual_read;
+  is_valid((char*)buffer + size -1);
+  is_valid(buffer);
   lock_acquire(&file_lock);
-  if (!is_user_vaddr(buffer))
-  { 
-    lock_release(&file_lock);
-    exit(-1); 
-  }
   if (fd == 0)
   {
     /* std in*/
@@ -400,15 +429,10 @@ read (int fd, void *buffer, unsigned size)
 int
 write (int fd, const void * buffer, unsigned int size)
 {
+  is_valid((char*)buffer+size-1);
+  is_valid(buffer);
   int actual_write;
   lock_acquire(&file_lock);
-  //printf("WRITE\n");
-  if (!is_user_vaddr(buffer))
-  {
-    lock_release(&file_lock);
-    exit(-1);
-    return -1;
-  }
   if (fd == 1){
     lock_release(&file_lock);
     putbuf(buffer, size);
@@ -499,23 +523,127 @@ close (int fd)
 
   struct thread* curr = thread_current();
   struct list_elem * itr;
+  struct list_elem * mmap_itr;
   struct list *files = &curr->file_list;
   struct thread_file* itrfile;
+  struct file* file;
+  struct list* mmap_lst = &curr->mmap_lst;
+  struct spte* spte;
 
   for(itr=list_begin(files);itr!=list_end(files); itr=list_next(itr))
   {
     itrfile = list_entry(itr, struct thread_file, file_elem);
     if(itrfile->fd != fd){ continue; }
     else{
+      file = itrfile->file;
+      for(mmap_itr=list_begin(mmap_lst); mmap_itr != list_end(mmap_lst); mmap_itr = list_next(mmap_itr))
+      {
+        spte = list_entry(mmap_itr, struct spte, mmap_elem);
+        if(spte->file == file && spte->type == MMAP){ get_lazy_file(spte); }
+      }
+
       if (itrfile->file->deny_write){ file_allow_write(itrfile->file); }
-      file_close(itrfile->file);
       list_remove(itr);
+      file_close(file);
       free(itrfile);
-      //lock_release(&file_lock);
       break;
     }
   }
   lock_release(&file_lock);
   return;
 }
+
+
+int mmap(int fd, void* addr)
+{
+  /*
+  bool fd_check = fd == 1 || fd == 0;
+  bool addr_check = addr == 0 || pg_ofs(addr) != 0;
+  if (fd_check || addr_check){ return -1; }*/
+
+  void* upage = addr;
+  struct thread* curr = thread_current();
+  struct file* file = file_by_fd(fd, curr);
+  if(!file){ return -1; }
+  int mapid = ++curr->mapid;
+  
+  size_t page_read_bytes;
+
+  uint32_t read_bytes = file_length(file);
+  if (read_bytes==0){ return -1; }
+
+  off_t offset = 0;
+
+  bool fd_check = fd == 1 || fd == 0;
+  bool addr_check = addr == 0 || pg_ofs(addr) != 0;
+  if (fd_check || addr_check){ return -1; }
+
+  while (read_bytes > 0)
+  {
+    if (read_bytes < PGSIZE){ page_read_bytes = read_bytes; }
+    else{ page_read_bytes = PGSIZE; }
+
+    if (pagedir_get_page(curr->pagedir, upage))
+    {
+      munmap(mapid);
+      return -1;
+    }
+    if (page_lookup(&curr->spt, upage))
+    {
+      munmap(mapid);
+      return -1; 
+    }
+
+    struct spte* spte = get_spte(upage, MEMORY, true);
+    spte->type = MMAP;
+    spte->offset = offset;
+    spte->size = page_read_bytes;
+    spte->file = file;
+    spte->mapid = mapid;
+
+    list_push_back(&curr->mmap_lst, &spte->mmap_elem);
+
+    read_bytes = read_bytes - page_read_bytes;
+    upage = upage + PGSIZE;
+    offset = offset + page_read_bytes;
+  }
+  return mapid;
+}
+
+void munmap(int mapid)
+{
+  struct list_elem* itr;
+  struct thread* curr = thread_current();
+  struct list* mmap_lst = &curr->mmap_lst;
+  struct spte* spte;
+  itr = list_begin(mmap_lst);
+  while (itr != list_end(mmap_lst))
+  {
+    spte = list_entry(itr, struct spte, mmap_elem);
+    itr = list_next(itr);
+    if(spte->mapid == mapid)
+    {
+      if(spte->type == SWAP) { get_swap(spte); }
+      if(spte->type == MEMORY)
+      {
+        if (pagedir_is_dirty(spte->thread->pagedir, spte->address))
+        {
+          lock_acquire(&file_lock);
+          file_write_at(spte->file, spte->address, spte->size, spte->offset);
+          lock_release(&file_lock);
+        }
+        f_free_spte(spte);
+      }
+      list_remove(&spte->mmap_elem);
+      hash_delete(&spte->thread->spt, &spte->hash_elem);
+      free(spte);
+    }
+  }
+}
+
+
+
+
+
+
 

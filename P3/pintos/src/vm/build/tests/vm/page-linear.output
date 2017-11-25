@@ -1,10 +1,10 @@
-Copying tests/vm/page-linear into /tmp/fFRBgW8aWA.dsk...
-Writing command line to /tmp/LHmEKGiGpm.dsk...
+Copying tests/vm/page-linear into /tmp/EojLfxjnMA.dsk...
+Writing command line to /tmp/r5BZtZsSkD.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put page-linear run page-linear
 Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
-374 pages available in user pool.
+373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
 hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
@@ -23,12 +23,12 @@ Executing 'page-linear':
 (page-linear) end
 page-linear: exit(0)
 Execution of 'page-linear' complete.
-Timer: 43237 ticks
-Thread: 0 idle ticks, 260 kernel ticks, 42984 user ticks
+Timer: 43323 ticks
+Thread: 0 idle ticks, 259 kernel ticks, 43071 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 63 reads, 216 writes
 hd1:0: 104 reads, 0 writes
-hd1:1: 16632 reads, 17784 writes
+hd1:1: 16632 reads, 17792 writes
 Console: 1097 characters output
 Keyboard: 0 keys pressed
 Exception: 2595 page faults

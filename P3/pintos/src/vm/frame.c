@@ -53,9 +53,8 @@ f_free(void* frame)
     fte = list_entry(itr, struct fte, elem);
     if (frame == fte->frame)
     {
-      spte = fte->spte;
-
       list_remove(itr);
+      spte = fte->spte;
       pagedir_clear_page(spte->thread->pagedir, spte->address);
       palloc_free_page(frame);
       hash_delete(&curr->spt, &spte->hash_elem);

@@ -1,10 +1,10 @@
-Copying tests/filesys/base/lg-seq-block into /tmp/CTSPDpkvqI.dsk...
-Writing command line to /tmp/Qj6Cvc4iFe.dsk...
+Copying tests/filesys/base/lg-seq-block into /tmp/6AVm2nKhmp.dsk...
+Writing command line to /tmp/MgYtA3BdTb.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put lg-seq-block run lg-seq-block
 Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
-374 pages available in user pool.
+373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
 hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
@@ -25,8 +25,8 @@ Executing 'lg-seq-block':
 (lg-seq-block) end
 lg-seq-block: exit(0)
 Execution of 'lg-seq-block' complete.
-Timer: 843 ticks
-Thread: 0 idle ticks, 259 kernel ticks, 591 user ticks
+Timer: 844 ticks
+Thread: 0 idle ticks, 258 kernel ticks, 593 user ticks
 hd0:0: 0 reads, 0 writes
 hd0:1: 535 reads, 659 writes
 hd1:0: 102 reads, 0 writes

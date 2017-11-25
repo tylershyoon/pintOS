@@ -11,4 +11,9 @@ void exit (int status);
 //bool create (const char *file, unsigned );
 int write (int fd, const void* buffer, unsigned int size);
 
+/* Added for impl mmap*/
+
+int mmap (int fd, void * addr);
+void munmap (int mapid);
+
 #endif /* userprog/syscall.h */

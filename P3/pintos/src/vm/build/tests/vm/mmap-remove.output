@@ -1,11 +1,11 @@
-Copying tests/vm/mmap-remove into /tmp/sajCRYaIbt.dsk...
-Copying ../../tests/vm/sample.txt into /tmp/sajCRYaIbt.dsk...
-Writing command line to /tmp/AqkB8TOQ3Z.dsk...
+Copying tests/vm/mmap-remove into /tmp/mVIeq8Cijn.dsk...
+Copying ../../tests/vm/sample.txt into /tmp/mVIeq8Cijn.dsk...
+Writing command line to /tmp/kRYqWrOQJG.dsk...
 squish-pty bochs -q
 Kernel command line: -q -f put mmap-remove put sample.txt run mmap-remove
 Pintos booting with 4,096 kB RAM...
 374 pages available in kernel pool.
-374 pages available in user pool.
+373 pages available in user pool.
 Calibrating timer...  204,600 loops/s.
 hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
 hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
@@ -22,15 +22,16 @@ Executing 'mmap-remove':
 (mmap-remove) remove "sample.txt"
 (mmap-remove) try to open "sample.txt"
 (mmap-remove) create "another"
-mmap-remove: exit(-1)
+(mmap-remove) end
+mmap-remove: exit(0)
 Execution of 'mmap-remove' complete.
-Timer: 393 ticks
-Thread: 0 idle ticks, 286 kernel ticks, 114 user ticks
+Timer: 405 ticks
+Thread: 0 idle ticks, 286 kernel ticks, 126 user ticks
 hd0:0: 0 reads, 0 writes
-hd0:1: 149 reads, 305 writes
+hd0:1: 151 reads, 305 writes
 hd1:0: 104 reads, 0 writes
 hd1:1: 0 reads, 0 writes
-Console: 1142 characters output
+Console: 1159 characters output
 Keyboard: 0 keys pressed
-Exception: 4 page faults
+Exception: 3 page faults
 Powering off...

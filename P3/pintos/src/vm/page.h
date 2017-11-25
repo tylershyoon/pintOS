@@ -7,7 +7,7 @@
 #include "filesys/file.h"
 #include "filesys/off_t.h"
 
-enum type { MEMORY, FILE, MMAP, SWAP };
+enum type { MEMORY, FILE_t, MMAP, SWAP };
 
 struct spte {
   enum type type;
@@ -24,6 +24,10 @@ struct spte {
   struct file* file;
 
   uint32_t swap_index;
+
+  /* added for mmap*/
+  int mapid;
+  struct list_elem mmap_elem;
 };
 
 

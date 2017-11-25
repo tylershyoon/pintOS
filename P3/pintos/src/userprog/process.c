@@ -607,7 +607,7 @@ load_segment (struct file *file, off_t ofs, uint8_t *upage,
       struct spte* spte = get_spte(upage, MEMORY, writable);
       if(!(page_read_bytes % PGSIZE))
       {
-        spte->type = FILE;
+        spte->type = FILE_t;
         spte->file = file;
         spte->size = page_read_bytes;
         spte->offset = file_tell(file);
@@ -659,9 +659,10 @@ setup_stack (void **esp)
   if (kpage != NULL) 
     {
       success = install_page (((uint8_t *) PHYS_BASE) - PGSIZE, kpage, true);
-      if (success)
+      if (success){
         //*esp = PHYS_BASE - 12 ; /* Modified temporarily */
         *esp = PHYS_BASE;
+      }
       else{
         //palloc_free_page (kpage);
         f_free(kpage);

@@ -492,6 +492,8 @@ init_thread (struct thread *t, const char *name, int priority)
   t->waitby = 0;
   t->exit = 0;
   list_init(&t->childs);
+  t->mapid = 0;
+  list_init(&t->mmap_lst);
 
 }
 
