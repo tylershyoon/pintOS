@@ -1,0 +1,21 @@
+FAIL
+Kernel panic in run: PANIC at ../../threads/synch.c:198 in lock_acquire(): assertion `!lock_held_by_current_thread (lock)' failed.
+Call stack: 0xc01072cc 0xc0102b8d 0xc010b1c1 0xc010b575 0xc010188d 0xc01019bf 0x804a30a 0x8048294 0x80482e3 0x8048130 0x80488e4 0x8048918
+Translation of call stack:
+In kernel.o:
+0xc01072cc: debug_panic (.../../lib/kernel/debug.c:34)
+0xc0102b8d: lock_acquire (...../../threads/synch.c:200)
+0xc010b1c1: write (...../userprog/syscall.c:464)
+0xc010b575: syscall_handler (...../userprog/syscall.c:158)
+0xc010188d: intr_handler (..../threads/interrupt.c:361)
+0xc01019bf: intr_entry (threads/intr-stubs.S:38)
+In tests/filesys/extended/dir-open:
+0x0804a30a: write (...../lib/user/syscall.c:123)
+0x08048294: vmsg (...uild/../../tests/lib.c:25)
+0x080482e3: msg (...uild/../../tests/lib.c:37)
+0x08048130: test_main (...ys/extended/dir-open.c:19)
+0x080488e4: main (...ild/../../tests/main.c:13)
+0x08048918: _start (.../../../lib/user/entry.c:9)
+Translations of user virtual addresses above are based on a guess at
+the binary to use.  If this guess is incorrect, then those
+translations will be misleading.

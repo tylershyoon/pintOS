@@ -1,0 +1,39 @@
+Copying tests/filesys/extended/grow-file-size into /tmp/64ySOP5JUn.dsk...
+Copying tests/filesys/extended/tar into /tmp/64ySOP5JUn.dsk...
+Writing command line to /tmp/ojTblxbGAo.dsk...
+squish-pty bochs -q
+Kernel command line: -q -f put grow-file-size put tar run grow-file-size
+Pintos booting with 4,096 kB RAM...
+373 pages available in kernel pool.
+372 pages available in user pool.
+Calibrating timer...  204,600 loops/s.
+hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
+hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
+hd1:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00021"
+hd1:1: detected 8,064 sector (3 MB) disk, model "Generic 1234", serial "BXHD00022"
+Formatting file system...done.
+Boot complete.
+Putting 'grow-file-size' into the file system...
+Putting 'tar' into the file system...
+Executing 'grow-file-size':
+(grow-file-size) begin
+(grow-file-size) create "testfile"
+(grow-file-size) open "testfile"
+(grow-file-size) writing "testfile"
+(grow-file-size) close "testfile"
+(grow-file-size) open "testfile" for verification
+(grow-file-size) verified contents of "testfile"
+(grow-file-size) close "testfile"
+(grow-file-size) end
+grow-file-size: exit(0)
+Execution of 'grow-file-size' complete.
+Timer: 2315 ticks
+Thread: 0 idle ticks, 1810 kernel ticks, 512 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 43 reads, 458 writes
+hd1:0: 213 reads, 0 writes
+hd1:1: 0 reads, 0 writes
+Console: 1273 characters output
+Keyboard: 0 keys pressed
+Exception: 4 page faults
+Powering off...

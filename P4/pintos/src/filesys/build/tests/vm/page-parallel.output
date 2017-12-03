@@ -1,0 +1,44 @@
+Copying tests/vm/page-parallel into /tmp/ceTf0PquqP.dsk...
+Copying tests/vm/child-linear into /tmp/ceTf0PquqP.dsk...
+Writing command line to /tmp/FG8rf9iqvg.dsk...
+squish-pty bochs -q
+Kernel command line: -q -f put page-parallel put child-linear run page-parallel
+Pintos booting with 4,096 kB RAM...
+373 pages available in kernel pool.
+372 pages available in user pool.
+Calibrating timer...  204,600 loops/s.
+hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
+hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
+hd1:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00021"
+hd1:1: detected 8,064 sector (3 MB) disk, model "Generic 1234", serial "BXHD00022"
+Formatting file system...done.
+Boot complete.
+Putting 'page-parallel' into the file system...
+Putting 'child-linear' into the file system...
+Executing 'page-parallel':
+(page-parallel) begin
+(page-parallel) exec "child-linear"
+(page-parallel) exec "child-linear"
+(page-parallel) exec "child-linear"
+(page-parallel) exec "child-linear"
+(page-parallel) wait for child 0
+child-linear: exit(66)
+(page-parallel) wait for child 1
+child-linear: exit(66)
+(page-parallel) wait for child 2
+child-linear: exit(66)
+(page-parallel) wait for child 3
+child-linear: exit(66)
+(page-parallel) end
+page-parallel: exit(0)
+Execution of 'page-parallel' complete.
+Timer: 103919 ticks
+Thread: 0 idle ticks, 1728 kernel ticks, 102198 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 54 reads, 422 writes
+hd1:0: 200 reads, 0 writes
+hd1:1: 16976 reads, 21888 writes
+Console: 1393 characters output
+Keyboard: 0 keys pressed
+Exception: 3154 page faults
+Powering off...

@@ -1,0 +1,37 @@
+Copying tests/vm/mmap-remove into /tmp/EQLAkrXjnm.dsk...
+Copying ../../tests/vm/sample.txt into /tmp/EQLAkrXjnm.dsk...
+Writing command line to /tmp/f4gWUP4Bhm.dsk...
+squish-pty bochs -q
+Kernel command line: -q -f put mmap-remove put sample.txt run mmap-remove
+Pintos booting with 4,096 kB RAM...
+373 pages available in kernel pool.
+372 pages available in user pool.
+Calibrating timer...  204,600 loops/s.
+hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
+hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
+hd1:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00021"
+hd1:1: detected 8,064 sector (3 MB) disk, model "Generic 1234", serial "BXHD00022"
+Formatting file system...done.
+Boot complete.
+Putting 'mmap-remove' into the file system...
+Putting 'sample.txt' into the file system...
+Executing 'mmap-remove':
+(mmap-remove) begin
+(mmap-remove) open "sample.txt"
+(mmap-remove) mmap "sample.txt"
+(mmap-remove) remove "sample.txt"
+(mmap-remove) try to open "sample.txt"
+(mmap-remove) create "another"
+(mmap-remove) end
+mmap-remove: exit(0)
+Execution of 'mmap-remove' complete.
+Timer: 1669 ticks
+Thread: 0 idle ticks, 1013 kernel ticks, 659 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 47 reads, 307 writes
+hd1:0: 104 reads, 0 writes
+hd1:1: 0 reads, 0 writes
+Console: 1160 characters output
+Keyboard: 0 keys pressed
+Exception: 3 page faults
+Powering off...

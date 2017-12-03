@@ -1,0 +1,15 @@
+FAIL
+Kernel panic in file system extraction run: PANIC at ../../filesys/directory.c:200 in dir_lookup(): assertion `name != NULL' failed.
+Call stack: 0xc01072cc 0xc010c7f1 0xc010bc9a 0xc010b36c 0xc010b5cf 0xc010188d 0xc01019bf 0x804a841 0x804836f 0x804869a 0x8048e84
+Translation of call stack:
+0xc01072cc: debug_panic (.../../lib/kernel/debug.c:34)
+0xc010c7f1: dir_lookup (..../filesys/directory.c:204)
+0xc010bc9a: filesys_open (..../../filesys/filesys.c:90)
+0xc010b36c: open (...../userprog/syscall.c:339)
+0xc010b5cf: syscall_handler (...../userprog/syscall.c:171)
+0xc010188d: intr_handler (..../threads/interrupt.c:361)
+0xc01019bf: intr_entry (threads/intr-stubs.S:38)
+0x0804a841: (unknown)
+0x0804836f: (unknown)
+0x0804869a: (unknown)
+0x08048e84: (unknown)

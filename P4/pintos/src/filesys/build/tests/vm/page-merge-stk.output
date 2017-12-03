@@ -1,0 +1,47 @@
+Copying tests/vm/page-merge-stk into /tmp/KtVhpCSrOr.dsk...
+Copying tests/vm/child-qsort into /tmp/KtVhpCSrOr.dsk...
+Writing command line to /tmp/RDbuNjZcwm.dsk...
+squish-pty bochs -q
+Kernel command line: -q -f put page-merge-stk put child-qsort run page-merge-stk
+Pintos booting with 4,096 kB RAM...
+373 pages available in kernel pool.
+372 pages available in user pool.
+Calibrating timer...  204,600 loops/s.
+hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
+hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
+hd1:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00021"
+hd1:1: detected 8,064 sector (3 MB) disk, model "Generic 1234", serial "BXHD00022"
+Formatting file system...done.
+Boot complete.
+Putting 'page-merge-stk' into the file system...
+Putting 'child-qsort' into the file system...
+Executing 'page-merge-stk':
+(page-merge-stk) begin
+(page-merge-stk) init
+(page-merge-stk) sort chunk 0
+(page-merge-stk) sort chunk 1
+(page-merge-stk) sort chunk 2
+child-qsort: exit(72)
+(page-merge-stk) sort chunk 3
+child-qsort: exit(72)
+(page-merge-stk) sort chunk 4
+child-qsort: exit(72)
+child-qsort: exit(72)
+(page-merge-stk) sort chunk 5
+(page-merge-stk) sort chunk 6
+child-qsort: exit(72)
+(page-merge-stk) sort chunk 7
+child-qsort: exit(72)
+(page-merge-stk) wait for child 0
+page-merge-stk: exit(-1)
+Execution of 'page-merge-stk' complete.
+Timer: 64961 ticks
+Thread: 0 idle ticks, 1833 kernel ticks, 63131 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 2156 reads, 6171 writes
+hd1:0: 213 reads, 0 writes
+hd1:1: 48 reads, 1280 writes
+Console: 1436 characters output
+Keyboard: 0 keys pressed
+Exception: 507 page faults
+Powering off...

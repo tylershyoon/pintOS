@@ -1,0 +1,48 @@
+Copying tests/filesys/extended/syn-rw into /tmp/7bJ6rI0Wlh.dsk...
+Copying tests/filesys/extended/tar into /tmp/7bJ6rI0Wlh.dsk...
+Copying tests/filesys/extended/child-syn-rw into /tmp/7bJ6rI0Wlh.dsk...
+Writing command line to /tmp/vHmCLjAQ4A.dsk...
+squish-pty bochs -q
+Kernel command line: -q -f put syn-rw put tar put child-syn-rw run syn-rw
+Pintos booting with 4,096 kB RAM...
+373 pages available in kernel pool.
+372 pages available in user pool.
+Calibrating timer...  204,600 loops/s.
+hd0:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00011"
+hd0:1: detected 4,032 sector (1 MB) disk, model "Generic 1234", serial "BXHD00012"
+hd1:0: detected 1,008 sector (504 kB) disk, model "Generic 1234", serial "BXHD00021"
+hd1:1: detected 8,064 sector (3 MB) disk, model "Generic 1234", serial "BXHD00022"
+Formatting file system...done.
+Boot complete.
+Putting 'syn-rw' into the file system...
+Putting 'tar' into the file system...
+Putting 'child-syn-rw' into the file system...
+Executing 'syn-rw':
+(syn-rw) begin
+(syn-rw) create "logfile"
+(syn-rw) open "logfile"
+(syn-rw) exec child 1 of 4: "child-syn-rw 0"
+(syn-rw) exec child 2 of 4: "child-syn-rw 1"
+(syn-rw) exec child 3 of 4: "child-syn-rw 2"
+(syn-rw) exec child 4 of 4: "child-syn-rw 3"
+child-syn-rw: exit(3)
+child-syn-rw: exit(0)
+child-syn-rw: exit(1)
+child-syn-rw: exit(2)
+(syn-rw) wait for child 1 of 4 returned 0 (expected 0)
+(syn-rw) wait for child 2 of 4 returned 1 (expected 1)
+(syn-rw) wait for child 3 of 4 returned 2 (expected 2)
+(syn-rw) wait for child 4 of 4 returned 3 (expected 3)
+(syn-rw) end
+syn-rw: exit(0)
+Execution of 'syn-rw' complete.
+Timer: 7934 ticks
+Thread: 0 idle ticks, 2837 kernel ticks, 5108 user ticks
+hd0:0: 0 reads, 0 writes
+hd0:1: 77 reads, 696 writes
+hd1:0: 327 reads, 0 writes
+hd1:1: 0 reads, 0 writes
+Console: 1541 characters output
+Keyboard: 0 keys pressed
+Exception: 25 page faults
+Powering off...

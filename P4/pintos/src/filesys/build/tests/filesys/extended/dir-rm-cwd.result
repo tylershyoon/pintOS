@@ -1,0 +1,21 @@
+FAIL
+Kernel panic in run: PANIC at ../../filesys/directory.c:200 in dir_lookup(): assertion `name != NULL' failed.
+Call stack: 0xc01072cc 0xc010c7f1 0xc010bc9a 0xc010b36c 0xc010b5cf 0xc010188d 0xc01019bf 0x804a641 0x80480c1 0x8048136 0x8048c54 0x8048c88
+Translation of call stack:
+In kernel.o:
+0xc01072cc: debug_panic (.../../lib/kernel/debug.c:34)
+0xc010c7f1: dir_lookup (..../filesys/directory.c:204)
+0xc010bc9a: filesys_open (..../../filesys/filesys.c:90)
+0xc010b36c: open (...../userprog/syscall.c:339)
+0xc010b5cf: syscall_handler (...../userprog/syscall.c:171)
+0xc010188d: intr_handler (..../threads/interrupt.c:361)
+0xc01019bf: intr_entry (threads/intr-stubs.S:38)
+In tests/filesys/extended/dir-rm-cwd:
+0x0804a641: open (...../lib/user/syscall.c:105)
+0x080480c1: wrap_open (.../extended/dir-rm-cwd.c:15)
+0x08048136: test_main (.../extended/dir-rm-cwd.c:29)
+0x08048c54: main (...ild/../../tests/main.c:13)
+0x08048c88: _start (.../../../lib/user/entry.c:9)
+Translations of user virtual addresses above are based on a guess at
+the binary to use.  If this guess is incorrect, then those
+translations will be misleading.
